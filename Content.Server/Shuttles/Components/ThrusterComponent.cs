@@ -61,6 +61,18 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
         public TimeSpan NextFire = TimeSpan.Zero;
+
+                /// <summary>
+        /// Togglable thrusters
+        /// </summary>
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OnPort = "On";
+
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string OffPort = "Off";
+
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string TogglePort = "Toggle";
     }
 
     public enum ThrusterType
