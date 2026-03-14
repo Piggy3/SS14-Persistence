@@ -563,8 +563,6 @@
       solution: beaker
     - type: DrainableSolution
       solution: beaker
-    - type: ExaminableSolution
-      solution: beaker
     - type: DrawableSolution
       solution: beaker
     - type: InjectableSolution
