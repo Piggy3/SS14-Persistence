@@ -552,7 +552,6 @@
       solutions:
         beaker:
           maxVol: 200
-    - type: JerryCan
     - type: Sprite
       sprite: Objects/Tools/bucket.rsi
       layers:
@@ -582,6 +581,7 @@
     - type: Tag
       tags:
       - ChemDispensable
+      - Jerrycan
     - type: DnaSubstanceTrace
     - type: PhysicalComposition
       materialComposition:

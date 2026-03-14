@@ -119,5 +119,5 @@
         jerrycan_slot2:
           name: mechanic-cart-slot-component-slot-name-jerrycan2
           whitelist:
-            components:
+            tags:
               - JerryCan
