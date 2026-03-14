@@ -554,6 +554,8 @@
           maxVol: 200
     - type: Sprite
       sprite: Objects/Tools/bucket.rsi
+      layers:
+        - state: icon
     - type: Item
       size: Normal
     - type: MixableSolution

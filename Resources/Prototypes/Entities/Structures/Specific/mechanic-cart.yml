@@ -87,6 +87,18 @@
             tags:
               - CableCoil
           priority: 9
+        toolbox_slot1:
+          name: mechanic-cart-slot-component-slot-name-toolbox
+          whitelist:
+            tags:
+              - Toolbox
+          priority: 9
+        toolbox_slot2:
+          name: mechanic-cart-slot-component-slot-name-toolbox
+          whitelist:
+            tags:
+              - Toolbox
+          priority: 9
         t_ray_scanner_slot:
           name: mechanic-cart-slot-component-slot-name-tray-scanner
           whitelist:
