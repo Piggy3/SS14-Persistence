@@ -575,10 +575,6 @@
       interfaces:
         enum.TransferAmountUiKey.Key:
           type: TransferAmountBoundUserInterface
-    - type: Drink
-      solution: beaker
-      delay: 1.5
-      forceFeedDelay: 5
     - type: Appearance
     - type: Label
     - type: Tag
