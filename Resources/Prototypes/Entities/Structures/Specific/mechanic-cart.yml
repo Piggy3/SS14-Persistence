@@ -86,7 +86,6 @@
           whitelist:
             tags:
               - CableCoil
-          priority: 9
         toolbox_slot1:
           name: mechanic-cart-slot-component-slot-name-toolbox
           whitelist:
@@ -114,7 +113,7 @@
         jerrycan_slot1:
           name: mechanic-cart-slot-component-slot-name-jerrycan
           whitelist:
-            components:
+            tags:
               - JerryCan
         jerrycan_slot2:
           name: mechanic-cart-slot-component-slot-name-jerrycan2
