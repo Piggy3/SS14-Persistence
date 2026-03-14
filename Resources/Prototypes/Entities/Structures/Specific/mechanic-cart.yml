@@ -1,0 +1,52 @@
+#mechanic cart
+
+- type: entity
+  name: mechanic cart
+  id: MechanicCart
+  parent: [BaseStructureDynamic, StructureWheeled]
+  description: Every mechanic's best friend.
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: Objects/Specific/Janitorial/janitorial_cart.rsi
+      layers:
+        - state: cart
+        - state: cart_water-1
+          map: ["enum.SolutionContainerLayers.Fill"]
+          visible: false
+    - type: Rotatable
+    - type: InteractionOutline
+    - type: ItemSlots
+      slots:
+        crowbar_slot:
+          name: mechanic-cart-slot-component-slot-name-crowbar
+          whitelist:
+            tags:
+              - crowbar
+          priority: 9
+        wrench_slot:
+          name: mechanic-cart-slot-component-slot-name-wrench
+          whitelist:
+            tags:
+              - wrench
+          insertOnInteract: false
+          priority: 8
+        screwdriver_slot:
+          name: mechanic-cart-slot-component-slot-name-screwdriver
+          whitelist:
+            tags:
+              - screwdriver
+          priority: 8
+        wirecutter_slot:
+          name: mechanic-cart-slot-component-slot-name-wirecutter
+          whitelist:
+            tags:
+              - wirecutter
+          priority: 8
+        weldingtool_slot:
+          name: mechanic-cart-slot-component-slot-name-weldingtool
+          whitelist:
+            tags:
+              - welding tool
+
+          priority: 8
