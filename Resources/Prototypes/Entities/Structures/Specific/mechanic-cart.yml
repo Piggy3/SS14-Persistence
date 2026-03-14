@@ -22,31 +22,31 @@
           name: mechanic-cart-slot-component-slot-name-crowbar
           whitelist:
             tags:
-              - crowbar
+              - Crowbar
           priority: 9
         wrench_slot:
           name: mechanic-cart-slot-component-slot-name-wrench
           whitelist:
             tags:
-              - wrench
+              - Wrench
           insertOnInteract: false
           priority: 8
         screwdriver_slot:
           name: mechanic-cart-slot-component-slot-name-screwdriver
           whitelist:
             tags:
-              - screwdriver
+              - Screwdriver
           priority: 8
         wirecutter_slot:
           name: mechanic-cart-slot-component-slot-name-wirecutter
           whitelist:
             tags:
-              - wirecutter
+              - Wirecutter
           priority: 8
         weldingtool_slot:
           name: mechanic-cart-slot-component-slot-name-weldingtool
           whitelist:
             tags:
-              - welding tool
+              - Welding tool
 
           priority: 8
