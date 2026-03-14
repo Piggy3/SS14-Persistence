@@ -48,13 +48,8 @@
           whitelist:
             tags:
               - Multitool
+              - DoorElectronicsConfigurator
           priority: 9
-        networkconfigulator_slot:
-          name: mechanic-cart-slot-component-slot-name-networkconfigulator
-          whitelist:
-            tags:
-              - NetworkConfigurator
-          priority: 8
         powerdrill_slot:
           name: mechanic-cart-slot-component-slot-name-powerdrill
           whitelist:
@@ -93,13 +88,15 @@
               - CableCoil
           priority: 9
 
-        #t_ray_scanner_slot:
-        #  name: mechanic-cart-slot-component-slot-name-tray-scanner
-        #  whitelist:
-        #    - trayScanner
-        #  priority: 9
-        #welder_scanner_slot:
-        #  name: mechanic-cart-slot-component-slot-name-tray-welder
-        #  whitelist:
-        #    - Welder
-        #  priority: 9
+        t_ray_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-scanner
+          whitelist:
+            components:
+              - TrayScanner
+          priority: 9
+        welder_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-welder
+          whitelist:
+            components:
+              - Welder
+          priority: 9
