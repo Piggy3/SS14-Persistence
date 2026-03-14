@@ -29,24 +29,92 @@
           whitelist:
             tags:
               - Wrench
-          insertOnInteract: false
-          priority: 8
+          insertOnInteract: true
+          priority: 9
         screwdriver_slot:
           name: mechanic-cart-slot-component-slot-name-screwdriver
           whitelist:
             tags:
               - Screwdriver
-          priority: 8
+          priority: 9
         wirecutter_slot:
           name: mechanic-cart-slot-component-slot-name-wirecutter
           whitelist:
             tags:
               - Wirecutter
+          priority: 9
+        multitool_slot:
+          name: mechanic-cart-slot-component-slot-name-multitool
+          whitelist:
+            tags:
+              - Multitool
+          priority: 9
+        networkconfigulator_slot:
+          name: mechanic-cart-slot-component-slot-name-networkconfigulator
+          whitelist:
+            tags:
+              - NetworkConfigurator
           priority: 8
+        powerdrill_slot:
+          name: mechanic-cart-slot-component-slot-name-powerdrill
+          whitelist:
+            tags:
+              - PowerDrill
+            insertOnInteract: true
+          priority: 9
+        rcd_slot:
+          name: mechanic-cart-slot-component-slot-name-rcd
+          whitelist:
+            tags:
+              - RCD
+          priority: 9
+        jaws_of_life_slot:
+          name: mechanic-cart-slot-component-slot-name-jaws-of-life
+          whitelist:
+            tags:
+              - JawsOfLife
+          priority: 9          
+        cablecoil_slot1:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+          priority: 9
+        cablecoil_slot2:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+          priority: 9
+        cablecoil_slot3:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+          priority: 9
+        t_ray_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-scanner
+          whitelist:
+            - trayScanner
+          priority: 9
+        welder_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-welder
+          whitelist:
+            - Welder
+          priority: 9
+
+
+
+
+
+
+
+
+
+
         weldingtool_slot:
           name: mechanic-cart-slot-component-slot-name-weldingtool
           whitelist:
             tags:
               - Welding tool
-
           priority: 8
