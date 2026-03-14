@@ -54,13 +54,13 @@
           name: mechanic-cart-slot-component-slot-name-powerdrill
           whitelist:
             tags:
-              - PowerDrill
+              - Powerdrill
             insertOnInteract: true
           priority: 9
         rcd_slot:
           name: mechanic-cart-slot-component-slot-name-rcd
           whitelist:
-            tags:
+            components:
               - RCD
           priority: 9
         jaws_of_life_slot:

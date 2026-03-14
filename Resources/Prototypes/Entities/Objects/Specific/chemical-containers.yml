@@ -580,8 +580,7 @@
     - type: Label
     - type: Tag
       tags:
-      - ChemDispensable
-      - Jerrycan
+      - JerryCan
     - type: DnaSubstanceTrace
     - type: PhysicalComposition
       materialComposition:
