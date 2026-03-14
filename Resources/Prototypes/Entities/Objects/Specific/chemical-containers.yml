@@ -541,3 +541,52 @@
         reagents:
         - ReagentId: WeldingFuel
           Quantity: 200
+
+- type: entity
+  name: jerry can
+  parent: BaseItem
+  id: JerryCan
+  description: A plastic jerry can with a spill-proof nozzle.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 200
+    - type: Sprite
+      sprite: Objects/Specific/Chemistry/jug.rsi
+    - type: Item
+      size: Normal
+      sprite: Objects/Specific/Chemistry/jug.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+    - type: Drink
+      solution: beaker
+      delay: 1.5
+      forceFeedDelay: 5
+    - type: Appearance
+    - type: Label
+    - type: Tag
+      tags:
+      - ChemDispensable
+    - type: DnaSubstanceTrace
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 75

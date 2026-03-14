@@ -87,7 +87,6 @@
             tags:
               - CableCoil
           priority: 9
-
         t_ray_scanner_slot:
           name: mechanic-cart-slot-component-slot-name-tray-scanner
           whitelist:
@@ -100,3 +99,13 @@
             components:
               - Welder
           priority: 9
+        jerrycan_slot1:
+          name: mechanic-cart-slot-component-slot-name-jerrycan
+          whitelist:
+            components:
+              - JerryCan
+        jerrycan_slot2:
+          name: mechanic-cart-slot-component-slot-name-jerrycan
+          whitelist:
+            components:
+              - JerryCan
