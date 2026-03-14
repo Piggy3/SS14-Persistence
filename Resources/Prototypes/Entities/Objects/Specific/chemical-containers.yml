@@ -553,10 +553,9 @@
         beaker:
           maxVol: 200
     - type: Sprite
-      sprite: Objects/Specific/Chemistry/jug.rsi
+      sprite: Objects/Tools/bucket.rsi
     - type: Item
       size: Normal
-      sprite: Objects/Specific/Chemistry/jug.rsi
     - type: MixableSolution
       solution: beaker
     - type: RefillableSolution
