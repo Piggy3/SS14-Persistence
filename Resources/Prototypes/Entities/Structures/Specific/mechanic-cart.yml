@@ -92,13 +92,14 @@
             tags:
               - CableCoil
           priority: 9
-        t_ray_scanner_slot:
-          name: mechanic-cart-slot-component-slot-name-tray-scanner
-          whitelist:
-            - trayScanner
-          priority: 9
-        welder_scanner_slot:
-          name: mechanic-cart-slot-component-slot-name-tray-welder
-          whitelist:
-            - Welder
-          priority: 9
+
+        #t_ray_scanner_slot:
+        #  name: mechanic-cart-slot-component-slot-name-tray-scanner
+        #  whitelist:
+        #    - trayScanner
+        #  priority: 9
+        #welder_scanner_slot:
+        #  name: mechanic-cart-slot-component-slot-name-tray-welder
+        #  whitelist:
+        #    - Welder
+        #  priority: 9
