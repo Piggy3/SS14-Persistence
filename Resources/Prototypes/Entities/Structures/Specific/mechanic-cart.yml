@@ -102,19 +102,3 @@
           whitelist:
             - Welder
           priority: 9
-
-
-
-
-
-
-
-
-
-
-        weldingtool_slot:
-          name: mechanic-cart-slot-component-slot-name-weldingtool
-          whitelist:
-            tags:
-              - Welding tool
-          priority: 8
