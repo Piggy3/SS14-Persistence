@@ -591,3 +591,5 @@
       closeable: true
       closeSound:
         collection: bottleCloseSounds
+    - type: Spillable
+      solution: beaker
