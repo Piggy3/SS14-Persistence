@@ -593,3 +593,29 @@
         collection: bottleCloseSounds
     - type: Spillable
       solution: beaker
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger: # Overkill threshold
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 20 # can take a few more hits than basic plastic
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalCrunch # TODO a plastic break collection
+        - !type:SpillBehavior { }
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: MeleeWeapon
+      soundNoDamage:
+        path: "/Audio/Effects/Fluids/splat.ogg"
+      damage:
+        types:
+          Blunt: 0
