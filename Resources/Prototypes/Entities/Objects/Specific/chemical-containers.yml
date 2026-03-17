@@ -585,3 +585,11 @@
     - type: PhysicalComposition
       materialComposition:
         Plastic: 75
+    - type: Openable
+      sound:
+        collection: bottleOpenSounds
+      closeable: true
+      closeSound:
+        collection: bottleCloseSounds
+    - type: Spillable
+      solution: beaker
