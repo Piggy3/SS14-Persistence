@@ -543,7 +543,7 @@
           Quantity: 200
 
 - type: entity
-  name: jerry can
+  name: Jerrycan
   parent: BaseItem
   id: JerryCan
   description: A plastic jerry can with a spill-proof nozzle.
