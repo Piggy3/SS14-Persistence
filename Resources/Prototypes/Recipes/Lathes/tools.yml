@@ -271,3 +271,14 @@
     Plasma: 150
     Uranium: 150
   unlockUses: 3
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: Jerrycan
+  result: Jerrycan
+  icon:
+      sprite: Objects/Tools/bucket.rsi
+      state: icon
+  materials:
+    Plastic: 300
+  completetime: 4
