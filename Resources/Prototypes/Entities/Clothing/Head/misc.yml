@@ -201,7 +201,7 @@
   - type: TypingIndicatorClothing
     proto: regal
   - type: StaticPrice
-    price: 1500
+    price: 3000
   - type: AddAccentClothing
     accent: MobsterAccent
 
@@ -221,7 +221,7 @@
   - type: AddAccentClothing
     accent: OwOAccent
   - type: StaticPrice
-    price: 7500
+    price: 15000
 
 - type: entity
   parent: [ClothingHeadHatCatEars, BaseToggleClothing]

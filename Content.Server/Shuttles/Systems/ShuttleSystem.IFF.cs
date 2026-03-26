@@ -3,7 +3,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Events;
-using Robust.Shared.Maths;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -13,9 +12,7 @@ public sealed partial class ShuttleSystem
     {
         SubscribeLocalEvent<IFFConsoleComponent, AnchorStateChangedEvent>(OnIFFConsoleAnchor);
         SubscribeLocalEvent<IFFConsoleComponent, IFFShowIFFMessage>(OnIFFShow);
-        SubscribeLocalEvent<IFFConsoleComponent, IFFSetColorMessage>(OnIFFSetColor);
-        SubscribeLocalEvent<IFFConsoleComponent, IFFSetDesignationMessage>(OnIFFSetDesignation);
-        SubscribeLocalEvent<IFFConsoleComponent, MapInitEvent>(OnInitIFFConsole);
+        SubscribeLocalEvent<IFFConsoleComponent, IFFShowVesselMessage>(OnIFFShowVessel);
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
     }
 
@@ -40,68 +37,38 @@ public sealed partial class ShuttleSystem
 
     private void OnIFFShow(EntityUid uid, IFFConsoleComponent component, IFFShowIFFMessage args)
     {
-        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
+        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null ||
+            (component.AllowedFlags & IFFFlags.HideLabel) == 0x0)
         {
             return;
         }
 
         if (!args.Show)
         {
-            AddAllSupportedIFFFlags(xform, component);
+            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
         }
         else
         {
             RemoveIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
+        }
+    }
+
+    private void OnIFFShowVessel(EntityUid uid, IFFConsoleComponent component, IFFShowVesselMessage args)
+    {
+        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null ||
+            (component.AllowedFlags & IFFFlags.Hide) == 0x0)
+        {
+            return;
+        }
+
+        if (!args.Show)
+        {
+            AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
+        }
+        else
+        {
             RemoveIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
         }
-    }
-
-    private void OnInitIFFConsole(EntityUid uid, IFFConsoleComponent component, MapInitEvent args)
-    {
-        if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
-        {
-            return;
-        }
-
-        if (component.HideOnInit)
-        {
-            AddAllSupportedIFFFlags(xform, component);
-        }
-    }
-
-    private void OnIFFSetColor(EntityUid uid, IFFConsoleComponent component, IFFSetColorMessage args)
-    {
-        if (!component.AllowColorChange ||
-            !TryComp(uid, out TransformComponent? xform) ||
-            xform.GridUid is not { } gridUid)
-        {
-            return;
-        }
-
-        var parsed = Color.TryFromHex(args.ColorHex);
-        if (!parsed.HasValue)
-            return;
-
-        var normalized = IFFComponent.NormalizeSignatureColor(parsed.Value);
-        SetIFFColor(gridUid, normalized);
-    }
-
-    private void OnIFFSetDesignation(EntityUid uid, IFFConsoleComponent component, IFFSetDesignationMessage args)
-    {
-        if (!component.AllowDesignationChange ||
-            !TryComp(uid, out TransformComponent? xform) ||
-            xform.GridUid is not { } gridUid)
-        {
-            return;
-        }
-
-        var iff = EnsureComp<IFFComponent>(gridUid);
-        if (iff.Designation == args.Designation)
-            return;
-
-        iff.Designation = args.Designation;
-        Dirty(gridUid, iff);
-        UpdateIFFInterfaces(gridUid, iff);
     }
 
     private void OnIFFConsoleAnchor(EntityUid uid, IFFConsoleComponent component, ref AnchorStateChangedEvent args)
@@ -115,10 +82,6 @@ public sealed partial class ShuttleSystem
             {
                 AllowedFlags = component.AllowedFlags,
                 Flags = IFFFlags.None,
-                SignatureColor = IFFComponent.IFFColor,
-                ColorEditable = component.AllowColorChange,
-                Designation = IFFDesignation.Ship,
-                DesignationEditable = component.AllowDesignationChange,
             });
         }
         else
@@ -127,10 +90,6 @@ public sealed partial class ShuttleSystem
             {
                 AllowedFlags = component.AllowedFlags,
                 Flags = iff.Flags,
-                SignatureColor = iff.Color,
-                ColorEditable = component.AllowColorChange,
-                Designation = iff.Designation,
-                DesignationEditable = component.AllowDesignationChange,
             });
         }
     }
@@ -149,32 +108,7 @@ public sealed partial class ShuttleSystem
             {
                 AllowedFlags = comp.AllowedFlags,
                 Flags = component.Flags,
-                SignatureColor = component.Color,
-                ColorEditable = comp.AllowColorChange,
-                Designation = component.Designation,
-                DesignationEditable = comp.AllowDesignationChange,
             });
-        }
-    }
-
-    // Made this method to avoid copy and pasting.
-    /// <summary>
-    /// Adds all IFF flags that are allowed by AllowedFlags to the grid.
-    /// </summary>
-    private void AddAllSupportedIFFFlags(TransformComponent xform, IFFConsoleComponent component)
-    {
-        if (xform.GridUid == null)
-        {
-            return;
-        }
-
-        if ((component.AllowedFlags & IFFFlags.HideLabel) != 0x0)
-        {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.HideLabel);
-        }
-        if ((component.AllowedFlags & IFFFlags.Hide) != 0x0)
-        {
-            AddIFFFlag(xform.GridUid.Value, IFFFlags.Hide);
         }
     }
 }

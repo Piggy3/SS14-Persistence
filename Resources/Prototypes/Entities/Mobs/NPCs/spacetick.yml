@@ -77,8 +77,8 @@
     angle: 0
     animation: WeaponArcBite
     damage:
-      types:
-        Piercing: 2
+      groups:
+        Brute: 2
   - type: SolutionContainerManager
     solutions:
       melee:

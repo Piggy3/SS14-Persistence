@@ -75,8 +75,8 @@
 
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
-  id: BorgModuleAdvancedTopical
-  result: BorgModuleAdvancedTopical
+  id: BorgModuleAdvancedChemical
+  result: BorgModuleAdvancedChemical
   unlockUses: 2
 
 # Science Modules

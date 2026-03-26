@@ -27,8 +27,6 @@
     solutions:
       paper:
         canReact: false
-  - type: Stack
-    count: 50
 
 - type: entity
   parent: SheetOtherBase

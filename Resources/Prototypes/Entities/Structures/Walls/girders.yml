@@ -53,7 +53,7 @@
         sound:
           collection: MetalBreak
   - type: StaticPrice
-    price: 28
+    price: 30
 
 - type: entity
   id: GirderDiagonal
@@ -126,7 +126,7 @@
               sound:
                 collection: MetalBreak
     - type: StaticPrice
-      price: 80
+      price: 130
 
 - type: entity
   id: ReinforcedGirderDiagonal
@@ -171,7 +171,7 @@
       graph: ClockworkGirder
       node: clockGirder
     - type: StaticPrice
-      price: 40
+      price: 75
     - type: Destructible
       thresholds:
         - trigger:

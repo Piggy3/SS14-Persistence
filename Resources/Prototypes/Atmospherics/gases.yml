@@ -6,8 +6,7 @@
   molarMass: 32
   color: 2887E8
   reagent: Oxygen
-  pricePerMole: 0
-  isOxidizer: true
+  pricePerMole: 0.35
 
 - type: gas
   id: Nitrogen
@@ -39,8 +38,7 @@
   gasOverlayState: plasma
   color: FF3300
   reagent: Plasma
-  pricePerMole: 0
-  isFuel: true
+  pricePerMole: 0.4
 
 - type: gas
   id: Tritium
@@ -52,8 +50,7 @@
   gasOverlayState: tritium
   color: 13FF4B
   reagent: Tritium
-  pricePerMole: 0.8
-  isFuel: true
+  pricePerMole: .8
 
 - type: gas
   id: WaterVapor
@@ -163,4 +160,4 @@
   gasMolesVisible: 0.8
   color: FF6B35
   reagent: ChlorineTrifluoride
-  pricePerMole: 3
+  pricePerMole: 1.5

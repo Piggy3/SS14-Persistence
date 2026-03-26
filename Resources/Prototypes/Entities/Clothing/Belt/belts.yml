@@ -187,7 +187,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: StaticPrice
-    price: 150
+    price: 500
 
 - type: entity
   parent: ClothingBeltMilitaryWebbing

@@ -12,8 +12,6 @@
     - id: DoorRemoteCargo
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: PlushieLizardJobQuartermaster
-      prob: 0.02
 
 #No Digiboard
 - type: entityTable
@@ -65,7 +63,7 @@
     - id: BoxCaptainCircuitboards
     - id: DoorRemoteCustom
     - id: MedalCase
-#    - id: NukeDisk # Persistence: no nuke, no disk
+    - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke
       prob: 0.1
@@ -73,12 +71,10 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
-    - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
+    - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
         max: 15
-    - id: PlushieLizardJobCaptain
-      prob: 0.02
 
 # No laser table + Laser table
 - type: entityTable
@@ -160,8 +156,6 @@
     - id: HoPIDCard
     - id: WeaponDisabler
     - id: ClothingEyesHudCommand
-    - id: PlushieLizardJobHeadofpersonnel
-      prob: 0.02
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -192,8 +186,6 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
-    - id: PlushieLizardJobChiefengineer
-      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -237,19 +229,19 @@
   id: LockerFillChiefMedicalOfficerNoHardsuit
   table: !type:AllSelector
     children:
+    - id: BoxEncryptionKeyMedical
+    - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingEyesHudMedical
-    - id: ClothingBeltMedicalFilled
+    - id: ClothingHandsGlovesNitrile
+    - id: ClothingHeadsetAltMedical
+    - id: ClothingMaskSterile
+    - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: MedTekCartridge
-    # Standard command gear
-    - id: RubberStampCMO
-    - id: ClothingHeadsetAltMedical
-    - id: DoorRemoteMedical
-    - id: BoxEncryptionKeyMedical
     - id: BoxCMOCircuitboards
-    - id: PlushieLizardJobChiefmedicalofficer
-      prob: 0.02
+    - id: MedkitFilled
+    - id: RubberStampCMO
+    - id: MedTekCartridge
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -312,8 +304,6 @@
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearch
     - id: RubberStampRd
-    - id: PlushieLizardJobResearchdirector
-      prob: 0.02
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -389,8 +379,6 @@
     - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: PlushieLizardJobHeadofsecurity
-      prob: 0.02
 
 # No hardsuit or Magnum table
 - type: entityTable

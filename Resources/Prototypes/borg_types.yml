@@ -13,7 +13,6 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -48,7 +47,6 @@
     - BorgModuleEngineering
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -85,7 +83,6 @@
     - BorgModuleCargo
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -123,7 +120,6 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -159,7 +155,6 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -209,7 +204,6 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModulePrying
   - BorgModuleMusique
   - BorgModuleService
   - BorgModuleClowning

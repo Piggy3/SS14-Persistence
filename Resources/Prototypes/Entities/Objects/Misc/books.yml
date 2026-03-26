@@ -68,7 +68,7 @@
         Blunt: 1
   - type: DamageOtherOnHit
     damage:
-      types: {}
+      types:
 
 - type: entity
   id: BookSpaceEncyclopedia
@@ -190,9 +190,6 @@
   - type: GuideHelp
     guides:
     - Threshold
-  - type: Tag
-    tags:
-    - Recyclable
 
 - type: entity
   id: BookFactionHandbook

@@ -321,12 +321,8 @@
   - type: Appearance
   - type: StaticPrice
     price: 5000
-  - type: MeleeWeapon
-    damage:
-      types:
-        Blunt: 8
 
-#begin persistence
+#begin persistence 
 - type: entity
   name: Typewriter
   parent: [BaseWeaponSubMachineGun, BaseGunWieldable]
@@ -377,4 +373,3 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-

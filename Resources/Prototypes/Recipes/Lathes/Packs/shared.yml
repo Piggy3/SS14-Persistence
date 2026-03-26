@@ -73,10 +73,6 @@
   - HandHeldMassScanner
   - ClothingMaskWeldingGas
   - SignallerAdvanced
-  - ClothingEyesGlassesSunglasses
-  - ClothingHandsGlovesColorYellow
-  - ClothingEyesGlassesMeson
-  - ClothingEyesGlassesCommand
 
 - type: latheRecipePack
   id: SalvageSecurityBoards

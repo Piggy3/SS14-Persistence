@@ -129,7 +129,7 @@
   - type: VisionCorrection
   - type: IdentityBlocker
   - type: StaticPrice
-    price: 10
+    price: 500
 
 - type: entity
   parent: ClothingEyesBase
@@ -249,7 +249,6 @@
   - type: GroupExamine
   - type: IdentityBlocker
     coverage: EYES
-  - type: ThermalSight
 
 - type: entity
   parent: ClothingEyesBase

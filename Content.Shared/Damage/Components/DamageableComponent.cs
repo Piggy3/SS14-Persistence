@@ -47,8 +47,7 @@ public sealed partial class DamageableComponent : Component
     /// <remarks>
     ///     If this data-field is specified, this allows damageable components to be initialized with non-zero damage.
     /// </remarks>
-    [DataField]
-    [Access(typeof(DamageableSystem), Other = AccessPermissions.None)]
+    [DataField] //TODO FULL GAME SAVE
     public DamageSpecifier Damage = new();
 
     /// <summary>
@@ -58,15 +57,12 @@ public sealed partial class DamageableComponent : Component
     ///     Groups which have no members that are supported by this component will not be present in this
     ///     dictionary.
     /// </remarks>
-    [ViewVariables]
-    [Access(typeof(DamageableSystem), Other = AccessPermissions.None)]
-    public Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> DamagePerGroup = new();
+    [ViewVariables] public Dictionary<string, FixedPoint2> DamagePerGroup = new();
 
     /// <summary>
     ///     The sum of all damages in the DamageableComponent.
     /// </summary>
     [ViewVariables]
-    [Access(typeof(DamageableSystem), Other = AccessPermissions.None)]
     public FixedPoint2 TotalDamage;
 
     [DataField("radiationDamageTypes")]
@@ -95,18 +91,19 @@ public sealed partial class DamageableComponent : Component
     [DataField]
     public FixedPoint2? HealthBarThreshold;
 
+    [DataField] public Dictionary<string, FixedPoint2>? DamageDictCopy { get; set; } = new();
 
 }
 
 [Serializable, NetSerializable]
 public sealed class DamageableComponentState(
-    DamageSpecifier damage,
+    Dictionary<string, FixedPoint2> damageDict,
     ProtoId<DamageContainerPrototype>? damageContainerId,
     ProtoId<DamageModifierSetPrototype>? modifierSetId,
     FixedPoint2? healthBarThreshold)
     : ComponentState
 {
-    public readonly DamageSpecifier Damage = damage;
+    public readonly Dictionary<string, FixedPoint2> DamageDict = damageDict;
     public readonly ProtoId<DamageContainerPrototype>? DamageContainerId = damageContainerId;
     public readonly ProtoId<DamageModifierSetPrototype>? ModifierSetId = modifierSetId;
     public readonly FixedPoint2? HealthBarThreshold = healthBarThreshold;

@@ -60,7 +60,7 @@
                   min: 2
                   max: 2
     - type: StaticPrice
-      price: 50
+      price: 100
 
 - type: entity
   name: base repairable shield
@@ -71,10 +71,9 @@
   components:
   - type: Repairable # Negative values represent healing
     damage:
+      groups:
+        Brute: -60 # 20 of each Brute Type - 20% of a basic shield HP
       types:
-        Blunt: -20
-        Slash: -20
-        Piercing: -20
         Heat: -20
     fuelCost: 10 # 1/2 of a Welder for a full repair
     doAfterDelay: 5
@@ -89,7 +88,7 @@
   description: A large tower shield. Good for controlling crowds.
   components:
     - type: StaticPrice
-      price: 40
+      price: 90
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -198,7 +197,7 @@
                   min: 5
                   max: 5
     - type: StaticPrice
-      price: 20
+      price: 150
 
 - type: entity
   name: cardboard shield

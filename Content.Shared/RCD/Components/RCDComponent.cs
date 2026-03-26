@@ -57,7 +57,4 @@ public sealed partial class RCDComponent : Component
     /// </remarks>
     [ViewVariables(VVAccess.ReadOnly)]
     public Transform ConstructionTransform { get; private set; }
-
-    [ViewVariables(VVAccess.ReadWrite), DataField("chargeUse")]
-    public float ChargeUse = 5f;
 }

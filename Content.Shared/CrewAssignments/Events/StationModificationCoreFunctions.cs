@@ -18,19 +18,6 @@ public sealed class StationModificationToggleSpend : BoundUserInterfaceMessage
     }
 }
 
-
-[Serializable, NetSerializable]
-public sealed class StationModificationToggleGenRec : BoundUserInterfaceMessage
-{
-    public int AccessID;
-
-    public StationModificationToggleGenRec(int id)
-    {
-        AccessID = id;
-    }
-}
-
-
 [Serializable, NetSerializable]
 public sealed class StationModificationToggleClaim : BoundUserInterfaceMessage
 {

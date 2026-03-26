@@ -17,23 +17,6 @@
   - ClothingHeadHelmetRiot
   - ClothingHeadHelmetBasic
   - ClothingMaskGasSecurity
-  - ClothingEyesGlassesSecurity
-  - ClothingEyesGlassesMercenary
-  - ClothingBeltSecurity
-  - ClothingBeltHolster
-  - ClothingBeltBandolier
-  - ClothingBeltSecurityWebbing
-  - ClothingBeltMercWebbing
-  - ClothingBeltMilitaryWebbing
-  - ClothingShoesBootsJack
-  - ClothingShoesBootsCombat
-  - ClothingShoesHighheelBoots 
-  - ClothingShoesBootsMerc 
-  - ClothingShoesBootsWinterSec
-  - ClothingShoesBootsCowboyBrown 
-  - ClothingShoesBootsCowboyBlack 
-  - ClothingShoesBootsCowboyWhite 
-  - ClothingShoesBootsCowboyFancy 
 
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
@@ -97,9 +80,6 @@
   - PowerCageSmall
   - TelescopicShield
   - ClothingBackpackHarmpack
-  - ClothingHandsMercGlovesCombat
-  - ClothingHandsTacticalMaidGloves
-  - ClothingHandsGlovesCombat
 
 - type: latheRecipePack
   id: SecurityBoards

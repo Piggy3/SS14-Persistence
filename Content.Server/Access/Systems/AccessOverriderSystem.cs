@@ -159,7 +159,8 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
         List<string>? possibleAccesses = null;
         List<string>? personalAccesses = null;
         bool personalAccessMode = false;
-        bool isOwner = false;
+        var station = _station.GetOwningStation(uid);
+
         string stationName = "*None*";
 
         Entity<AccessReaderComponent>? accessReaderEnt = null;
@@ -171,14 +172,11 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
 
             if (!_accessReader.GetMainAccessReader(accessReader, out accessReaderEnt))
                 return;
-            var station = _station.GetOwningStation(accessReaderEnt.Value.Owner);
-            
             currentAccesses = accessReaderEnt.Value.Comp.AccessNames;
             personalAccesses = accessReaderEnt.Value.Comp.PersonalAccessNames;
             personalAccessMode = accessReaderEnt.Value.Comp.PersonalAccessMode;
             if (station != null)
             {
-                
                 if (TryComp<StationDataComponent>(station, out var sD) && sD != null && sD.StationName != null)
                 {
                     stationName = sD.StationName;
@@ -198,11 +196,6 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
                     {
                         var realName = "";
                         if(idCardEnt.FullName != null) realName = idCardEnt.FullName;
-                        if(sD != null && realName != "")
-                        {
-                            if (sD.Owners.Contains(realName)) isOwner = true;
-                        }
-
                         if (TryComp<CrewRecordsComponent>(station, out var crewRecords))
                         {
                             if(crewRecords.TryGetRecord(realName, out var crewRecord) && crewRecord != null)
@@ -224,21 +217,18 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             }
             if (allAccesses != null)
             {
-                if(!isOwner)
+                if (possibleAccesses == null)
                 {
-                    if (possibleAccesses == null)
+                    missingAccesses = currentAccesses;
+                }
+                else
+                {
+                    missingAccesses = new List<string>();
+                    foreach (var access in allAccesses)
                     {
-                        missingAccesses = currentAccesses;
-                    }
-                    else
-                    {
-                        missingAccesses = new List<string>();
-                        foreach (var access in allAccesses)
+                        if (!possibleAccesses.Contains(access) && currentAccesses.Contains(access))
                         {
-                            if (!possibleAccesses.Contains(access) && currentAccesses.Contains(access))
-                            {
-                                missingAccesses.Add(access);
-                            }
+                            missingAccesses.Add(access);
                         }
                     }
                 }

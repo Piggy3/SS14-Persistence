@@ -15,8 +15,6 @@
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
-  - ClothingHandsGlovesColorYellow
-  - ClothingEyesGlassesMeson
 
 - type: technology
   id: SpaceScanning
@@ -56,19 +54,6 @@
   cost: 10000
   recipeUnlocks:
   - FlatpackerMachineCircuitboard
-
-- type: technology
-  id: ConstructionDevices
-  name: research-technology-construction-devices
-  icon:
-    sprite: Objects/Tools/rcd.rsi
-    state: icon
-  discipline: Industrial
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - RCD
-  - HCD
 
 - type: technology
   id: IndustrialEngineering
@@ -279,7 +264,6 @@
   - Chiefmedicalsuit
   - Chiefengineersuit
   - Captainsuit
-  - ClothingHandsGlovesCaptain
   technologyPrerequisites:
   - EVAManufacturing
   - SpecializedEVA

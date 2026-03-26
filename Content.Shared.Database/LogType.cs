@@ -481,8 +481,4 @@ public enum LogType
 
     ATMUsage = 200,
     BluespaceParking = 201,
-    /// <summary>
-    /// Events related to players connecting/disconnecting.
-    /// </summary>
-    Connection = 104,
 }

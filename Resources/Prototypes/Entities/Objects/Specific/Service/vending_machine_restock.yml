@@ -80,12 +80,11 @@
   parent: BaseVendingMachineRestock
   id: VendingMachineRestockChefvend
   name: ChefVend restock box
-  description: Refill the ChefVend and Sustenance Vendor. Just don't break any more of the eggs. #Persistence station
+  description: Refill the ChefVend. Just don't break any more of the eggs.
   components:
   - type: VendingMachineRestock
     canRestock:
     - ChefvendInventory
-    - SustenanceInventory #Persistence Station, 542,64 is the value of all the contents inside, the restock costs 680
   - type: Sprite
     layers:
     - state: base

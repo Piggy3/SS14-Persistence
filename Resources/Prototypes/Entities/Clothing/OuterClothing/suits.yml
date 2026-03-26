@@ -110,6 +110,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
+    - CorgiWearable
     - WhitelistChameleon
   - type: HideLayerClothing
     slots:
@@ -188,8 +189,6 @@
     noPowerPopup: ninja-no-power
   # core ninja suit stuff
   - type: NinjaSuit
-  - type: EmpResistance
-    strengthMultiplier: 0
   - type: UseDelay
     delay: 5 # disable time
   - type: PowerCellSlot
@@ -287,6 +286,7 @@
     slots: WITHOUT_POCKET
   - type: Tag
     tags:
+    - CorgiWearable
     - WhitelistChameleon
   - type: AddAccentClothing
     accent: BarkAccent

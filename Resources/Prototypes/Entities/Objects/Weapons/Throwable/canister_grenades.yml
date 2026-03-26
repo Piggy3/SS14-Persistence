@@ -1,5 +1,5 @@
 - type: entity
-  parent: [VolatileGrenadeBase, TimerGrenadeBase, BaseSecurityContraband ]
+  parent: [VolatileGrenadeBase, GrenadeBase, BaseSecurityContraband ]
   id: SmokeGrenade
   name: smoke grenade
   description: A tactical grenade that releases a large, long-lasting cloud of smoke when used.
@@ -81,7 +81,7 @@
     price: 350
 
 - type: entity
-  parent: [ BaseEngineeringContraband, VolatileGrenadeBase, TimerGrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
+  parent: [ BaseEngineeringContraband, VolatileGrenadeBase, GrenadeBase ] # Prevent inheriting DeleteOnTrigger from SmokeGrenade
   id: AirGrenade
   name: air grenade
   description: A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!
@@ -109,20 +109,9 @@
       temperature: 293.15
   - type: StaticPrice
     price: 350
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 25
-      Plastic: 25
   - type: GenericVisualizer
     visuals:
       enum.ReleaseGasOnTriggerVisuals.Key:
         enabled:
           True: { state: active }
           False: { state: spent }
-  - type: RemoveComponentsOnTrigger # should prevent it from being re-triggered
-    keysIn:
-    - timer
-    triggerOnce: true
-    components:
-    - type: TriggerOnUse
-    - type: TimerTrigger

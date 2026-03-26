@@ -4,7 +4,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
-using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -17,7 +16,6 @@ public sealed class DumpableSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
@@ -28,7 +26,7 @@ public sealed class DumpableSystem : EntitySystem
     {
         base.Initialize();
         _itemQuery = GetEntityQuery<ItemComponent>();
-        SubscribeLocalEvent<DumpableComponent, AfterInteractEvent>(OnAfterInteract, before: new[]{ typeof(SharedStorageSystem) }, after: new[]{ typeof(SharedEntityStorageSystem) });
+        SubscribeLocalEvent<DumpableComponent, AfterInteractEvent>(OnAfterInteract, after: new[]{ typeof(SharedEntityStorageSystem) });
         SubscribeLocalEvent<DumpableComponent, GetVerbsEvent<AlternativeVerb>>(AddDumpVerb);
         SubscribeLocalEvent<DumpableComponent, GetVerbsEvent<UtilityVerb>>(AddUtilityVerbs);
         SubscribeLocalEvent<DumpableComponent, DumpableDoAfterEvent>(OnDoAfter);
@@ -42,10 +40,6 @@ public sealed class DumpableSystem : EntitySystem
         var evt = new GetDumpableVerbEvent(args.User, null);
         RaiseLocalEvent(target, ref evt);
         if (evt.Verb is null)
-            return;
-
-        // Check if this dumpable has a whitelist and if the target matches
-        if (_whitelistSystem.IsWhitelistFail(component.DumpWhitelist, target))
             return;
 
         if (!TryComp<StorageComponent>(uid, out var storage))
@@ -90,10 +84,6 @@ public sealed class DumpableSystem : EntitySystem
         RaiseLocalEvent(args.Target, ref evt);
 
         if (evt.Verb is not { } verbText)
-            return;
-
-        // Check if this dumpable has a whitelist and if the target matches
-        if (_whitelistSystem.IsWhitelistFail(dumpable.DumpWhitelist, args.Target))
             return;
 
         UtilityVerb verb = new()

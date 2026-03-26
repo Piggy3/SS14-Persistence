@@ -219,7 +219,7 @@
   - type: Sprite
     state: stamp-syndicate
   - type: StaticPrice
-    price: 200
+    price: 1000
 
 - type: entity
   name: warden's rubber stamp

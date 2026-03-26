@@ -10,9 +10,6 @@
     sprite: Objects/Devices/encryption_keys.rsi
   - type: Sprite
     sprite: Objects/Devices/encryption_keys.rsi
-  - type: Tag
-    tags:
-    - Recyclable
 
 - type: entity
   parent: EncryptionKey
@@ -31,7 +28,6 @@
   - type: Tag
     tags:
     - EncryptionCommon
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseCargoContraband ]
@@ -50,7 +46,6 @@
   - type: Tag
     tags:
     - EncryptionCargo
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseCentcommContraband ]
@@ -106,7 +101,6 @@
   - type: Tag
     tags:
     - EncryptionCommand
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseEngineeringContraband ]
@@ -125,7 +119,6 @@
   - type: Tag
     tags:
     - EncryptionEngineering
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseMedicalContraband ]
@@ -144,7 +137,6 @@
   - type: Tag
     tags:
     - EncryptionMedical
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseMedicalScienceContraband ]
@@ -179,7 +171,6 @@
   - type: Tag
     tags:
     - EncryptionScience
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseScienceContraband ]
@@ -213,7 +204,6 @@
   - type: Tag
     tags:
     - EncryptionSecurity
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseCivilianContraband ]
@@ -232,7 +222,6 @@
   - type: Tag
     tags:
     - EncryptionService
-    - Recyclable
 
 - type: entity
   parent: [ EncryptionKey, BaseSyndicateContraband ]

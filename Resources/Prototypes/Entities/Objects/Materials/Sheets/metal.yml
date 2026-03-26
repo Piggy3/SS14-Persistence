@@ -31,8 +31,6 @@
     solutions:
       steel:
         canReact: false
-  - type: Stack
-    count: 50
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BasePlasticExplosive
   parent: BaseItem
   abstract: true
@@ -15,7 +15,6 @@
     blacklist: # can't stick it to other items
       components:
       - Item
-      - Spectral # special case for the rev since it can go incorporeal and ghost bomb you. Also, Idk, its like a ghost or something no touchy.
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -93,7 +92,7 @@
     sprite:
       festive: Objects/Weapons/Bombs/c4gift.rsi
   - type: StaticPrice
-    price: 200
+    price: 625 # 5000 for a bundle of 8
 
 - type: entity
   name: seismic charge

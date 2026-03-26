@@ -71,7 +71,7 @@
     anchored: true
   - type: AntiRottingContainer
   - type: StaticPrice
-    price: 80
+    price: 200
   - type: Construction
     graph: MorgueGraph
     node: morgue
@@ -109,7 +109,7 @@
   - type: Transform
     anchored: true
   - type: StaticPrice
-    price: 0
+    price: 200
   - type: Construction
     graph: MorgueGraph
     node: cables
@@ -220,7 +220,7 @@
   - type: Transform
     anchored: true
   - type: StaticPrice
-    price: 0
+    price: 200
   - type: Construction
     graph: CrematoriumGraph
     node: crematorelectronics

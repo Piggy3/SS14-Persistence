@@ -137,23 +137,8 @@ namespace Content.Client.Options.UI.Tabs
             Dictionary<string, int> headerCount = new();
             Dictionary<string, Control> headerSpacers = new();
 
-            void AddToggleCvarCheckBox(string checkBoxName, CVarDef<bool> cvar)
-            {
-                CheckBox newCheckBox = new CheckBox() { Text = Loc.GetString(checkBoxName) };
-                newCheckBox.Pressed = _cfg.GetCVar(cvar);
-                newCheckBox.OnToggled += (e) =>
-                {
-                    _cfg.SetCVar(cvar, e.Pressed);
-                    _cfg.SaveToFile();
-                };
-
-                KeybindsContainer.AddChild(newCheckBox);
-            }
-
             AddHeader("ui-options-header-general");
-            AddToggleCvarCheckBox("ui-options-hotkey-keymap", CVars.DisplayUSQWERTYHotkeys);
-            AddToggleCvarCheckBox("ui-options-hold-to-attack-melee", CCVars.ControlHoldToAttackMelee);
-            AddToggleCvarCheckBox("ui-options-hold-to-attack-ranged", CCVars.ControlHoldToAttackRanged);
+            AddCheckBox("ui-options-hotkey-keymap", _cfg.GetCVar(CVars.DisplayUSQWERTYHotkeys), HandleToggleUSQWERTYCheckbox);
 
             AddHeader("ui-options-header-movement");
             AddButton(EngineKeyFunctions.MoveUp);

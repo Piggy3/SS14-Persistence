@@ -18,11 +18,11 @@
     - id: MouseMigration
     - id: PowerGridCheck
     - id: RandomSentience
-    - id: SlimesSpawnHorde
+    - id: SlimesSpawn
     - id: SolarFlare
-    - id: SnakeSpawnHorde
-    - id: SpiderClownSpawnHorde
-    - id: SpiderSpawnHorde
+    - id: SnakeSpawn
+    - id: SpiderClownSpawn
+    - id: SpiderSpawn
     - id: VentClog
 
 - type: entityTable
@@ -244,7 +244,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalSpaceNinja
+      - RoleSurvivalEVA
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -447,87 +447,81 @@
     duration: 60
   - type: VentClogRule
 
-# Critters
-
 - type: entity
-  id: SlimesSpawnHorde
+  id: SlimesSpawn
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-horde-announcement
+    startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
-    duration: 5
-    maxDuration: 20
-  - type: VentHordeRule
-    table: !type:GroupSelector
-      rolls: 4, 8
-      children:
-      - id: MobAdultSlimesBlueAngry
-      - id: MobAdultSlimesGreenAngry
-      - id: MobAdultSlimesYellowAngry
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobAdultSlimesBlueAngry
+      prob: 0.02
+    - id: MobAdultSlimesGreenAngry
+      prob: 0.02
+    - id: MobAdultSlimesYellowAngry
+      prob: 0.02
 
 - type: entity
-  id: SnakeSpawnHorde
+  id: SnakeSpawn
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-horde-announcement
+    startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
-    duration: 5
-    maxDuration: 20
-  - type: VentHordeRule
-    table: !type:GroupSelector
-      rolls: 4, 8
-      children:
-      - id: MobPurpleSnake
-      - id: MobSmallPurpleSnake
-      - id: MobCobraSpace
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobPurpleSnake
+      prob: 0.02
+    - id: MobSmallPurpleSnake
+      prob: 0.02
+    - id: MobCobraSpace
+      prob: 0.02
 
 - type: entity
-  id: SpiderSpawnHorde
+  id: SpiderSpawn
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-horde-announcement
+    startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
-    duration: 5
-    maxDuration: 20
-  - type: VentHordeRule
-    table: !type:GroupSelector
-      rolls: 4, 8
-      children:
-      - id: MobGiantSpiderAngry
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobGiantSpiderAngry
+      prob: 0.05
 
 - type: entity
-  id: SpiderClownSpawnHorde
+  id: SpiderClownSpawn
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
-    startAnnouncement: station-event-vent-creatures-start-horde-announcement
+    startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
-    duration: 5
-    maxDuration: 20
-  - type: VentHordeRule
-    table: !type:GroupSelector
-      rolls: 4, 8
-      children:
-      - id: MobClownSpider
+    duration: 60
+  - type: VentCrittersRule
+    entries:
+    - id: MobClownSpider
+      prob: 0.05
 
 - type: entity
   id: ZombieOutbreak

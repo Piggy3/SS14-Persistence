@@ -1,0 +1,5 @@
+﻿- type: entity
+  save: true
+  name: Uristititi McVox
+  parent: BaseMobVox
+  id: MobVox

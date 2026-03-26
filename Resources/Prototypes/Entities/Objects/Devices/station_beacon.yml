@@ -76,7 +76,7 @@
         - !type:DoActsBehavior
           acts: ["Breakage"]
   - type: StaticPrice
-    price: 10
+    price: 25
 
 - type: entity
   parent: DefaultStationBeacon
@@ -95,9 +95,6 @@
     bodyType: dynamic
   - type: Transform
     anchored: false
-  - type: Construction
-    graph: StationBeacon
-    node: stationbeacon
 
 - type: entity
   parent: BaseItem

@@ -18,7 +18,7 @@
   - type: CombatMode
   - type: NoSlip
   - type: StaticPrice
-    price: 200
+    price: 1250
   - type: Fixtures
     fixtures:
       fix1:
@@ -114,6 +114,7 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
+    openingTool: Prying
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
@@ -246,12 +247,6 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
-  - type: BypassLock
-    openWiresPanel: true
-  - type: BypassLockRequiresMobState
-    requiredMobState:
-    - Critical
-    - Dead
 
 - type: entity
   abstract: true
@@ -302,7 +297,6 @@
     networkSet: true
     nameSet: True
     id: Xenoborg
-    useEntityNameAsCameraId: true
   - type: Explosive
     explosionType: Minibomb
     deleteAfterExplosion: false # let damage threshold gib the borg
@@ -330,7 +324,6 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
-  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
@@ -371,8 +364,6 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
-  - type: BypassLock
-    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
   id: BaseBorgChassisDerelict
@@ -392,7 +383,6 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
-  - type: ShowCrewIcons
 
 - type: entity
   id: BaseBorgChassisSyndicateDerelict #For assault borg and maybe others in time
@@ -406,7 +396,6 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
-  - type: ShowCrewIcons
   - type: NpcFactionMember # They're still syndicate even if they can't listen to the radio or see icons
     factions:
     - Syndicate
@@ -432,8 +421,6 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
-  - type: BypassLock
-    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable
@@ -523,7 +510,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          PinpointerMothershipPiece: # drop a piece of core pinpointer upon being destructed (4 pieces to make a core pinpointer)
+          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
             min: 1
             max: 1
       - !type:EmptyContainersBehaviour
@@ -547,10 +534,7 @@
   - type: AccessReader
     access: [["Xenoborg"]]
   - type: ShowJobIcons # not sure if it is needed
-  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Xenoborg
-  - type: BypassLock
-    bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.

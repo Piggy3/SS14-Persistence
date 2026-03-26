@@ -35,6 +35,7 @@
     - type: InteractionOutline
     - type: Sprite
     - type: Appearance
+    - type: ThrusterVisuals
     - type: ApcPowerReceiver
       powerLoad: 1500
     - type: ExtensionCableReceiver
@@ -53,7 +54,7 @@
             sound:
               collection: MetalBreak
     - type: StaticPrice
-      price: 80
+      price: 300
     - type: GuideHelp
       guides:
       - ShuttleCraft
@@ -105,14 +106,6 @@
   parent: Thruster
   id: ThrusterXenoborg
   components:
-  # temporary solution until thruster rework
-  - type: Thruster
-    canToggle: false # no turning it off by just clicking it
-  - type: Anchorable
-    flags:
-    - Anchorable # no unwrenching it
-  - type: Rotatable
-    rotateWhileAnchored: false # no rotating it backwards so it doesn't face space
   - type: Sprite
     sprite: Structures/Shuttles/xenoborg_thruster.rsi
 
@@ -177,7 +170,7 @@
   - type: Anchorable
     flags: None
   - type: StaticPrice
-    price: 90
+    price: 1500
 
 - type: entity
   id: ThrusterUnanchored
@@ -276,7 +269,7 @@
     damageContainer: StructuralInorganic
     damageModifierSet: Electronic
   - type: StaticPrice
-    price: 150
+    price: 2000
 
 - type: entity
   id: GyroscopeUnanchored

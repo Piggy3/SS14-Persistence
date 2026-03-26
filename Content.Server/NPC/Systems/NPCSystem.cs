@@ -18,7 +18,7 @@ namespace Content.Server.NPC.Systems
     /// <summary>
     ///     Handles NPCs running every tick.
     /// </summary>
-    public sealed partial class NPCSystem : SharedNPCSystem
+    public sealed partial class NPCSystem : EntitySystem
     {
         private static readonly Gauge ActiveGauge = Metrics.CreateGauge(
             "npc_active_count",
@@ -27,7 +27,6 @@ namespace Content.Server.NPC.Systems
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedMindSystem _mind = default!;
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.
@@ -49,7 +48,7 @@ namespace Content.Server.NPC.Systems
 
         public void OnPlayerNPCAttach(EntityUid uid, HTNComponent component, PlayerAttachedEvent args)
         {
-            SleepNPC(uid, component, true);
+            SleepNPC(uid, component);
         }
 
         public void OnPlayerNPCDetach(EntityUid uid, HTNComponent component, PlayerDetachedEvent args)
@@ -77,11 +76,6 @@ namespace Content.Server.NPC.Systems
         public void OnNPCShutdown(EntityUid uid, HTNComponent component, ComponentShutdown args)
         {
             SleepNPC(uid, component);
-        }
-
-        public override bool IsNpc(EntityUid uid)
-        {
-            return HasComp<HTNComponent>(uid);
         }
 
         /// <summary>
@@ -121,7 +115,7 @@ namespace Content.Server.NPC.Systems
             SetPaused(uid, false);
         }
 
-        public void SleepNPC(EntityUid uid, HTNComponent? component = null, bool preventPause = false)
+        public void SleepNPC(EntityUid uid, HTNComponent? component = null)
         {
             if (!Resolve(uid, ref component, false))
             {
@@ -142,10 +136,7 @@ namespace Content.Server.NPC.Systems
 
             Log.Debug($"Sleeping {ToPrettyString(uid)}");
             RemComp<ActiveNPCComponent>(uid);
-            if (!preventPause && !_mind.TryGetMind(uid, out _, out _))
-            {
-                SetPaused(uid, true);
-            }
+            SetPaused(uid, true);
         }
 
         /// <inheritdoc />

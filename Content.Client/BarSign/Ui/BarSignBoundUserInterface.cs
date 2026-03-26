@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Shared.BarSign;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.BarSign.Ui;
@@ -17,30 +16,35 @@ public sealed class BarSignBoundUserInterface(EntityUid owner, Enum uiKey) : Bou
     {
         base.Open();
 
-        var allSigns = BarSignSystem.GetAllBarSigns(_prototype)
+        var sign = EntMan.GetComponentOrNull<BarSignComponent>(Owner)?.Current is { } current
+            ? _prototype.Index(current)
+            : null;
+        var allSigns = Shared.BarSign.BarSignSystem.GetAllBarSigns(_prototype)
             .OrderBy(p => Loc.GetString(p.Name))
             .ToList();
-
-        _menu = this.CreateWindow<BarSignMenu>();
-        _menu.LoadSigns(allSigns);
+        _menu = new(sign, allSigns);
 
         _menu.OnSignSelected += id =>
         {
-            SendPredictedMessage(new SetBarSignMessage(id));
+            SendMessage(new SetBarSignMessage(id));
         };
 
         _menu.OnClose += Close;
-        _menu.OpenToLeft();
+        _menu.OpenCentered();
     }
 
-    public override void Update()
+    public void Update(ProtoId<BarSignPrototype>? sign)
     {
-        if (!EntMan.TryGetComponent<BarSignComponent>(Owner, out var signComp)
-            || !_prototype.Resolve(signComp.Current, out var signPrototype))
-            return;
-
-        _menu?.UpdateState(signPrototype);
+        if (_prototype.Resolve(sign, out var signPrototype))
+            _menu?.UpdateState(signPrototype);
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing)
+            return;
+        _menu?.Dispose();
+    }
 }
 

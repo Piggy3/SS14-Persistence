@@ -68,8 +68,6 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
-    - ClothingEyesGlassesSunglasses
-    - ClothingEyesGlassesCommand
 
 - type: technology
   id: MeatManipulation
@@ -118,8 +116,6 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   - FauxTileDesertAstroSand
-  - FauxTileAstroIronsand
-  - FauxTileAstroIronsandBorderless
 
 - type: technology
   id: BiochemicalStasis
@@ -146,7 +142,7 @@
   tier: 2
   cost: 5000
   recipeUnlocks:
-  - BorgModuleAdvancedTopical
+  - BorgModuleAdvancedChemical
   - AdvancedJetInjector
 
 - type: technology

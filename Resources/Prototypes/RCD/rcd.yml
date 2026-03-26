@@ -37,7 +37,7 @@
   category: WallsAndFlooring
   sprite: /Textures/Interface/Radial/RCD/plating.png
   mode: ConstructTile
-  prototype: PlatingRCD
+  prototype: Plating
   cost: 1
   delay: 1
   collisionMask: InteractImpassable
@@ -128,7 +128,6 @@
     - IsWindow
   rotation: User
   fx: EffectRCDConstruct1
-  allowMultiDirection: true
 
 - type: rcd
   id: ReinforcedWindow
@@ -158,7 +157,6 @@
     - IsWindow
   rotation: User
   fx: EffectRCDConstruct2
-  allowMultiDirection: true
 
 # Airlocks
 - type: rcd
@@ -210,7 +208,6 @@
   collisionBounds: "-0.23,-0.49,0.23,-0.36"
   rotation: User
   fx: EffectRCDConstruct1
-  allowMultiDirection: true
 
 - type: rcd
   id: BulbLight
@@ -224,7 +221,6 @@
   collisionBounds: "-0.23,-0.49,0.23,-0.36"
   rotation: User
   fx: EffectRCDConstruct1
-  allowMultiDirection: true
 
 # Electrical
 - type: rcd
@@ -277,72 +273,3 @@
   collisionMask: Impassable
   rotation: User
   fx: EffectRCDConstruct0
-
-# Holo Walls
-
-- type: rcd
-  id: HoloWallBlue
-  category: WallsAndFlooring
-  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
-  mode: ConstructObject
-  prototype: HoloWallBlue
-  collisionMask: FullTileMask
-  cost: 0
-  delay: 1
-  rotation: Fixed
-  fx: EffectRCDConstruct2
-
-- type: rcd
-  id: HoloWallRed
-  category: WallsAndFlooring
-  sprite: /Textures/Interface/Radial/RCD/solid_wall.png
-  mode: ConstructObject
-  prototype: HoloWallRed
-  collisionMask: FullTileMask
-  cost: 0
-  delay: 1
-  rotation: Fixed
-  fx: EffectRCDConstruct2
-
-- type: rcd
-  id: HoloGrille
-  category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/grille.png
-  mode: ConstructObject
-  prototype: HoloGrille
-  cost: 0
-  delay: 1
-  collisionMask: FullTileMask
-  rotation: Fixed
-  fx: EffectRCDConstruct2
-
-# Holo Windows
-- type: rcd
-  id: HoloWindow
-  category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/window.png
-  mode: ConstructObject
-  prototype: HoloWindow
-  cost: 0
-  delay: 1
-  collisionMask: Impassable
-  rules:
-    - IsWindow
-  rotation: Fixed
-  fx: EffectRCDConstruct2
-
-- type: rcd
-  id: HoloWindowDirectional
-  category: WindowsAndGrilles
-  sprite: /Textures/Interface/Radial/RCD/directional.png
-  mode: ConstructObject
-  prototype: HoloWindowDirectional
-  cost: 0
-  delay: 1
-  collisionMask: Impassable
-  collisionBounds: "-0.23,-0.49,0.23,-0.36"
-  rules:
-    - IsWindow
-  rotation: User
-  fx: EffectRCDConstruct1
-

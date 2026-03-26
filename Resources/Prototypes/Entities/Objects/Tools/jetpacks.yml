@@ -127,7 +127,7 @@
     slots:
       - Back
   - type: StaticPrice
-    price: 100
+    price: 1000
 
 # Filled black
 - type: entity

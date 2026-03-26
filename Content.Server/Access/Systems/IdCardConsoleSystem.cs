@@ -6,7 +6,6 @@ using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
-using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
@@ -15,16 +14,12 @@ using Content.Shared.CrewRecords.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.Fax.Components;
-using Content.Shared.Labels.EntitySystems;
-using Content.Shared.Paper;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -37,7 +32,6 @@ namespace Content.Server.Access.Systems;
 [UsedImplicitly]
 public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly StationRecordsSystem _record = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
@@ -50,8 +44,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public override void Initialize()
     {
@@ -61,12 +53,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         SubscribeLocalEvent<IdCardConsoleComponent, SearchRecord>(OnSearchRecord);
         SubscribeLocalEvent<IdCardConsoleComponent, ChangeAssignment>(OnChangeAssignment);
         SubscribeLocalEvent<IdCardConsoleComponent, AccountModResetSpending>(OnResetSpending);
-        SubscribeLocalEvent<IdCardConsoleComponent, SaveGeneralRecord>(OnSaveGeneralRecord);
-        SubscribeLocalEvent<IdCardConsoleComponent, PrintGeneralRecord>(OnPrintGeneralRecord);
-        SubscribeLocalEvent<IdCardConsoleComponent, SaveMedicalRecord>(OnSaveMedicalRecord);
-        SubscribeLocalEvent<IdCardConsoleComponent, PrintMedicalRecord>(OnPrintMedicalRecord);
-        SubscribeLocalEvent<IdCardConsoleComponent, SaveCriminalRecord>(OnSaveCriminalRecord);
-        SubscribeLocalEvent<IdCardConsoleComponent, PrintCriminalRecord>(OnPrintCriminalRecord);
         // one day, maybe bound user interfaces can be shared too.
         SubscribeLocalEvent<IdCardConsoleComponent, ComponentStartup>(UpdateUserInterface);
         SubscribeLocalEvent<IdCardConsoleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
@@ -106,89 +92,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         UpdateUserInterface(uid, component, args);
     }
-
-    private void OnSaveGeneralRecord(EntityUid uid, IdCardConsoleComponent component, SaveGeneralRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        if (!_station.CanEditGeneralRecord(component.PrivRecord.Name, station.Value)) return;
-
-
-        component.SelectedRecord.GeneralRecord = args.Content;
-
-        UpdateUserInterface(uid, component, args);
-    }
-
-    private void OnPrintGeneralRecord(EntityUid uid, IdCardConsoleComponent component, PrintGeneralRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        SpawnPaper(uid, component.SelectedRecord.GeneralRecord, $"{component.SelectedRecord.Name} General Record");
-    }
-
-    private void OnSaveMedicalRecord(EntityUid uid, IdCardConsoleComponent component, SaveMedicalRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        if (!_station.CanEditGeneralRecord(component.PrivRecord.Name, station.Value)) return;
-
-
-        component.SelectedRecord.MedicalRecord = args.Content;
-
-        UpdateUserInterface(uid, component, args);
-    }
-
-    private void OnPrintMedicalRecord(EntityUid uid, IdCardConsoleComponent component, PrintMedicalRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        SpawnPaper(uid, component.SelectedRecord.MedicalRecord, $"{component.SelectedRecord.Name} Medical Record");
-    }
-
-    private void OnSaveCriminalRecord(EntityUid uid, IdCardConsoleComponent component, SaveCriminalRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        if (!_station.CanEditGeneralRecord(component.PrivRecord.Name, station.Value)) return;
-
-
-        component.SelectedRecord.CriminalRecord = args.Content;
-
-        UpdateUserInterface(uid, component, args);
-    }
-
-    private void OnPrintCriminalRecord(EntityUid uid, IdCardConsoleComponent component, PrintCriminalRecord args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-        if (component.SelectedRecord == null) return;
-        if (component.PrivRecord == null) return;
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-        SpawnPaper(uid, component.SelectedRecord.CriminalRecord, $"{component.SelectedRecord.Name} Criminal Record");
-    }
-
-
     private void OnSearchRecord(EntityUid uid, IdCardConsoleComponent component, SearchRecord args)
     {
         if (args.Actor is not { Valid: true } player)
@@ -319,11 +222,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 {
                     component.PrivRecord = TryEnsureRecord(uid, privIdComponent.FullName);
                 }
-                else
-                {
-                    component.PrivRecord = null;
-                }
-
+                
             }
             if (component.PrivRecord != null)
             {
@@ -333,10 +232,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             {
                 if (privIdComponent != null && privIdComponent.FullName != null && sD.Owners.Contains(privIdComponent.FullName)) owner = true;
             }
-        }
-        else
-        {
-            component.PrivRecord = null;
         }
         if (component.SelectedRecord == null)
         {
@@ -354,14 +249,13 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 privassignment,
                 possibleAssignments,
                 owner,
-                0,
-                null);
-
-
+                0);
+                
+                
         }
         else
         {
-
+            
             possibleAssignments.TryGetValue(component.SelectedRecord.AssignmentID, out assignment);
 
             newState = new IdCardConsoleBoundUserInterfaceState(
@@ -376,8 +270,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 privassignment,
                 possibleAssignments,
                 owner,
-                component.SelectedRecord.Spent,
-                component.SelectedRecord);
+                component.SelectedRecord.Spent);
 
         }
 
@@ -402,16 +295,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
 
-        // Limit name and job title lengths
-        var maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
-        var maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
-
-        if (newFullName.Length > maxNameLength)
-            newFullName = newFullName[..maxNameLength];
-
-        if (newJobTitle.Length > maxIdJobLength)
-            newJobTitle = newJobTitle[..maxIdJobLength];
-
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
@@ -431,7 +314,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
         }
 
-
+        
 
         var oldTags = _access.TryGetTags(targetId)?.ToList() ?? new List<ProtoId<AccessLevelPrototype>>();
 
@@ -505,23 +388,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (TryDropAndThrowIds(entity.AsNullable()))
             _chat.TrySendInGameICMessage(entity, Loc.GetString("id-card-console-damaged"), InGameICChatType.Speak, true);
     }
-
-
-    private void SpawnPaper(EntityUid uid, string content, string title)
-    {
-
-        var entityToSpawn = "Paper";
-        var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
-
-        if (TryComp<PaperComponent>(printed, out var paper))
-        {
-            _paperSystem.SetContent((printed, paper), content);
-            paper.EditingDisabled = true;
-        }
-
-        _metaData.SetEntityName(printed, title);
-    }
-
 
     #region PublicAPI
 

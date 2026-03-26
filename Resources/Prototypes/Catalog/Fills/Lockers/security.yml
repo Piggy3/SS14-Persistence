@@ -46,8 +46,6 @@
       amount: 2
     - id: NetworkConfigurator
     - id: Binoculars
-    - id: PlushieLizardJobWarden
-      prob: 0.02
 
 - type: entityTable
   id: FillLockerWardenHarduit
@@ -92,10 +90,6 @@
       prob: 0.6
     - id: BookSpaceLaw
       prob: 0.5
-    - id: PlushieLizardJobSecuritycadet
-      prob: 0.02
-    - id: PlushieLizardJobSecurityofficer
-      prob: 0.02
 
 - type: entity
   id: LockerBrigmedicFilled
@@ -172,8 +166,6 @@
     - id: HoloprojectorSecurity
     - id: BoxEvidenceMarkers
     - id: HandLabeler
-    - id: PlushieLizardJobDetective
-      prob: 0.02
 
 - type: entity
   id: ClosetBombFilled

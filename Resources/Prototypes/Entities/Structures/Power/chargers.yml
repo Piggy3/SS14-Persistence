@@ -151,7 +151,7 @@
   - type: Machine
     board: PowerCageRechargerCircuitboard
   - type: StaticPrice
-    price: 200
+    price: 500
 
 - type: entity
   parent: BaseItemRecharger
@@ -237,7 +237,6 @@
   components:
   - type: Sprite
     sprite: Structures/Power/borg_charger.rsi
-    noRot: True
     layers:
       - state: borgcharger-u1
         map: ["base"]
@@ -305,17 +304,6 @@
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.48
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
 
 - type: entity
   parent: BorgCharger

@@ -18,13 +18,13 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 200
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -50,12 +50,9 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 100
-  - type: Construction
-    graph: Window
-    node: miningWindow
 
 - type: entity
-  parent: MiningWindow
+  parent: ShuttleWindow
   id: MiningWindowDiagonal
   suffix: diagonal
   placement:
@@ -99,6 +96,3 @@
   - type: DamageVisuals
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi
-  - type: Construction
-    graph: WindowDiagonal
-    node: miningWindowDiagonal

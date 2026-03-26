@@ -10,11 +10,6 @@
     allowedModes:
     - HyposprayDynamicMode
     - HyposprayInjectMode
-  - type: Spillable
-    solution: hypospray
-  - type: ExaminableSolution
-    solution: hypospray
-    exactVolume: true
   - type: Appearance
 
 - type: entity
@@ -39,6 +34,9 @@
         maxVol: 30
   - type: RefillableSolution
     solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+    exactVolume: true
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
@@ -100,6 +98,8 @@
         maxVol: 10
   - type: RefillableSolution
     solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: borghypo_fill
@@ -124,7 +124,7 @@
   - type: Item
     sprite: Objects/Specific/Medical/jetinjector.rsi
   - type: UseDelay
-    delay: 1.5
+    delay: 2.0
   - type: SolutionContainerManager
     solutions:
       hypospray:
@@ -214,6 +214,7 @@
         maxVol: 15
   - type: ExaminableSolution
     solution: pen
+    exactVolume: true
   - type: Injector
     solutionName: pen
     currentTransferAmount: null
@@ -229,7 +230,7 @@
       Plastic: 50
   - type: SpaceGarbage
   - type: StaticPrice
-    price: 20
+    price: 75 # These are limited supply items.
   - type: TrashOnSolutionEmpty
     solution: pen
 
@@ -591,7 +592,7 @@
     changeColor: false
     emptySpriteName: stimpen_empty
   - type: StaticPrice
-    price: 50
+    price: 1500
 
 - type: entity
   parent: [ChemicalMedipen, BaseSyndicateContraband]
@@ -630,7 +631,7 @@
     changeColor: false
     emptySpriteName: microstimpen_empty
   - type: StaticPrice
-    price: 50
+    price: 583 # 3500 for 6 as a freaky fraction
 
 - type: entity
   parent: [ChemicalMedipen, BaseSyndicateContraband]
@@ -669,7 +670,7 @@
         - ReagentId: TranexamicAcid
           Quantity: 5
   - type: StaticPrice
-    price: 50
+    price: 1500
 
 - type: entity
   parent: Pen # It is just like normal pen, isn't it?

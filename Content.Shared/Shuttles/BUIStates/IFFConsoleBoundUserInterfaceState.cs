@@ -1,5 +1,4 @@
 using Content.Shared.Shuttles.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Shuttles.BUIStates;
@@ -9,10 +8,6 @@ public sealed class IFFConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
     public IFFFlags AllowedFlags;
     public IFFFlags Flags;
-    public Color SignatureColor;
-    public bool ColorEditable;
-    public IFFDesignation Designation;
-    public bool DesignationEditable;
 }
 
 [Serializable, NetSerializable]
