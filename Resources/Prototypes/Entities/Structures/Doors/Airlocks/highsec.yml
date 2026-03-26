@@ -130,4 +130,21 @@
   - type: Tag
     tags:
       - HighSecDoor
+      - Airlock
       # This tag is used to nagivate the Airlock construction graph. It's needed because this construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+
+- type: entity
+  id: VaultDoor # Persistence14: Craftable variant
+  parent: HighSecDoor
+  name: vault door
+  description: Keeps the bad out and keeps the good in. Reinforced with titanium and plasteel, you're not getting through this anytime soon.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: WiresPanelSecurity
+    securityLevel: vaultdoor
+  - type: Construction
+    graph: VaultDoor
+    node: complete_vault_door
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door

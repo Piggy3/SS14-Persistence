@@ -272,6 +272,7 @@ public sealed class AccessReaderSystem : EntitySystem
         if (readerTrue != null)
         {
             reader = readerTrue.Value.Comp;
+            target = readerTrue.Value.Owner;
         }
         if (!reader.Enabled)
             return true;

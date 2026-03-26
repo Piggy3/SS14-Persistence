@@ -8,7 +8,7 @@
   suffix: Empty
   components:
   - type: StaticPrice
-    price: 750
+    price: 300
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -57,7 +57,7 @@
   suffix: Full
   components:
   - type: StaticPrice
-    price: 2500
+    price: 2000
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -89,7 +89,7 @@
   suffix: Empty
   components:
   - type: StaticPrice
-    price: 500
+    price: 300
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -176,7 +176,7 @@
   suffix: Full
   components:
   - type: StaticPrice
-    price: 2500
+    price: 2000
   - type: Sprite
     sprite: Structures/Storage/tanks.rsi
     layers:
@@ -208,7 +208,7 @@
   suffix: Empty
   components:
     - type: StaticPrice
-      price: 500
+      price: 300
     - type: Sprite
       sprite: Structures/Storage/tanks.rsi
       layers:

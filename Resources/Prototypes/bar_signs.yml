@@ -199,9 +199,10 @@
   description: barsign-prototype-description-whiskeyechoes
 
 - type: barSign
-  id: Default
-  name: barsign-prototype-name-default
+  id: EmpBarSign
+  name: barsign-prototype-name-empbarsign
+  hidden: true
   icon:
     sprite: Structures/Wallmounts/barsign.rsi
-    state: default
-  description: barsign-prototype-description-default
+    state: empbarsign
+  description: barsign-prototype-description-empbarsign

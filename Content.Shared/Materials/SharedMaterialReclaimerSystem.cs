@@ -1,9 +1,8 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Mobs.Components;
@@ -73,6 +72,8 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     private void OnCollide(EntityUid uid, CollideMaterialReclaimerComponent component, ref StartCollideEvent args)
     {
         if (args.OurFixtureId != component.FixtureId)
+            return;
+        if (TerminatingOrDeleted(args.OtherEntity) || EntityManager.IsQueuedForDeletion(args.OtherEntity))
             return;
         if (!TryComp<MaterialReclaimerComponent>(uid, out var reclaimer))
             return;

@@ -60,7 +60,10 @@
     chargeModifier: 15000
     radiationReactiveGases:
       - reactantPrototype: Plasma
-        powerGenerationEfficiency: 1
+        powerGenerationEfficiency: 0.25
+        reactantBreakdownRate: 0.0001
+      - reactantPrototype: Tritium
+        powerGenerationEfficiency: 0.50
         reactantBreakdownRate: 0.0001
   - type: RadiationReceiver
   - type: PowerSupplier

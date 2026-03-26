@@ -27,6 +27,9 @@
   - VoiceSensorCopper
   - SignallerCopper
   - Jerrycan
+  - OreBag
+  - PlantBag
+  - ClothingShoesSkates
 
 - type: latheRecipePack
   id: AtmosStatic
@@ -72,6 +75,8 @@
 - type: latheRecipePack
   id: AdvancedTools
   recipes:
+  - RCD
+  - HCD
   - PowerDrill
   - WelderExperimental
   - JawsOfLife

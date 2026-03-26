@@ -21,6 +21,14 @@
     mime: LockerMime
     medicine: LockerMedicine
     paramedic: LockerParamedic
+    prisoner1: LockerPrisoner
+    prisoner2: LockerPrisoner2
+    prisoner3: LockerPrisoner3
+    prisoner4: LockerPrisoner4
+    prisoner5: LockerPrisoner5
+    prisoner6: LockerPrisoner6
+    prisoner7: LockerPrisoner7
+    prisoner8: LockerPrisoner8
     quartermaster: LockerQuarterMaster
     rd: LockerResearchDirector
     representative: LockerRepresentative
@@ -78,3 +86,11 @@
   styles:
     evac: LockerWallEvacRepair
     medical: LockerWallMedical
+    wallprisoner1: LockerWallBasePrisoner
+    wallprisoner2: LockerWallPrisoner2
+    wallprisoner3: LockerWallPrisoner3
+    wallprisoner4: LockerWallPrisoner4
+    wallprisoner5: LockerWallPrisoner5
+    wallprisoner6: LockerWallPrisoner6
+    wallprisoner7: LockerWallPrisoner7
+    wallprisoner8: LockerWallPrisoner8

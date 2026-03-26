@@ -66,6 +66,7 @@
   - type: Tag
     tags:
     - Trash
+    - MessyDrinkerImmune
 
 - type: entity
   parent: BaseItem

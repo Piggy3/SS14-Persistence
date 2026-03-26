@@ -1,4 +1,5 @@
 using Content.Server.Atmos.Components;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.Atmos.Reactions;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -48,6 +49,21 @@ public sealed partial class AtmosphereSystem
         foreach (var tile in component.Tiles.Values)
         {
             tile.GridIndex = uid;
+        }
+
+        //Check there are devices to pre-add to hashset
+        if (component.AtmosDevicesOrder.Count == 0)
+            return;
+
+        //Pre-load hashset with serialised atmos queue from save
+        foreach (var deviceUid in component.AtmosDevicesOrder)
+        {
+            if (!TryComp(deviceUid, out AtmosDeviceComponent? deviceComp))
+                continue;
+
+            var device = new Entity<AtmosDeviceComponent>(deviceUid, deviceComp);
+            if (!component.AtmosDevices.Add(device))
+                continue;
         }
     }
 

@@ -47,6 +47,17 @@
   id: BaseWeaponRecipeSidearm
   completetime: 6
 
+- type: latheRecipe
+  abstract: true
+  id: BaseShoesClothingRecipeSecurity
+  categories:
+  - Shoes
+  completetime: 2
+  materials:
+    Cloth: 200
+    Durathread: 200
+    Plasteel: 200
+
 ## Recipes
 
 # Clothing
@@ -365,3 +376,127 @@
   materials:
     Steel: 500
     Plastic: 100
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeInsulated
+  id: ClothingHandsMercGlovesCombat
+  result: ClothingHandsMercGlovesCombat
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeInsulated
+  id: ClothingHandsTacticalMaidGloves
+  result: ClothingHandsTacticalMaidGloves
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeInsulated
+  id: ClothingHandsGlovesCombat 
+  result: ClothingHandsGlovesCombat 
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltSecurity 
+  result: ClothingBeltSecurity 
+  materials:
+    Cloth: 400
+    Durathread: 100
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltHolster 
+  result: ClothingBeltHolster 
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltBandolier 
+  result: ClothingBeltBandolier 
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltSecurityWebbing 
+  result: ClothingBeltSecurityWebbing 
+  materials:
+    Cloth: 400
+    Durathread: 300
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltMercWebbing 
+  result: ClothingBeltMercWebbing 
+  materials:
+    Cloth: 400
+    Durathread: 300
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltMilitaryWebbing 
+  result: ClothingBeltMilitaryWebbing 
+  materials:
+    Cloth: 400
+    Durathread: 300
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesSecurity
+  result: ClothingEyesGlassesSecurity
+  materials:
+    Steel: 100
+    Plastic: 50
+    Plasteel: 100
+    ReinforcedGlass: 200
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesMercenary
+  result: ClothingEyesGlassesMercenary
+  materials:
+    Steel: 100
+    ReinforcedGlass: 200
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsJack
+  result: ClothingShoesBootsJack
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsCombat
+  result: ClothingShoesBootsCombat
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesHighheelBoots
+  result: ClothingShoesHighheelBoots
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsMerc
+  result: ClothingShoesBootsMerc
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsWinterSec
+  result: ClothingShoesBootsWinterSec
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsCowboyBrown
+  result: ClothingShoesBootsCowboyBrown
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsCowboyBlack
+  result: ClothingShoesBootsCowboyBlack
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsCowboyWhite
+  result: ClothingShoesBootsCowboyWhite
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeSecurity
+  id: ClothingShoesBootsCowboyFancy
+  result: ClothingShoesBootsCowboyFancy
+

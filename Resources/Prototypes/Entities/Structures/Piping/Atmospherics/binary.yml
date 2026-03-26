@@ -470,6 +470,7 @@
             Lockout: { state: vent_lockout }
     - type: PipeColorVisuals
     - type: GasVentPump
+      pressureLockoutOverride: true
       inlet: inlet
       outlet: outlet
       canLink: true

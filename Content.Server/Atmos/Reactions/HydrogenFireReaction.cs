@@ -42,12 +42,32 @@ namespace Content.Server.Atmos.Reactions
                 var initialHydrogenMoles = mixture.GetMoles(Gas.Hydrogen);
 
                 // 2H2 + O2 -> 2H2O
-                // Burn rate scales with temperature
-                var hydrogenBurnRate = initialHydrogenMoles * temperatureScale * 0.1f; // Base burn rate 10% per cycle
+                var TMin = Atmospherics.PlasmaMinimumBurnTemperature;
+                var Tsen = 200f;
+                var baseRate = 0.06f; // increased for faster burn
 
-                // Limited by available oxygen (stoichiometric ratio 2:1)
-                var maxBurnByOxygen = initialOxygenMoles * 2f;
-                hydrogenBurnRate = MathF.Min(hydrogenBurnRate, maxBurnByOxygen);
+                var hydrogenBurnRate = 0f;
+
+                if (initialHydrogenMoles > 0f && temperatureScale > 0f)
+                {
+                    var rawTempFactor = (reactionTemperature - TMin) / Tsen;
+                    rawTempFactor = MathF.Max(rawTempFactor, 0f);
+                    rawTempFactor = MathF.Min(rawTempFactor, 8f);
+                    var tempFactor = MathF.Exp(rawTempFactor);
+
+                    var o2PerFuel = 0.5f;
+                    var oxygenFactor = 1f;
+                    if (initialHydrogenMoles > 0f)
+                        oxygenFactor = MathF.Min(1f, initialOxygenMoles / (initialHydrogenMoles * o2PerFuel));
+
+                    var burnFraction = 1f - MathF.Exp(-baseRate * oxygenFactor * tempFactor);
+                    burnFraction = MathF.Min(MathF.Max(burnFraction, 0f), 1f);
+
+                    hydrogenBurnRate = initialHydrogenMoles * burnFraction;
+
+                    var maxBurnByOxygen = initialOxygenMoles * 2f;
+                    hydrogenBurnRate = MathF.Min(hydrogenBurnRate, maxBurnByOxygen);
+                }
 
                 if (hydrogenBurnRate > Atmospherics.MinimumHeatCapacity)
                 {
@@ -75,7 +95,7 @@ namespace Content.Server.Atmos.Reactions
                 temperature = mixture.Temperature;
                 if (temperature > Atmospherics.FireMinimumTemperatureToExist)
                 {
-                    atmosphereSystem.HotspotExpose(location, temperature, mixture.Volume, fuelGas: Gas.Hydrogen);
+                    atmosphereSystem.HotspotExpose(location, temperature, mixture.Volume);
                 }
             }
 

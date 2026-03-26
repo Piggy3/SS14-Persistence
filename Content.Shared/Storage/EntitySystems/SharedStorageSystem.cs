@@ -157,6 +157,9 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, AreaPickupDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<StorageComponent, GotReclaimedEvent>(OnReclaimed);
 
+        SubscribeLocalEvent<StorageComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
+        SubscribeLocalEvent<StorageComponent, DumpEvent>(OnDump);
+
         SubscribeLocalEvent<MetaDataComponent, StackCountChangedEvent>(OnStackCountChanged);
 
         SubscribeAllEvent<OpenNestedStorageEvent>(OnStorageNested);
@@ -503,6 +506,15 @@ public abstract class SharedStorageSystem : EntitySystem
         if (attemptEv.Cancelled)
             return;
 
+        // If this storage is a dump target and the used item is dumpable with a matching whitelist,
+        // don't try to insert the item - let the dumping logic handle it via AfterInteract.
+        if (HasComp<DumpTargetComponent>(uid) &&
+            TryComp<DumpableComponent>(args.Used, out var dumpable) &&
+            !_whitelistSystem.IsWhitelistFail(dumpable.DumpWhitelist, uid))
+        {
+            return;
+        }
+
         PlayerInsertHeldEntity((uid, storageComp), args.User);
         // Always handle it, even if insertion fails.
         // We don't want to trigger any AfterInteract logic here.
@@ -713,6 +725,31 @@ public abstract class SharedStorageSystem : EntitySystem
     private void OnReclaimed(EntityUid uid, StorageComponent storageComp, GotReclaimedEvent args)
     {
         ContainerSystem.EmptyContainer(storageComp.Container, destination: args.ReclaimerCoordinates);
+    }
+
+    private void OnGetDumpableVerb(Entity<StorageComponent> ent, ref GetDumpableVerbEvent args)
+    {
+        if (!HasComp<DumpTargetComponent>(ent))
+            return;
+
+        args.Verb = Loc.GetString("dump-storage-verb-name", ("storage", ent));
+    }
+
+    private void OnDump(Entity<StorageComponent> ent, ref DumpEvent args)
+    {
+        if (args.Handled || !HasComp<DumpTargetComponent>(ent))
+            return;
+
+        args.Handled = true;
+        args.PlaySound = true;
+
+        foreach (var entity in args.DumpQueue)
+        {
+            if (CanInsert(ent, entity, out _, ent.Comp))
+            {
+                Insert(ent, entity, out _, args.User, ent.Comp);
+            }
+        }
     }
 
     private void OnDestroy(EntityUid uid, StorageComponent storageComp, DestructionEventArgs args)

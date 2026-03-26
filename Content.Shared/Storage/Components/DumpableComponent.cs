@@ -1,5 +1,6 @@
 using Content.Shared.DoAfter;
 using Content.Shared.Storage.EntitySystems;
+using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -32,6 +33,12 @@ public sealed partial class DumpableComponent : Component
     /// </summary>
     [DataField("multiplier"), AutoNetworkedField]
     public float Multiplier = 1.0f;
+
+    /// <summary>
+    /// If set, only allows dumping into targets that match this whitelist.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityWhitelist? DumpWhitelist;
 }
 
 /// <summary>

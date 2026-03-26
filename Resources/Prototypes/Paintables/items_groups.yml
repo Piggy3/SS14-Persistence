@@ -37,10 +37,47 @@
     captain: CaptainPDA
     clown: ClownPDA
     mime: MimePDA
-    medical: MedicalInternPDA
+    medicalintern: MedicalInternPDA
     security: SecurityPDA
     cargo: CargoPDA
-    research: ResearchAssistantPDA
+    researchassistant: ResearchAssistantPDA
+    botanist: BotanistPDA
+    technicalassistant: TechnicalAssistantPDA
+    securitycadet: SecurityCadetPDA
+    serviceworker: ServiceWorkerPDA
+    chef: ChefPDA
+    chaplain: ChaplainPDA
+    qm: QuartermasterPDA
+    salvage: SalvagePDA
+    bartender: BartenderPDA
+    librarian: LibrarianPDA
+    lawyer: LawyerPDA
+    janitor: JanitorPDA
+    hop: HoPPDA
+    ce: CEPDA
+    engineer: EngineerPDA
+    cmo: CMOPDA
+    medical: MedicalPDA
+    paramedic: ParamedicPDA
+    chemistry: ChemistryPDA
+    rnd: RnDPDA
+    science: SciencePDA
+    hos: HoSPDA
+    warden: WardenPDA
+    atmos: AtmosPDA
+    clear: ClearPDA
+    psychologist: PsychologistPDA
+    reporter: ReporterPDA
+    zookeeper: ZookeeperPDA
+    boxer: BoxerPDA
+    detective: DetectivePDA
+    brigmedic: BrigmedicPDA
+    seniorengineer: SeniorEngineerPDA
+    senioreresearcher: SeniorResearcherPDA
+    seniorphysician: SeniorPhysicianPDA
+    seniorofficer: SeniorOfficerPDA
+    seniorcourier: SeniorCourierPDA
+    pirate: PiratePDA
 
 - type: paintableGroup
   id: ItemHeadsets

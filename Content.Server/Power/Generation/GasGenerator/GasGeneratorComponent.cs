@@ -4,21 +4,6 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Power.Generation.GasGenerator;
 
-/// <summary>
-/// Component for a gas generator that consumes fuel mixtures and produces power based on composition and temperature.
-/// </summary>
-/// <remarks>
-/// <para>
-/// The gas generator works by consuming a fuel gas mixture (typically methane-rich) through an inlet.
-/// Power output is determined by two primary factors:
-/// 1. Fuel composition (lean/rich ratio): The optimal mixture ratio affects efficiency
-/// 2. Fuel temperature: Hotter fuel produces more power and affects consumption rate
-/// </para>
-/// <para>
-/// The generator maintains efficiency metrics and adjusts consumption based on these factors.
-/// A PowerSupplierComponent must be present on the same entity for power generation.
-/// </para>
-/// </remarks>
 [RegisterComponent]
 public sealed partial class GasGeneratorComponent : Component
 {
@@ -37,26 +22,9 @@ public sealed partial class GasGeneratorComponent : Component
     /// Used as reference point for efficiency calculations.
     /// </summary>
     [DataField("optimalInputRatio")]
-    public float OptimalInputRatio = 0.8f; // 80% primary, 20% secondary is optimal
+    public float OptimalInputRatio = 0.2f; // 20% primary, 80% secondary is optimal
 
-    /// <summary>
-    /// Minimum temperature (in Kelvin) for efficient fuel burning.
-    /// Below this, efficiency drops significantly.
-    /// </summary>
-    [DataField("minimumTemperature")]
-    public float MinimumTemperature = 373.15f; // 100°C
-
-    /// <summary>
-    /// Optimal temperature (in Kelvin) for peak fuel efficiency.
-    /// </summary>
-    [DataField("optimalTemperature")]
-    public float OptimalTemperature = 573.15f; // 300°C
-
-    /// <summary>
-    /// Maximum useful temperature (in Kelvin) before efficiency drops due to heat dissipation.
-    /// </summary>
-    [DataField("maximumTemperature")]
-    public float MaximumTemperature = 1273.15f; // 1000°C
+    // Temperature-based fields removed: temperature no longer affects generation.
 
     /// <summary>
     /// Primary fuel gas (e.g., Methane).
@@ -118,6 +86,13 @@ public sealed partial class GasGeneratorComponent : Component
     public float MaxInletFlowRate = 2.0f; // moles/sec
 
     /// <summary>
+    /// Volume (liters) applied to the inlet pipe node for this generator.
+    /// Exposed to YAML so different generator prototypes can specify inlet volumes.
+    /// </summary>
+    [DataField("inletNodeVolume")]
+    public float InletNodeVolume = 1.0f; // liters
+
+    /// <summary>
     /// Maximum possible fuel consumption rate (in moles per second at full efficiency).
     /// Adjusted by efficiency modifiers.
     /// </summary>
@@ -125,11 +100,31 @@ public sealed partial class GasGeneratorComponent : Component
     public float MaxFuelConsumptionRate = 10.0f; // moles/sec
 
     /// <summary>
+    /// Base fraction of available primary fuel consumed per update tick (0-1).
+    /// This used to be hardcoded in the system as `0.05f`.
+    /// </summary>
+    [DataField("baseConsumptionFraction")]
+    public float BaseConsumptionFraction = 0.05f;
+
+    /// <summary>
     /// Maximum power output (in watts).
     /// Mapped from YAML field `maxOutput`.
     /// </summary>
     [DataField("maxOutput")]
     public float MaxPowerOutput = 50000f; // 50 kW
+
+    /// <summary>
+    /// Multiplier applied to effective power-per-mole to scale power output
+    /// relative to mole consumption. This replaces the hardcoded `3.0f`.
+    /// </summary>
+    [DataField("powerScaleMultiplier")]
+    public float PowerScaleMultiplier = 3.0f;
+
+    /// <summary>
+    /// Additional flat power boost applied multiplicatively (replaces hardcoded `1.2f`).
+    /// </summary>
+    [DataField("powerExtraBoost")]
+    public float PowerExtraBoost = 1.2f;
 
     /// <summary>
     /// <summary>
@@ -145,6 +140,14 @@ public sealed partial class GasGeneratorComponent : Component
     /// </summary>
     [DataField("fuelSlipRate")]
     public float FuelSlipRate = 0.1f;
+
+    /// <summary>
+    /// Combustion energy released per mole of primary fuel consumed (in Joules).
+    /// This determines exhaust temperature. Default is FireMethaneEnergyReleased (560 kJ/mol).
+    /// Can be customized per generator type in YAML for different fuel reactions.
+    /// </summary>
+    [DataField("combustionEnergyPerMole")]
+    public float CombustionEnergyPerMole = 560000f; // 560 kJ/mol (methane default)
 
     /// <summary>
     /// Molar ratio of WasteGas1 produced per mole of primary fuel consumed.

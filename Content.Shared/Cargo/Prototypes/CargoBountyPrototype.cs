@@ -68,7 +68,7 @@ public readonly partial record struct CargoBountyItemEntry()
     /// <summary>
     /// A whitelist for determining what items satisfy the entry.
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public EntityWhitelist Whitelist { get; init; } = default!;
 
     /// <summary>

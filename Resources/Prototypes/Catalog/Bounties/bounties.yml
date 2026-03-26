@@ -627,16 +627,6 @@
   group: ServiceBounty
 
 - type: cargoBounty
-  id: BountyRollerskates
-  reward: 900
-  description: bounty-description-rollerskates
-  entries:
-  - name: bounty-item-rollerskates
-    whitelist:
-      components:
-      - Skates
-
-- type: cargoBounty
   id: BountyBedsheet
   reward: 3000
   description: bounty-description-bedsheet

@@ -51,13 +51,18 @@
           False: { visible: true }
   - type: Storage
     grid:
-    - 0,0,9,5
+    - 0,0,19,9
     maxItemSize: Normal
     storageOpenSound: /Audio/Effects/closetopen.ogg
     storageCloseSound: /Audio/Effects/closetclose.ogg
     whitelist:
       tags:
+      - ArtifactFragment
       - Ore
+  - type: DumpTarget
+  - type: Tag
+    tags:
+    - OreBox
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -72,8 +77,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.3
-        # very not dense to make it easy to pull
-        density: 20
+        density: 170
         mask:
         - MachineMask
         layer:
