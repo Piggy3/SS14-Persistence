@@ -618,7 +618,6 @@
         path: "/Audio/Effects/Fluids/splat.ogg"
       damage:
         types:
-<<<<<<< HEAD:Resources/Prototypes/Entities/Objects/Specific/Chemistry/chemical-containers.yml
           Blunt: 0
 
 - type: entity          
@@ -740,6 +739,3 @@
         reagents:
         - ReagentId: DexalinPlus
           Quantity: 200
-=======
-          Blunt: 0
->>>>>>> parent of 4a4ca52296 (Merge remote-tracking branch 'upstream/master' into mechanic-cart-and-jerrycan):Resources/Prototypes/Entities/Objects/Specific/chemical-containers.yml
