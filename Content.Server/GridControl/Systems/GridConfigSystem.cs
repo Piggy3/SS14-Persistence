@@ -115,9 +115,13 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
     private void OnUnlink(EntityUid uid, StationTaggerComponent component, EntityEventArgs args)
     {
         if (component.TargetAccessReaderId == EntityUid.Invalid) return;
-        if (TryComp<StationTrackerComponent>(component.TargetAccessReaderId, out var comp) && comp != null)
+
+        if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
+            return;
+        if (accessReaderEnt == null) return;
+        if (TryComp<StationTrackerComponent>(accessReaderEnt.Value.Owner, out var comp) && comp != null)
         {
-            EntityManager.RemoveComponent(component.TargetAccessReaderId, comp);
+            EntityManager.RemoveComponent(accessReaderEnt.Value.Owner, comp);
         }
         UpdateUserInterface(uid, component, args);
     }
@@ -129,13 +133,17 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         {
             return;
         }
+        if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
+            return;
+        if (accessReaderEnt == null) return;
+
         if (component.ConnectedStation == null) return;
         var station = _station.GetStationByID(component.ConnectedStation.Value);
         if (station == null) return;
-        var comp2 = EnsureComp<StationTrackerComponent>(component.TargetAccessReaderId);
+        var comp2 = EnsureComp<StationTrackerComponent>(accessReaderEnt.Value.Owner);
         if (comp2 == null) return;
         comp2.locked = false;
-        _station.SetStation((component.TargetAccessReaderId, comp2), station);
+        _station.SetStation((accessReaderEnt.Value.Owner, comp2), station);
         comp2.locked = true;
         UpdateUserInterface(uid, component, args);
     }
@@ -840,7 +848,11 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         int taggedStationUID = 0;
         if (component.TargetAccessReaderId is { Valid: true } accessReader)
         {
-            if (TryComp<StationTrackerComponent>(accessReader, out var stationTracker) && stationTracker != null)
+            if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt2))
+                return;
+            if (accessReaderEnt2 == null) return;
+
+            if (TryComp<StationTrackerComponent>(accessReaderEnt2.Value.Owner, out var stationTracker) && stationTracker != null)
             {
                 var taggedStation = stationTracker.Station;
                 if (TryComp<StationDataComponent>(taggedStation, out var taggedSD) && taggedSD != null)
@@ -851,10 +863,8 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
             }
             targetLabel = Loc.GetString("access-overrider-window-target-label") + " " + Comp<MetaDataComponent>(component.TargetAccessReaderId).EntityName;
             targetLabelColor = Color.White;
-            if (accessReader != null)
-            {
-                allowed = PrivilegedIdIsAuthorized(uid, accessReader, component);
-            }
+            allowed = PrivilegedIdIsAuthorized(uid, accessReaderEnt2.Value.Owner, component);
+            
         }
         StationTaggerBoundUserInterfaceState newState;
 

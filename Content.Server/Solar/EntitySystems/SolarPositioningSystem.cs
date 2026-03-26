@@ -44,9 +44,14 @@ namespace Content.Server.Solar.EntitySystems
 
         private void RandomizeSun(EntityUid eid, SolarLocationComponent solarLocation)
         {
+            // If the sun has already been randomized
+            if (solarLocation.WasInitialized)
+                return;
+
             // Initialize the sun to something random
             solarLocation.TowardsSun = MathHelper.TwoPi * _robustRandom.NextDouble();
             solarLocation.SunAngularVelocity = Angle.FromDegrees(0.1 + ((_robustRandom.NextDouble() - 0.5) * 0.05));
+            solarLocation.WasInitialized = true;
         }
 
         public SolarLocationComponent? GetSolarLocation(EntityUid gridUid)

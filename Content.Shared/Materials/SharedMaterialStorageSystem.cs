@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stacks;
+using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -35,6 +36,8 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
         SubscribeLocalEvent<MaterialStorageComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MaterialStorageComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MaterialStorageComponent, TechnologyDatabaseModifiedEvent>(OnDatabaseModified);
+        SubscribeLocalEvent<MaterialStorageComponent, GetDumpableVerbEvent>(OnGetDumpableVerb);
+        SubscribeLocalEvent<MaterialStorageComponent, DumpEvent>(OnDump);
     }
 
     public override void Update(float frameTime)
@@ -408,6 +411,28 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
     private void OnDatabaseModified(Entity<MaterialStorageComponent> ent, ref TechnologyDatabaseModifiedEvent args)
     {
         UpdateMaterialWhitelist(ent);
+    }
+
+    private void OnGetDumpableVerb(Entity<MaterialStorageComponent> ent, ref GetDumpableVerbEvent args)
+    {
+        if (!HasComp<DumpTargetComponent>(ent))
+            return;
+
+        args.Verb = Loc.GetString("dump-material-storage-verb-name", ("storage", ent));
+    }
+
+    private void OnDump(Entity<MaterialStorageComponent> ent, ref DumpEvent args)
+    {
+        if (args.Handled || !HasComp<DumpTargetComponent>(ent))
+            return;
+
+        args.Handled = true;
+        args.PlaySound = true;
+
+        foreach (var entity in args.DumpQueue)
+        {
+            TryInsertMaterialEntity(args.User, entity, ent, ent.Comp);
+        }
     }
 
     public int GetSheetVolume(MaterialPrototype material)

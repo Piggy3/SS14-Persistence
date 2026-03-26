@@ -502,6 +502,7 @@
   materials:
     Steel: 150
     Plastic: 50
+  unlockUses: 3
 
 - type: latheRecipe
   id: GrenadeEMP
@@ -513,6 +514,7 @@
     Steel: 150
     Plastic: 100
     Glass: 20
+  unlockUses: 5
 
 - type: latheRecipe
   id: GrenadeBlast
@@ -524,6 +526,7 @@
     Steel: 450
     Plastic: 300
     Gold: 150
+  unlockUses: 5
 
 - type: latheRecipe
   id: GrenadeFlash
@@ -535,3 +538,4 @@
     Steel: 150
     Plastic: 100
     Glass: 20
+  unlockUses: 5

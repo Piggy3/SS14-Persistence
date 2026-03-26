@@ -176,11 +176,30 @@
     access: [["Engineering"]]
 
 - type: entity
+  parent: BaseWallLocker
+  id: ClosetWallSecure
+  name: secure wall closet
+  description: A wall closet with a built-in access reader. Secure when configured correctly.
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: generic_door
+  - type: AccessReader
+  - type: Construction
+    graph: ClosetWallSecure
+    node: closetwallsecure
+
+- type: entity
   parent: [ GenpopBase , BaseWallLocker ]
   id: LockerWallBasePrisoner
   name: prisoner wall closet
   description: It's a secure locker for an inmate's personal belongings during their time in prison.
   suffix: 1
+  components:
+  - type: Construction
+    graph: ClosetWallPrisonerSecure
+    node: closetwallprisonersecure
 
 - type: entity
   parent: LockerWallBasePrisoner

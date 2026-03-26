@@ -130,6 +130,9 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
+  - ClothingHandsMercGlovesCombat
+  - ClothingHandsTacticalMaidGloves
+  - ClothingHandsGlovesCombat
 
 # Tier 2
 

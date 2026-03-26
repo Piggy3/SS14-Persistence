@@ -49,6 +49,8 @@
     solutions:
       glass:
         canReact: false
+  - type: Stack
+    count: 50
 
 - type: entity
   parent: SheetGlassBase

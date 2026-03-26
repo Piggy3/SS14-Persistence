@@ -45,6 +45,93 @@
   - ClothingUniformJumpskirtPurpleElegantDress
   - ClothingUniformJumpskirtRedElegantDress
   - ClothingUniformJumpskirtRedStripedDress
+  - ClothingShoesBootsPerformer
+  - ClothingShoesBootsLaceup
+  - ClothingShoesFlippers
+  - ClothingShoesLeather
+  - ClothingShoesSlippers
+  - ClothingShoeSlippersDuck
+  - ClothingShoesTourist
+  - ClothingShoesDameDane
+  - ClothingShoesCult
+  - ClothingShoesSwat
+  - ClothingShoesColorBlack
+  - ClothingShoesColorWhite
+  - ClothingShoesColorBlue
+  - ClothingShoesColorBrown
+  - ClothingShoesColorGreen
+  - ClothingShoesColorOrange
+  - ClothingShoesColorRed
+  - ClothingShoesColorYellow
+  - ClothingShoesColorPurple
+  - ClothingHandsGlovesColorPurple
+  - ClothingHandsGlovesColorRed
+  - ClothingHandsGlovesColorBlue
+  - ClothingHandsGlovesColorTeal
+  - ClothingHandsGlovesColorBrown
+  - ClothingHandsGlovesColorGray
+  - ClothingHandsGlovesColorGreen
+  - ClothingHandsGlovesColorLightBrown
+  - ClothingHandsGlovesColorOrange
+  - ClothingHandsGlovesColorWhite
+  - ClothingHandsGlovesColorBlack
+  - ClothingHandsGlovesHop
+  - ClothingHandsGlovesLeather
+  - ClothingHandsGlovesPowerglove
+  - ClothingHandsGlovesRobohands
+  - ClothingHandsGlovesFingerless
+  - ClothingHandsGlovesFingerlessInsulated
+  - ClothingHandsGlovesMercFingerless
+  - ClothingHandsGlovesJanitor
+  - ClothingOuterVest
+  - ClothingUniformJumpskirtJanimaid
+  - ClothingUniformJumpskirtJanimaidmini
+  - ClothingBeltChampion
+  - ClothingBeltSuspendersRed
+  - ClothingBeltSuspendersBlack
+  - ClothingEyesGlassesGar
+  - ClothingEyesGlassesGarOrange
+  - ClothingEyesGlassesGarGiga
+  - ClothingEyesGlasses
+  - ClothingEyesGlassesJensen
+  - ClothingEyesGlassesJamjar
+  - ClothingEyesGlassesOutlawGlasses
+  - ClothingEyesGlassesCheapSunglasses
+  - ClothingHandsGlovesBoxingRed
+  - ClothingHandsGlovesBoxingBlue
+  - ClothingHandsGlovesBoxingGreen
+  - ClothingHandsGlovesBoxingYellow
+  - ClothingMaskRat
+  - ClothingMaskFox
+  - ClothingMaskBee
+  - ClothingMaskBear
+  - ClothingMaskRaven
+  - ClothingMaskJackal
+  - ClothingMaskBat
+  - ClothingMaskNeckGaiter
+  - ClothingMaskNeckGaiterRed
+  - ClothingMaskItalianMoustache
+  - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
+  - ClothingNeckAromanticPin
+  - ClothingNeckAroacePin
+  - ClothingNeckAsexualPin
+  - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
+  - ClothingNeckIntersexPin
+  - ClothingNeckLesbianPin
+  - ClothingNeckNonBinaryPin
+  - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
+  - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
+  - ClothingNeckTransPin
+  - ClothingNeckAutismPin
+  - ClothingNeckGoldAutismPin
+  - ClothingNeckBling
+  - ClothingNeckLawyerbadge
+
 
 - type: latheRecipePack
   id: ClothingAssortedOversuits
@@ -134,6 +221,7 @@
   - ClothingUniformJumpsuitQMTurtleneck
   - ClothingUniformJumpskirtQMTurtleneck
   - ClothingUniformJumpsuitQMFormal
+  - ClothingShoesBootsSalvage
 
 - type: latheRecipePack
   id: ClothingCommand
@@ -168,6 +256,9 @@
   - ClothingUniformJumpsuitEngineeringHazard
   - ClothingUniformJumpsuitSeniorEngineer
   - ClothingUniformJumpskirtSeniorEngineer
+  - ClothingShoesBootsWork
+  - ClothingOuterVestHazard
+  - ClothingBeltUtility
 
 - type: latheRecipePack
   id: ClothingMedical
@@ -192,6 +283,8 @@
   - ClothingUniformJumpsuitParamedic
   - ClothingUniformJumpskirtParamedic
   - ClothingHeadHatParamedicsoft
+  - ClothingBeltMedical
+  - ClothingNeckStethoscope
 
 - type: latheRecipePack
   id: ClothingScience
@@ -256,6 +349,8 @@
   - ClothingUniformJumpskirtWarden
   - ClothingUniformJumpsuitSecCorpsmanBlue
   - ClothingUniformJumpsuitSecCorpsmanBlack
+  - ClothingUniformJumpskirtTacticalMaid
+  - Dinkystar
 
 - type: latheRecipePack
   id: ClothingService
@@ -293,6 +388,23 @@
   - ClothingUniformJumpsuitMime
   - ClothingUniformJumpskirtMime
   - ClothingUniformJumpsuitMusician
+  - ClothingShoesChef
+  - ClothingShoesClown
+  - ClothingShoesJester
+  - ClothingBeltJanitor
+  - ClothingBeltPlant
+  - ClothingBeltChef
+  - ClothingNeckStoleChaplain
+  - ClothingMaskClown
+  - ClothingMaskJoy
+  - ClothingMaskMime
+  - ClothingMaskPlague
+  - ClothingMaskBlushingClown
+  - ClothingMaskBlushingMime
+  - ClothingMaskSadMime
+  - ClothingMaskScaredMime
+  - ClothingNeckStoleChaplain
+  - SprayFlowerPin
 
 - type: latheRecipePack
   id: WinterCoats
@@ -336,6 +448,10 @@
   - ClothingOuterWinterColorYellow
   - ClothingOuterHoodieBlack
   - ClothingOuterHoodieGrey
+  - ClothingShoesBootsWinter
+  - ClothingShoesBootsWinterEngi
+  - ClothingShoesBootsWinterMed
+  - ClothingShoesBootsWinterSci
 
 - type: latheRecipePack
   id: Ties
@@ -368,6 +484,19 @@
   - ClothingNeckCloakCe
   - ClothingCloakCmo
   - ClothingNeckCloakHop
+  - ClothingNeckCloakTrans
+  - ClothingNeckCloakGoliathCloak
+  - ClothingNeckCloakMoth
+  - ClothingNeckCloakVoid
+  - ClothingNeckCloakAce
+  - ClothingNeckCloakAro
+  - ClothingNeckCloakAroace
+  - ClothingNeckCloakBi
+  - ClothingNeckCloakIntersex
+  - ClothingNeckCloakLesbian
+  - ClothingNeckCloakGay
+  - ClothingNeckCloakEnby
+  - ClothingNeckCloakPan
 
 - type: latheRecipePack
   id: Mantles

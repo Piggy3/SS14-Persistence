@@ -42,6 +42,9 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
     public bool RotateWithEntity { get; set; } = true;
+    public IFFSortMode SortMode { get; set; } = IFFSortMode.None;
+
+    private const float SortFadeMultiplier = 0.1f;
 
     /// <summary>
     /// Raised if the user left-clicks on the radar control with the relevant entitycoordinates.
@@ -155,10 +158,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var ourEntRot = RotateWithEntity ? _transform.GetWorldRotation(xform) : _rotation.Value;
         var ourEntMatrix = Matrix3Helpers.CreateTransform(_transform.GetWorldPosition(xform), ourEntRot);
 
-        // Update NorthRotation to the world rotation of the grid plus the relative angle of the viewed dock
-        // to ensure it points to world North correctly in the Nav view.
-        NorthRotation = ourEntRot;
-
         var shuttleToWorld = Matrix3x2.Multiply(posMatrix, ourEntMatrix);
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
@@ -202,6 +201,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var viewBounds = new Box2Rotated(new Box2(-WorldRange, -WorldRange, WorldRange, WorldRange).Translated(mapPos.Position), rot, mapPos.Position);
         var viewAABB = viewBounds.CalcBoundingBox();
 
+        DrawNorthLine(handle, rot);
+
         _grids.Clear();
         _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
@@ -224,10 +225,18 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             var labelColor = _shuttles.GetIFFColor(grid, self: false, iff);
             var coordColor = new Color(labelColor.R * 0.8f, labelColor.G * 0.8f, labelColor.B * 0.8f, 0.5f);
 
+            if (ShouldFade(iff))
+            {
+                labelColor = labelColor.WithAlpha(labelColor.A * SortFadeMultiplier);
+                coordColor = coordColor.WithAlpha(coordColor.A * SortFadeMultiplier);
+            }
+
             // Others default:
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
             var labelName = _shuttles.GetIFFLabel(grid, self: false, iff);
+            var designation = iff?.Designation ?? IFFDesignation.Ship;
+            var labelScale = designation == IFFDesignation.Station ? 1.3f : 1f;
 
             if (ShowIFF &&
                  labelName != null)
@@ -243,7 +252,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 var coordsText = $"({gridCenterInWorld.X:0.0}, {gridCenterInWorld.Y:0.0})";
 
                 // yes 1.0 scale is intended here.
-                var labelDimensions = handle.GetDimensions(Font, labelText, 1f);
+                var labelDimensions = handle.GetDimensions(Font, labelText, labelScale);
                 var coordsDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
 
                 // y-offset the control to always render below the grid (vertically)
@@ -272,7 +281,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
                 labelUiPosition = Vector2.Clamp(labelUiPosition, Vector2.Zero, controlExtents);
 
                 // draw IFF label
-                handle.DrawString(Font, labelUiPosition, labelText, labelColor);
+                handle.DrawString(Font, labelUiPosition, labelText, labelScale, labelColor);
 
                 // only draw coords label if close enough
                 if (offsetMax < 1)
@@ -305,6 +314,11 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
 
+    }
+
+    private bool ShouldFade(IFFComponent? iff)
+    {
+        return !_shuttles.MatchesSortTag(iff, SortMode);
     }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)

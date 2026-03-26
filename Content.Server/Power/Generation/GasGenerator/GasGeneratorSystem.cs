@@ -6,6 +6,7 @@ using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Examine;
 using Content.Shared.NodeContainer;
 using Content.Shared.Power;
@@ -55,6 +56,15 @@ public sealed class GasGeneratorSystem : EntitySystem
     {
         // Initialize internal atmosphere with specified volume
         component.InternalAtmosphere = new GasMixture(component.InternalVolume);
+
+        // If the entity has a node container with an inlet pipe node, apply configured inlet volume
+        if (_nodeContainerQuery.TryGetComponent(uid, out var nodeContainer))
+        {
+            if (nodeContainer.Nodes.TryGetValue(GasGeneratorComponent.NodeNameInlet, out var inletNode) && inletNode is PipeNode pipe)
+            {
+                pipe.Volume = component.InletNodeVolume;
+            }
+        }
     }
 
     private void GeneratorExamined(EntityUid uid, GasGeneratorComponent component, ExaminedEvent args)
@@ -124,22 +134,40 @@ public sealed class GasGeneratorSystem : EntitySystem
         }
 
         // STEP 2: Check if we have enough fuel in internal chamber for combustion
-        var totalFuel = internalMixture.GetMoles(component.InputGas1) + internalMixture.GetMoles(component.InputGas2);
+        // Generator should only work when internal chamber is reasonably full (not just trace amounts)
+        var availablePrimary = internalMixture.GetMoles(component.InputGas1);
+        var availableSecondary = internalMixture.GetMoles(component.InputGas2);
 
-        if (totalFuel < 0.5f)
+        // Don't activate if either input gas is missing
+        if (availablePrimary <= 0 || availableSecondary <= 0)
         {
             supplier.MaxSupply = 0;
             component.CurrentConsumptionRate = 0;
+            component.CurrentEfficiency = 0;
+            _ambientSound.SetAmbience(uid, false);
+            _appearance.SetData(uid, PowerDeviceVisuals.Powered, false);
+            return;
+        }
+
+        // Ensure we have minimum amounts of BOTH gases based on their optimal ratio
+        // Use 10% of capacity instead of 50% so generator can continue operating through combustion cycles
+        var minRequiredMoles = (component.MaxInternalPressure * component.InternalVolume) / (Atmospherics.R * internalMixture.Temperature) * 0.1f; // At least 10% capacity
+        var minPrimary = minRequiredMoles * component.OptimalInputRatio;
+        var minSecondary = minRequiredMoles * (1.0f - component.OptimalInputRatio);
+
+        if (availablePrimary < minPrimary || availableSecondary < minSecondary)
+        {
+            supplier.MaxSupply = 0;
+            component.CurrentConsumptionRate = 0;
+            component.CurrentEfficiency = 0;
             _ambientSound.SetAmbience(uid, false);
             _appearance.SetData(uid, PowerDeviceVisuals.Powered, false);
             return;
         }
 
         // STEP 3: Consume from internal chamber for combustion
-        var availablePrimary = internalMixture.GetMoles(component.InputGas1);
-        var availableSecondary = internalMixture.GetMoles(component.InputGas2);
 
-        // Don't consume anything if either input is empty
+        // Additional safety check (redundant but explicit)
         if (availablePrimary <= 0 || availableSecondary <= 0)
         {
             component.CurrentConsumptionRate = 0;
@@ -180,8 +208,8 @@ public sealed class GasGeneratorSystem : EntitySystem
             consumptionMultiplier = 1.0f - (1.0f - normalizedRatio) * 0.25f; // Down to 0.75x slower when lean
 
         // Consume gas based on mixture ratio
-        var consumed = availablePrimary * 0.05f * consumptionMultiplier; // Base rate
-        var secondaryConsumed = availableSecondary * 0.05f * consumptionMultiplier;
+        var consumed = availablePrimary * component.BaseConsumptionFraction * consumptionMultiplier; // Base rate from YAML
+        var secondaryConsumed = availableSecondary * component.BaseConsumptionFraction * consumptionMultiplier;
 
         // Clamp to available amounts
         consumed = Math.Min(consumed, availablePrimary);
@@ -190,9 +218,9 @@ public sealed class GasGeneratorSystem : EntitySystem
         internalMixture.AdjustMoles(component.InputGas1, -consumed);
         internalMixture.AdjustMoles(component.InputGas2, -secondaryConsumed);
 
-        // Calculate efficiency based on composition and temperature (after collecting incompatible gases but before exhaust)
+        // Calculate efficiency based on composition only
         var (compositionEfficiency, powerMultiplier, fuelMultiplier) = CalculateCompositionEfficiency(internalMixture, component);
-        var temperatureEfficiency = CalculateTemperatureEfficiency(internalMixture, component);
+        var temperatureEfficiency = 1.0f;
 
         // Apply composition tradeoffs to power and consumption
         component.CurrentEfficiency = MathHelper.Clamp(
@@ -201,7 +229,8 @@ public sealed class GasGeneratorSystem : EntitySystem
 
         // Power scales directly with consumption: power per mole of fuel consumed
         var powerPerMole = component.MaxPowerOutput / component.MaxFuelConsumptionRate;
-        var power = consumed * powerPerMole * component.CurrentEfficiency * powerMultiplier * 1.2f; // 20% power boost
+        // Apply configurable scaling and boosts (previously hardcoded multipliers)
+        var power = consumed * powerPerMole * component.PowerScaleMultiplier * component.CurrentEfficiency * powerMultiplier * component.PowerExtraBoost;
 
         // Clamp power to max output
         power = Math.Min(power, component.MaxPowerOutput);
@@ -216,11 +245,14 @@ public sealed class GasGeneratorSystem : EntitySystem
         var richness = (newPrimaryMoles / (newPrimaryMoles + newSecondaryMoles)) - component.OptimalInputRatio;
         var exhaustTempAdjust = -richness * 200f; // ±200K based on richness
 
-        var exhaustMixture = new GasMixture { Temperature = MathF.Max(internalMixture.Temperature + exhaustTempAdjust, Atmospherics.TCMB) };
+        var exhaustMixture = new GasMixture { Temperature = Atmospherics.T20C };
 
         // Only generate exhaust if fuel was actually consumed
         if (consumed > 0.01f)
         {
+            // Calculate combustion heat released using configured energy per mole
+            var combustionEnergy = component.CombustionEnergyPerMole * consumed;
+
             // Generate exhaust based on mixture leanness/richness and actual consumption
             // Rich mixture (excess fuel, normalizedRatio > 1.0): Incomplete combustion
             if (normalizedRatio > 1.0f)
@@ -266,6 +298,14 @@ public sealed class GasGeneratorSystem : EntitySystem
             foreach (var (incompatibleGas, moles) in incompatibleGases)
             {
                 exhaustMixture.AdjustMoles(incompatibleGas, moles);
+            }
+
+            // Apply combustion heat to exhaust mixture (heat exhaust like a real burn reaction)
+            var exhaustHeatCapacity = _atmosphere.GetHeatCapacity(exhaustMixture, true);
+            if (exhaustHeatCapacity > Atmospherics.MinimumHeatCapacity && combustionEnergy > 0)
+            {
+                // Heat the exhaust to combustion temperature
+                exhaustMixture.Temperature = (exhaustMixture.Temperature * exhaustHeatCapacity + combustionEnergy) / exhaustHeatCapacity;
             }
 
             // Output exhaust ONLY to the tile atmosphere, never to pipe network
@@ -339,7 +379,7 @@ public sealed class GasGeneratorSystem : EntitySystem
         // Base efficiency: Gaussian penalty for deviation
         var deviation = Math.Abs(richness);
         var baseEfficiency = MathF.Exp(-(deviation * deviation) / (2 * 0.15f * 0.15f));
-        baseEfficiency = MathHelper.Clamp(baseEfficiency, 0.4f, 1.0f);
+        baseEfficiency = MathHelper.Clamp(baseEfficiency, 0.0f, 1.0f); // Allow efficiency to drop to 0% for very poor mixtures
 
         // Rich mixture (excess fuel): More power, worse fuel economy
         // Lean mixture (excess oxidizer): Less power, better fuel economy
@@ -368,42 +408,4 @@ public sealed class GasGeneratorSystem : EntitySystem
 
         return (baseEfficiency, powerMultiplier, fuelMultiplier);
     }
-
-    /// <summary>
-    /// Calculate efficiency multiplier based on fuel temperature.
-    /// Efficiency rises from minimum temp, peaks at optimal, then slightly degrades at extreme temps.
-    /// </summary>
-    private float CalculateTemperatureEfficiency(GasMixture mixture, GasGeneratorComponent component)
-    {
-        var temp = mixture.Temperature;
-
-        // Below minimum temperature: poor efficiency
-        if (temp < component.MinimumTemperature)
-        {
-            var cold = component.MinimumTemperature - temp;
-            var coldPenalty = MathF.Pow(0.5f, cold / 100); // Halve efficiency per 100K below minimum
-            return MathHelper.Clamp(coldPenalty, 0.1f, 1.0f);
-        }
-
-        // Between minimum and optimal: efficiency improves linearly
-        if (temp < component.OptimalTemperature)
-        {
-            var warmFactor = (temp - component.MinimumTemperature) /
-                           (component.OptimalTemperature - component.MinimumTemperature);
-            return MathHelper.Clamp(0.5f + (0.5f * warmFactor), 0.5f, 1.0f);
-        }
-
-        // Between optimal and maximum: slight degradation due to heat loss
-        if (temp < component.MaximumTemperature)
-        {
-            var hotFactor = (temp - component.OptimalTemperature) /
-                          (component.MaximumTemperature - component.OptimalTemperature);
-            var degradation = MathF.Pow(hotFactor, 2) * 0.2f; // Up to 20% penalty
-            return MathHelper.Clamp(1.0f - degradation, 0.8f, 1.0f);
-        }
-
-        // Above maximum temperature: severe degradation
-        var extreme = temp - component.MaximumTemperature;
-        var extremePenalty = MathF.Pow(0.5f, extreme / 500); // Halve per 500K above maximum
-        return MathHelper.Clamp(extremePenalty * 0.8f, 0.2f, 1.0f);
-    }}
+}

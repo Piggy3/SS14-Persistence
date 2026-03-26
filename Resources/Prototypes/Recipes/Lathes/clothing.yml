@@ -72,12 +72,81 @@
 
 - type: latheRecipe
   abstract: true
+  id: BaseShoesClothingRecipeCheap
+  categories:
+  - Shoes
+  completetime: 2
+  materials:
+    Cloth: 200
+
+- type: latheRecipe
+  abstract: true
   id: BaseShoesClothingRecipe
   categories:
   - Shoes
   completetime: 2
   materials:
     Durathread: 400
+
+- type: latheRecipe
+  abstract: true
+  id: BaseGlovesClothingRecipeCheap
+  categories:
+  - Gloves
+  completetime: 2
+  materials:
+    Cloth: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BaseGlovesClothingRecipeInsulated
+  categories:
+  - Gloves
+  completetime: 2
+  materials:
+    Cloth: 200
+    Durathread: 200
+    Plasteel: 100
+
+- type: latheRecipe
+  abstract: true
+  id: BaseBeltsClothingRecipe
+  categories:
+  - Belts
+  completetime: 2
+  materials:
+    Cloth: 500
+    Durathread: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BaseGlassesClothingRecipe
+  categories:
+  - Glasses
+  completetime: 2
+  materials:
+    Durathread: 100
+    Glass: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BaseMaskRecipe
+  categories:
+  - Masks
+  completetime: 4
+  materials:
+    Cloth: 100
+    Plastic: 200
+
+- type: latheRecipe
+  abstract: true
+  id: BasePinClothingRecipe
+  categories:
+  - Neck
+  completetime: 2
+  materials:
+    Steel: 100
+    Plastic: 100
 
 ## Recipes
 
@@ -1909,3 +1978,717 @@
   parent: BaseJumpsuitRecipe
   id: ClothingUniformGenericTacticalTurtleNeck
   result: ClothingUniformGenericTacticalTurtleNeck
+# Start of Persistence14 additions
+# Persi14 Shoes
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsWork
+  result: ClothingShoesBootsWork
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsSalvage
+  result: ClothingShoesBootsSalvage
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsPerformer
+  result: ClothingShoesBootsPerformer
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsLaceup
+  result: ClothingShoesBootsLaceup
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsWinter
+  result: ClothingShoesBootsWinter
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsWinterEngi
+  result: ClothingShoesBootsWinterEngi
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsWinterMed
+  result: ClothingShoesBootsWinterMed
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesBootsWinterSci
+  result: ClothingShoesBootsWinterSci
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesFlippers
+  result: ClothingShoesFlippers
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesLeather
+  result: ClothingShoesLeather
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesSlippers
+  result: ClothingShoesSlippers
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoeSlippersDuck
+  result: ClothingShoeSlippersDuck
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesTourist
+  result: ClothingShoesTourist
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesDameDane
+  result: ClothingShoesDameDane
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesChef
+  result: ClothingShoesChef
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesClown
+  result: ClothingShoesClown
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesCult
+  result: ClothingShoesCult
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesSwat
+  result: ClothingShoesSwat
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesJester
+  result: ClothingShoesJester
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorBlack
+  result: ClothingShoesColorBlack
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorWhite
+  result: ClothingShoesColorWhite
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorBlue
+  result: ClothingShoesColorBlue
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorBrown
+  result: ClothingShoesColorBrown
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorGreen
+  result: ClothingShoesColorGreen
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorOrange
+  result: ClothingShoesColorOrange
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorRed
+  result: ClothingShoesColorRed
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorYellow
+  result: ClothingShoesColorYellow
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesColorPurple
+  result: ClothingShoesColorPurple
+
+- type: latheRecipe
+  parent: BaseShoesClothingRecipeCheap
+  id: ClothingShoesSkates
+  result: ClothingShoesSkates
+  materials:
+    Steel: 1000
+    Cloth: 800
+# Persi14 Gloves
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorPurple
+  result: ClothingHandsGlovesColorPurple
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorRed
+  result: ClothingHandsGlovesColorRed
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorBlue
+  result: ClothingHandsGlovesColorBlue
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorTeal
+  result: ClothingHandsGlovesColorTeal
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorBrown
+  result: ClothingHandsGlovesColorBrown
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorGray
+  result: ClothingHandsGlovesColorGray
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorGreen
+  result: ClothingHandsGlovesColorGreen
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorLightBrown
+  result: ClothingHandsGlovesColorLightBrown
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorOrange
+  result: ClothingHandsGlovesColorOrange
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorWhite
+  result: ClothingHandsGlovesColorWhite
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesColorBlack
+  result: ClothingHandsGlovesColorBlack
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesHop
+  result: ClothingHandsGlovesHop
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesLeather
+  result: ClothingHandsGlovesLeather
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesPowerglove
+  result: ClothingHandsGlovesPowerglove
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesRobohands
+  result: ClothingHandsGlovesRobohands
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesFingerless
+  result: ClothingHandsGlovesFingerless
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesFingerlessInsulated
+  result: ClothingHandsGlovesFingerlessInsulated
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesMercFingerless
+  result: ClothingHandsGlovesMercFingerless
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesJanitor
+  result: ClothingHandsGlovesJanitor
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeInsulated
+  id: ClothingHandsGlovesColorYellow
+  result: ClothingHandsGlovesColorYellow
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeInsulated
+  id: ClothingHandsGlovesCaptain
+  result: ClothingHandsGlovesCaptain
+  materials:
+    Durathread: 500
+    Gold: 200
+    Plasteel: 200
+    Diamond: 200
+    Titanium: 500
+    Phoron: 200
+  unlockUses: 1
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesBoxingRed
+  result: ClothingHandsGlovesBoxingRed
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesBoxingBlue
+  result: ClothingHandsGlovesBoxingBlue
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesBoxingGreen
+  result: ClothingHandsGlovesBoxingGreen
+
+- type: latheRecipe
+  parent: BaseGlovesClothingRecipeCheap
+  id: ClothingHandsGlovesBoxingYellow
+  result: ClothingHandsGlovesBoxingYellow
+
+
+# Persi14 Jumpsuits
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtJanimaid
+  result: ClothingUniformJumpskirtJanimaid
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtJanimaidmini
+  result: ClothingUniformJumpskirtJanimaidmini
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtTacticalMaid
+  result: ClothingUniformJumpskirtTacticalMaid
+# Persi14 Coats
+- type: latheRecipe
+  parent: BaseCoatRecipe
+  id: ClothingOuterVestHazard
+  result: ClothingOuterVestHazard
+# Persi14 Belts
+- type: latheRecipe
+  parent: BaseCoatRecipe
+  id: ClothingOuterVest
+  result: ClothingOuterVest
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltChampion
+  result: ClothingBeltChampion
+  materials:
+    Cloth: 500
+    Durathread: 200
+    Gold: 500
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltSuspendersRed
+  result: ClothingBeltSuspendersRed
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltSuspendersBlack
+  result: ClothingBeltSuspendersBlack
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltJanitor
+  result: ClothingBeltJanitor
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltPlant
+  result: ClothingBeltPlant
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltChef
+  result: ClothingBeltChef
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltMedical
+  result: ClothingBeltMedical
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: OreBag
+  result: OreBag
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: PlantBag
+  result: PlantBag
+
+- type: latheRecipe
+  parent: BaseBeltsClothingRecipe
+  id: ClothingBeltUtility
+  result: ClothingBeltUtility
+# Persi14 Glasses
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlasses
+  result: ClothingEyesGlasses
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesJamjar
+  result: ClothingEyesGlassesJamjar
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesGar
+  result: ClothingEyesGlassesGar
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesGarOrange
+  result: ClothingEyesGlassesGarOrange
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesGarGiga
+  result: ClothingEyesGlassesGarGiga
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesJensen
+  result: ClothingEyesGlassesJensen
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesOutlawGlasses
+  result: ClothingEyesGlassesOutlawGlasses
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesCheapSunglasses
+  result: ClothingEyesGlassesCheapSunglasses
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesSunglasses
+  result: ClothingEyesGlassesSunglasses
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesMeson
+  result: ClothingEyesGlassesMeson
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseGlassesClothingRecipe
+  id: ClothingEyesGlassesCommand
+  result: ClothingEyesGlassesCommand
+  materials:
+    Steel: 100
+    Plastic: 50
+    Plasteel: 100
+    ReinforcedGlass: 200
+  unlockUses: 1
+
+# Persi14 Masks
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskClown
+  result: ClothingMaskClown
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskJoy
+  result: ClothingMaskJoy
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskMime
+  result: ClothingMaskMime
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskPlague
+  result: ClothingMaskPlague
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskRat
+  result: ClothingMaskRat
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskFox
+  result: ClothingMaskFox
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskBee
+  result: ClothingMaskBee
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskBear
+  result: ClothingMaskBear
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskRaven
+  result: ClothingMaskRaven
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskJackal
+  result: ClothingMaskJackal
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskBat
+  result: ClothingMaskBat
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskNeckGaiter
+  result: ClothingMaskNeckGaiter
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskNeckGaiterRed
+  result: ClothingMaskNeckGaiterRed
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskBlushingClown
+  result: ClothingMaskBlushingClown
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskBlushingMime
+  result: ClothingMaskBlushingMime
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskSadMime
+  result: ClothingMaskSadMime
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskScaredMime
+  result: ClothingMaskScaredMime
+
+- type: latheRecipe
+  parent: BaseMaskRecipe
+  id: ClothingMaskItalianMoustache 
+  result: ClothingMaskItalianMoustache 
+
+# Persi14 Neck
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckLawyerbadge 
+  result: ClothingNeckLawyerbadge 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: Dinkystar 
+  result: Dinkystar
+  materials:
+    Plastic: 100
+    Diamond: 100 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckLGBTPin 
+  result: ClothingNeckLGBTPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckAllyPin 
+  result: ClothingNeckAllyPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckAromanticPin 
+  result: ClothingNeckAromanticPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckAroacePin 
+  result: ClothingNeckAroacePin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckAsexualPin 
+  result: ClothingNeckAsexualPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckBisexualPin 
+  result: ClothingNeckBisexualPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckGayPin 
+  result: ClothingNeckGayPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckIntersexPin 
+  result: ClothingNeckIntersexPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckLesbianPin 
+  result: ClothingNeckLesbianPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckNonBinaryPin 
+  result: ClothingNeckNonBinaryPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckPansexualPin 
+  result: ClothingNeckPansexualPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckPluralPin 
+  result: ClothingNeckPluralPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckOmnisexualPin 
+  result: ClothingNeckOmnisexualPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckGenderqueerPin 
+  result: ClothingNeckGenderqueerPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckGenderfluidPin 
+  result: ClothingNeckGenderfluidPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckTransPin 
+  result: ClothingNeckTransPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckAutismPin 
+  result: ClothingNeckAutismPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: ClothingNeckGoldAutismPin 
+  result: ClothingNeckGoldAutismPin 
+
+- type: latheRecipe
+  parent: BasePinClothingRecipe
+  id: SprayFlowerPin 
+  result: SprayFlowerPin
+  materials:
+    Plastic: 100
+    Cloth: 200
+    Steel: 100 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckStoleChaplain 
+  result: ClothingNeckStoleChaplain 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckStethoscope 
+  result: ClothingNeckStethoscope 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckBling 
+  result: ClothingNeckBling 
+  materials:
+    Gold: 100
+    Steel: 100 # Fake bling?
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakTrans 
+  result: ClothingNeckCloakTrans 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakGoliathCloak 
+  result: ClothingNeckCloakGoliathCloak 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakMoth 
+  result: ClothingNeckCloakMoth 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakVoid 
+  result: ClothingNeckCloakVoid 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakAce 
+  result: ClothingNeckCloakAce 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakAro 
+  result: ClothingNeckCloakAro 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakAroace 
+  result: ClothingNeckCloakAroace 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakBi 
+  result: ClothingNeckCloakBi 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakIntersex 
+  result: ClothingNeckCloakIntersex 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakLesbian 
+  result: ClothingNeckCloakLesbian 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakGay 
+  result: ClothingNeckCloakGay 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakEnby 
+  result: ClothingNeckCloakEnby 
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckCloakPan 
+  result: ClothingNeckCloakPan 

@@ -87,7 +87,7 @@
   noiseRanges:
     BiomeBase:
       - 2,4
-  debrisEntityTable: 'DarkSpaceMobTable'
+  debrisEntityTable: 'CarpMobCreaturesTable'
   chunkComponents:
     - type: DebrisFeaturePlacerController
       densityNoiseChannel: DensityLow
@@ -273,12 +273,12 @@
     - type: NoiseDrivenDebrisSelector
       noiseChannel: Wreck
       debrisTable:
-        - id: ScrapDebrisSmall
+        - id: BrassWreckSmall
           prob: 0.9
-        - id: ScrapDebrisMedium
-          prob: 0.3
-        - id: ScrapDebrisLarge
-          prob: 0.1
+        - id: BrassWreckMedium
+          prob: 0.7
+        - id: BrassWreckLarge
+          prob: 0.4
     - type: NoiseRangeCarver
       ranges:
         - 0.4, 0.6

@@ -92,7 +92,7 @@
   - type: Item
     size: Tiny
   - type: StaticPrice
-    price: 750
+    price: 600
   - type: Tag
     tags: [ TreasureOldCPU ]
 
@@ -163,7 +163,7 @@
   - type: Item
     size: Tiny
   - type: StackPrice # Persistence: Static < Stack
-    price: 75
+    price: 50
   - type: Stack # Persistence: Stackable coins
     stackType: TreasureCoinIron
     count: 1
@@ -176,7 +176,7 @@
   - type: Sprite
     state: coin_silver
   - type: StackPrice # Persistence: Static < Stack
-    price: 125
+    price: 100
   - type: Stack # Persistence: Stackable coins
     stackType: TreasureCoinSilver
     count: 1
@@ -188,7 +188,7 @@
   - type: Sprite
     state: coin_gold
   - type: StackPrice # Persistence: Static < Stackv
-    price: 175
+    price: 150
   - type: Stack # Persistence: Stackable coins
     stackType: TreasureCoinGold
     count: 1
@@ -200,7 +200,7 @@
   - type: Sprite
     state: coin_adamantine
   - type: StackPrice # Persistence: Static < Stack
-    price: 250
+    price: 200
   - type: Stack # Persistence: Stackable coins
     stackType: TreasureCoinAdamantine
     count: 1
@@ -212,7 +212,7 @@
   - type: Sprite
     state: coin_diamond
   - type: StackPrice # Persistence: Static < Stack
-    price: 500
+    price: 300
   - type: Stack # Persistence: Stackable coins
     stackType: TreasureCoinDiamond
     count: 1

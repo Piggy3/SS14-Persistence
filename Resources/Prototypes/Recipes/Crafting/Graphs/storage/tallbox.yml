@@ -172,3 +172,108 @@
         amount: 4
       - !type:EmptyAllContainers
       - !type:DeleteEntity
+
+- type: constructionGraph
+  id: ClosetPrisonerSecure
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: closetprisonersecure
+      steps:
+      - material: Plasteel
+        amount: 2
+      - material: Cable
+        amount: 2
+        doAfter: 5
+  - node: closetprisonersecure
+    entity: LockerPrisoner
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      conditions:
+      - !type:StorageWelded
+        welded: false
+      - !type:Locked
+        locked: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlasteel1
+        amount: 2
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity
+
+- type: constructionGraph
+  id: ClosetWallPrisonerSecure
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: closetwallprisonersecure
+      steps:
+      - material: Plasteel
+        amount: 2
+      - material: Cable
+        amount: 2
+        doAfter: 5
+  - node: closetwallprisonersecure
+    entity: LockerWallBasePrisoner
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      conditions:
+      - !type:StorageWelded
+        welded: false
+      - !type:Locked
+        locked: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlasteel1
+        amount: 2
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity
+
+- type: constructionGraph
+  id: ClosetWallSecure
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: closetwallsecure
+      steps:
+      - material: Steel
+        amount: 4
+      - material: Cable
+        amount: 2
+        doAfter: 5
+  - node: closetwallsecure
+    entity: ClosetWallSecure
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      conditions:
+      - !type:StorageWelded
+        welded: false
+      - !type:Locked
+        locked: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 4
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:EmptyAllContainers
+      - !type:DeleteEntity

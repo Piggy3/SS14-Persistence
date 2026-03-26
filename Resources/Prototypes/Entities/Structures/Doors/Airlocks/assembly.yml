@@ -108,6 +108,9 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/external.rsi
     state: "assembly"
+  - type: Construction
+    graph: AirlockExternal
+    node: assembly
 
 - type: entity
   parent: AirlockAssembly
@@ -117,6 +120,9 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/external.rsi
     state: "assembly"
+  - type: Construction
+    graph: AirlockExternal
+    node: assembly
 
 #Public (Glass Airlock)
 - type: entity
@@ -318,6 +324,9 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/mining.rsi
     state: "assembly"
+  - type: Construction
+    graph: AirlockMining
+    node: assembly
 
 - type: entity
   parent: AirlockAssembly
@@ -327,6 +336,9 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Glass/mining.rsi
     state: "assembly"
+  - type: Construction
+    graph: AirlockMining
+    node: assembly
 
 #Syndicate
 - type: entity
@@ -370,8 +382,12 @@
 - type: entity
   parent: AirlockAssembly
   id: AirlockAssemblyHighSec
+  name: vault door assembly
   suffix: HighSec
   components:
   - type: Sprite
     sprite: Structures/Doors/Airlocks/highsec/highsec.rsi
     state: "assembly"
+  - type: Construction
+    graph: VaultDoor
+    node: assembly

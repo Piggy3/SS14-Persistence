@@ -19,7 +19,21 @@ namespace Content.Server.Atmos.Reactions
 
             var initialCLF3Moles = mixture.GetMoles(Gas.ChlorineTrifluoride);
 
-            var decompositionRate = initialCLF3Moles * 0.15f;
+            // Use reaction temperature (hotspot preferred) and scale decomposition with temperature
+            var reactionTemperature = temperature;
+            if (location?.Hotspot.Valid == true)
+            {
+                reactionTemperature = location.Hotspot.Temperature;
+            }
+
+            var temperatureScale = 0f;
+            if (reactionTemperature > Atmospherics.PlasmaUpperTemperature)
+                temperatureScale = 1f;
+            else if (reactionTemperature > Atmospherics.PlasmaMinimumBurnTemperature)
+                temperatureScale = (reactionTemperature - Atmospherics.PlasmaMinimumBurnTemperature) /
+                                   (Atmospherics.PlasmaUpperTemperature - Atmospherics.PlasmaMinimumBurnTemperature);
+
+            var decompositionRate = initialCLF3Moles * 0.25f * temperatureScale; // increased for faster decomposition
 
             if (decompositionRate > Atmospherics.MinimumHeatCapacity)
             {
@@ -27,24 +41,22 @@ namespace Content.Server.Atmos.Reactions
                 mixture.AdjustMoles(Gas.Chlorine, decompositionRate * 0.5f);
                 mixture.AdjustMoles(Gas.Fluorine, decompositionRate * 1.5f);
 
-                energyReleased = 315000f * decompositionRate;
+                // Release ~=319 kJ per mole of ClF3 decomposed (exothermic)
+                energyReleased = 319000f * decompositionRate;
                 energyReleased /= heatScale;
                 mixture.ReactionResults[(byte)GasReaction.Fire] = decompositionRate * 1.5f;
             }
 
-            if (energyReleased > 0)
+            if (energyReleased != 0f)
             {
                 var newHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
                 if (newHeatCapacity > Atmospherics.MinimumHeatCapacity)
                     mixture.Temperature = (temperature * oldHeatCapacity + energyReleased) / newHeatCapacity;
-
-                mixture.Temperature = MathF.Max(mixture.Temperature, Atmospherics.PlasmaMinimumBurnTemperature + 900f);
             }
 
             if (location != null && decompositionRate > Atmospherics.MinimumHeatCapacity)
             {
-                var exposedTemp = MathF.Max(Atmospherics.PlasmaMinimumBurnTemperature + 600f, mixture.Temperature);
-                atmosphereSystem.HotspotExpose(location, exposedTemp, mixture.Volume, fuelGas: Gas.ChlorineTrifluoride);
+                atmosphereSystem.HotspotExpose(location, mixture.Temperature, mixture.Volume);
             }
 
             return mixture.ReactionResults[(byte)GasReaction.Fire] != 0 ? (ReactionResult.Reacting | ReactionResult.StopReactions) : ReactionResult.NoReaction;

@@ -42,7 +42,6 @@
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
-          volume: 1
         output:
           !type:CableDeviceNode
           nodeGroupID: HVPower
@@ -59,22 +58,23 @@
       inputGas2Ratio: 2.0
       wasteGas1: WaterVapor
       wasteGas2: CarbonDioxide
-      fuelEfficiency: 0.9
+      fuelEfficiency: 1
       fuelSlipRate: 0.1
       wasteGas1Ratio: 2.0
       wasteGas2Ratio: 1.0
+      combustionEnergyPerMole: 336000 # 60% of 560 kJ/mol (methane combustion energy waste heat)
       maxOutput: 100000
       maxFuelConsumptionRate: 10.0
-      maxInternalPressure: 150      # kPa - realistic for small methane engines
-      internalVolume: 200            # liters - combustion chamber volume
-      maxInletFlowRate: 2.0          # moles/sec - internal pump capacity
-      optimalInputRatio: 0.8
-      minimumTemperature: 373.15
-      optimalTemperature: 573.15
-      maximumTemperature: 1273.15
+      maxInternalPressure: 150
+      maxInletFlowRate: 5.0          # moles/sec - internal pump capacity
+      inletNodeVolume: 10.0
+      optimalInputRatio: 0.2
+      baseConsumptionFraction: 0.2
+      powerScaleMultiplier: 2
+      powerExtraBoost: 1.1
     - type: Appearance
     - type: ApcPowerReceiver
-      powerLoad: 500
+      powerLoad: 10
       needsPower: true
     - type: AtmosDevice
     - type: AmbientSound

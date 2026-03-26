@@ -78,4 +78,4 @@
     - Snout
   - type: IngestionBlocker
   - type: StaticPrice
-    price: 5000
+    price: 2000

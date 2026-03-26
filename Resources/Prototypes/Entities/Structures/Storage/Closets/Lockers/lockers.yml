@@ -454,6 +454,9 @@
         hard: True
         restitution: 0
         friction: 0.4
+  - type: Construction
+    graph: ClosetPrisonerSecure
+    node: closetprisonersecure
 
 - type: entity
   parent: LockerPrisoner

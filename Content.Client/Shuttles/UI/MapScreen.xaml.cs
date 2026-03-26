@@ -99,6 +99,16 @@ public sealed partial class MapScreen : BoxContainer
         {
             MapRadar.ShowBeacons = args.Pressed;
         };
+
+        SortModeButton.AddItem(Loc.GetString("shuttle-console-sort-none"), (int) IFFSortMode.None);
+        SortModeButton.AddItem(Loc.GetString("shuttle-console-sort-station"), (int) IFFSortMode.Station);
+        SortModeButton.AddItem(Loc.GetString("shuttle-console-sort-ship"), (int) IFFSortMode.Ship);
+        SortModeButton.OnItemSelected += args =>
+        {
+            SortModeButton.SelectId(args.Id);
+            MapRadar.SortMode = (IFFSortMode) args.Id;
+        };
+        SortModeButton.SelectId((int) IFFSortMode.None);
     }
 
     public void UpdateState(ShuttleMapInterfaceState state)
@@ -149,7 +159,7 @@ public sealed partial class MapScreen : BoxContainer
                 break;
         }
 
-        if (IsFTLBlocked())
+        if (IsPingBlocked())
         {
             MapRebuildButton.Disabled = true;
             ClearMapObjects();
@@ -400,9 +410,21 @@ public sealed partial class MapScreen : BoxContainer
         }
     }
 
+    /// <summary>
+    /// Returns true if we shouldn't be able to select the Scan for Objects button.
+    /// </summary>
+    private bool IsPingBlocked()
+    {
+        return _state switch
+        {
+            FTLState.Available or FTLState.Cooldown => false,
+            _ => true,
+        };
+    }
+
     private void OnMapObjectPress(IMapObject mapObject)
     {
-        if (IsFTLBlocked())
+        if (IsPingBlocked())
             return;
 
         var coordinates = _shuttles.GetMapCoordinates(mapObject);
@@ -498,7 +520,7 @@ public sealed partial class MapScreen : BoxContainer
             BumpMapDequeue();
         }
 
-        if (!IsFTLBlocked() && _nextPing < curTime)
+        if (!IsPingBlocked() && _nextPing < curTime)
         {
             MapRebuildButton.Disabled = false;
         }
