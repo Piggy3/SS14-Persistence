@@ -618,6 +618,8 @@
       damage:
         types:
           Blunt: 0
+
+-type: entity          
   parent: Jug
   suffix: bicaridine
   id: JugBicaridine
