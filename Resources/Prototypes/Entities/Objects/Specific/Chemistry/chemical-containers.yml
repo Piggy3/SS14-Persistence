@@ -593,3 +593,82 @@
         reagents:
         - ReagentId: DexalinPlus
           Quantity: 200
+
+
+- type: entity
+  name: Jerrycan
+  parent: BaseItem
+  id: Jerrycan
+  description: A plastic jerry can with a spill-proof nozzle.
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 200
+    - type: Sprite
+      sprite: Objects/Tools/bucket.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Normal
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+    - type: Appearance
+    - type: Label
+    - type: Tag
+      tags:
+      - Jerrycan
+    - type: DnaSubstanceTrace
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 75
+    - type: Openable
+      sound:
+        collection: bottleOpenSounds
+      closeable: true
+      closeSound:
+        collection: bottleCloseSounds
+    - type: Spillable
+      solution: beaker
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger: # Overkill threshold
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 20 # can take a few more hits than basic plastic
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalCrunch # TODO a plastic break collection
+        - !type:SpillBehavior { }
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: MeleeWeapon
+      soundNoDamage:
+        path: "/Audio/Effects/Fluids/splat.ogg"
+      damage:
+        types:
+          Blunt: 0

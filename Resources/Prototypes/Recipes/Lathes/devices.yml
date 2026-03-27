@@ -292,3 +292,10 @@
     Copper: 300
     Plastic: 100
     Glass: 100
+
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: Jerrycan
+  result: Jerrycan
+  materials:
+    Plastic: 200

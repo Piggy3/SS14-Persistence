@@ -29,6 +29,7 @@
   - OreBag
   - PlantBag
   - ClothingShoesSkates
+  - Jerrycan
 
 - type: latheRecipePack
   id: AtmosStatic

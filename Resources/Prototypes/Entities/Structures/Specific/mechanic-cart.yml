@@ -1,0 +1,122 @@
+#mechanic cart
+
+- type: entity
+  name: mechanic cart
+  id: MechanicCart
+  parent: [BaseStructureDynamic, StructureWheeled]
+  description: Every mechanic's best friend.
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: Objects/Specific/Janitorial/janitorial_cart.rsi
+      layers:
+        - state: cart
+        - state: cart_water-1
+          map: ["enum.SolutionContainerLayers.Fill"]
+          visible: false
+    - type: Rotatable
+    - type: InteractionOutline
+    - type: ItemSlots
+      slots:
+        crowbar_slot:
+          name: mechanic-cart-slot-component-slot-name-crowbar
+          whitelist:
+            tags:
+              - Crowbar
+          priority: 9
+        wrench_slot:
+          name: mechanic-cart-slot-component-slot-name-wrench
+          whitelist:
+            tags:
+              - Wrench
+          insertOnInteract: true
+          priority: 9
+        screwdriver_slot:
+          name: mechanic-cart-slot-component-slot-name-screwdriver
+          whitelist:
+            tags:
+              - Screwdriver
+          priority: 9
+        wirecutter_slot:
+          name: mechanic-cart-slot-component-slot-name-wirecutter
+          whitelist:
+            tags:
+              - Wirecutter
+          priority: 9
+        multitool_slot:
+          name: mechanic-cart-slot-component-slot-name-multitool
+          whitelist:
+            tags:
+              - Multitool
+              - DoorElectronicsConfigurator
+          priority: 9
+        powerdrill_slot:
+          name: mechanic-cart-slot-component-slot-name-powerdrill
+          whitelist:
+            tags:
+              - Powerdrill
+            insertOnInteract: true
+          priority: 9
+        rcd_slot:
+          name: mechanic-cart-slot-component-slot-name-rcd
+          whitelist:
+            components:
+              - RCD
+          priority: 9
+        jaws_of_life_slot:
+          name: mechanic-cart-slot-component-slot-name-jaws-of-life
+          whitelist:
+            tags:
+              - JawsOfLife
+          priority: 9          
+        cablecoil_slot1:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+          priority: 9
+        cablecoil_slot2:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+          priority: 9
+        cablecoil_slot3:
+          name: mechanic-cart-slot-component-slot-name-cablecoil
+          whitelist:
+            tags:
+              - CableCoil
+        toolbox_slot1:
+          name: mechanic-cart-slot-component-slot-name-toolbox
+          whitelist:
+            tags:
+              - Toolbox
+          priority: 9
+        toolbox_slot2:
+          name: mechanic-cart-slot-component-slot-name-toolbox
+          whitelist:
+            tags:
+              - Toolbox
+          priority: 9
+        t_ray_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-scanner
+          whitelist:
+            components:
+              - TrayScanner
+          priority: 9
+        welder_scanner_slot:
+          name: mechanic-cart-slot-component-slot-name-tray-welder
+          whitelist:
+            components:
+              - Welder
+          priority: 9
+        jerrycan_slot1:
+          name: mechanic-cart-slot-component-slot-name-jerrycan
+          whitelist:
+            tags:
+              - Jerrycan
+        jerrycan_slot2:
+          name: mechanic-cart-slot-component-slot-name-jerrycan2
+          whitelist:
+            tags:
+              - Jerrycan
