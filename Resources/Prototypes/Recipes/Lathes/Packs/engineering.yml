@@ -30,6 +30,7 @@
   - PlantBag
   - ClothingShoesSkates
   - Jerrycan
+  - Floodlight
 
 - type: latheRecipePack
   id: AtmosStatic

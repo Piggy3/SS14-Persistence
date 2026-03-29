@@ -1,0 +1,17 @@
+## Static
+
+- type: latheRecipePack
+  id: PaperworkStatic
+  recipes:
+  - BoxFolderClipboardEmpty
+  - BoxFolderPlasticClipboardEmpty
+  - BlankPaper
+  - BoxFolderRedEmpty
+  - BoxFolderBlueEmpty
+  - BoxFolderYellowEmpty
+  - BoxFolderGreyEmpty
+  - BoxFolderBlackEmpty
+  - BoxFolderGreenEmpty
+  - DeskBell
+  - BrbSign
+  - BriefcaseBrown

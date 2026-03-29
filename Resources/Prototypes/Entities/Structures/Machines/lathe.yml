@@ -140,6 +140,7 @@
     - PowerCellsStatic
     - ElectronicsStatic
     - CassetteTape
+    - ReligionStatic
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic

@@ -73,6 +73,10 @@ construction-graph-tag-apron = an apron
 construction-graph-tag-utility-belt = a utility belt
 soil-construction-graph-any-mushroom = any mushroom
 construction-graph-tag-mop-basic = mop
+construction-graph-tag-toolbox = any toolbox
+construction-graph-tag-red-light-tube = red light tube
+construction-graph-tag-cyan-light-tube = cyan light tube
+construction-graph-tag-candle = candle
 construction-graph-tag-paper = office paper
 construction-graph-tag-core-pinpointer-piece = piece of core pinpointer
 
@@ -81,6 +85,8 @@ construction-graph-tag-rubber-ducky = a rubber ducky
 construction-graph-tag-ghost = ghost soft toy
 construction-graph-tag-ectoplasm = ectoplasm
 construction-graph-tag-lizard-plushie = lizard plushie
+construction-graph-tag-slime-plushie = slime plushie
+construction-graph-tag-dice-d20 = D20
 
 # carpet
 construction-graph-tag-black-carpet = black carpet
@@ -157,6 +163,8 @@ construction-graph-tag-spationaut-hardsuit = spationaut hardsuit
 
 # clothing
 construction-graph-tag-backpack = backpack
+construction-graph-tag-towel-NT = nanotrasen brand towel
+construction-graph-tag-towel-yellow = yellow towel
 
 # chemistry
 construction-graph-tag-centrifuge-compatible = centrifugable container

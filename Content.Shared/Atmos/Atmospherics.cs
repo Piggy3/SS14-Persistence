@@ -230,7 +230,12 @@ namespace Content.Shared.Atmos
         ///     Amount of heat released per mole of burnt methane (real-life: 890 kJ/mol, scaled for game balance)
         /// </summary>
         public const float FireMethaneEnergyReleased = 560e3f; // methane is 560 kJ/mol
-        public const float FireHydrogenEnergyReleased = 284e4f;
+
+        /// <summary>
+        ///     Amount of heat released per mole of burnt hydrogen (real-life: ~286 kJ/mol).
+        ///     Also used as the base energy for tritium combustion (tritium applies a 10× multiplier).
+        /// </summary>
+        public const float FireHydrogenEnergyReleased = 286e3f;
         public const float FireMinimumTemperatureToExist = T0C + 100f;
         public const float FireMinimumTemperatureToSpread = T0C + 150f;
         public const float FireSpreadRadiosityScale = 0.85f;
@@ -309,6 +314,43 @@ namespace Content.Shared.Atmos
         ///     4 means up to 25% of limiting reagent per tick.
         /// </summary>
         public const float ClF3ProductionRate = 4f;
+
+        /// <summary>
+        ///     Formation enthalpy of ClF3, approximately 163.2 kJ/mol.
+        ///     Positive value here because the reaction is exothermic (releases heat).
+        ///     Used by the ClF3 production (synthesis) reaction.
+        /// </summary>
+        public const float ClF3FormationEnergy = 163000f;
+
+        /// <summary>
+        ///     Minimum temperature (K) for ClF3 oxidation reactions to begin.
+        ///     ~-20°C (253 K) — ClF3 is hypergolic; reacts well below room temperature.
+        /// </summary>
+        public const float ClF3OxidationMinTemperature = T0C - 20f;
+
+        /// <summary>
+        ///     Temperature (K) at which ClF3 oxidation reaches full rate.
+        ///     ~300°C (573 K).
+        /// </summary>
+        public const float ClF3OxidationUpperTemperature = T0C + 300f;
+
+        /// <summary>
+        ///     Maximum fraction of ClF3 that reacts per tick at full temperature.
+        /// </summary>
+        public const float ClF3OxidationRate = 0.25f;
+
+        /// <summary>
+        ///     Energy released per mole of ClF3 consumed during oxidation (~400 kJ/mol).
+        ///     ClF3 oxidation reactions are extremely exothermic.
+        /// </summary>
+        public const float ClF3OxidationEnergy = 400000f;
+
+        /// <summary>
+        ///     Energy released per mole of ClF3 consumed when oxidizing Tritium (~2000 kJ/mol).
+        ///     The radiative fluorination of tritium is extraordinarily energetic,
+        ///     producing a massive thermal and radiation burst.
+        /// </summary>
+        public const float ClF3TritiumEnergy = 2000000f;
 
         /// <summary>
         ///     Divisor for Ammonia Oxygen reaction so that it doesn't happen instantaneously.

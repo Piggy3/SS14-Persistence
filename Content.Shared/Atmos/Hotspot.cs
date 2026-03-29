@@ -1,3 +1,5 @@
+using Robust.Shared.Maths;
+
 namespace Content.Shared.Atmos;
 
 /// <summary>
@@ -6,6 +8,8 @@ namespace Content.Shared.Atmos;
 /// </summary>
 public struct Hotspot
 {
+    public Hotspot() { }
+
     /// <summary>
     /// Whether this hotspot is currently representing fire and needs to be processed.
     /// Set when the hotspot "becomes alight". This is never set to false
@@ -61,4 +65,11 @@ public struct Hotspot
     /// </summary>
     [ViewVariables]
     public Gas PrimaryFuel;
+
+    /// <summary>
+    /// The blended fire color computed from the proportional mix of burning fuel gases.
+    /// This is the color used to tint the greyscale fire sprite on the client.
+    /// </summary>
+    [ViewVariables]
+    public Color FireColor = Color.FromHex("#FFB733");
 }

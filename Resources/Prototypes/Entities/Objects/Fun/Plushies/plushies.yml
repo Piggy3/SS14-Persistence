@@ -915,6 +915,9 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: SlimePlushie
+  - type: Tag
+    tags:
+    - PlushieSlime
 
 - type: entity
   parent: BasePlushie

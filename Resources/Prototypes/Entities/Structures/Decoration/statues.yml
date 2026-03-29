@@ -11,6 +11,13 @@
     state: venus_red
     drawdepth: Mobs
     offset: "0.0,0.5"
+  - type: Construction
+    graph: StatueVenusRed
+    node: venusstatueRed
+  - type: ContainerContainer
+    containers:
+      toolbox: !type:Container
+
 
 - type: entity
   id: StatueVenusBlue
@@ -25,6 +32,12 @@
     state: venus_blue
     drawdepth: Mobs
     offset: "0.0,0.5"
+  - type: Construction
+    graph: StatueVenusBlue
+    node: venusstatueBlue
+  - type: ContainerContainer
+    containers:
+      toolbox: !type:Container
 
 - type: entity
   id: StatueBananiumClown

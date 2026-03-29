@@ -206,3 +206,11 @@
     sprite: Structures/Wallmounts/barsign.rsi
     state: empbarsign
   description: barsign-prototype-description-empbarsign
+
+- type: barSign
+  id: Default
+  name: barsign-prototype-name-default
+  icon:
+    sprite: Structures/Wallmounts/barsign.rsi
+    state: default
+  description: barsign-prototype-description-default

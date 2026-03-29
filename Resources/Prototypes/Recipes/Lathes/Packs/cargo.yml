@@ -27,6 +27,7 @@
   - MineralScannerEmpty
   - AdvancedMineralScannerEmpty
   - OreBagOfHolding
+  - WeaponGrapplingGun
 
 - type: latheRecipePack
   id: CargoBoards

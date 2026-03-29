@@ -3,7 +3,10 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Reactions;
 using Content.Shared.Database;
+using Content.Shared.Radiation.Components;
+using Content.Shared.Singularity.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Spawners;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -234,7 +237,8 @@ public sealed partial class AtmosphereSystem
                 Temperature = exposedTemperature,
                 SkippedFirstProcess = tile.CurrentCycle > gridAtmosphere.UpdateCounter,
                 Valid = true,
-                State = 1
+                State = 1,
+                FireColor = GetFuelBurnColor(tile.Air)
             };
 
             AddActiveTile(gridAtmosphere, tile);
@@ -273,6 +277,9 @@ public sealed partial class AtmosphereSystem
             Merge(tile.Air, affected);
         }
 
+        // Compute fire color from the proportional mix of fuel gases in the tile's air.
+        tile.Hotspot.FireColor = GetFuelBurnColor(tile.Air);
+
         var fireEvent = new TileFireEvent(tile.Hotspot.Temperature, tile.Hotspot.Volume);
         _entSet.Clear();
         _lookup.GetLocalEntitiesIntersecting(tile.GridIndex, tile.GridIndices, _entSet, 0f);
@@ -280,6 +287,68 @@ public sealed partial class AtmosphereSystem
         foreach (var entity in _entSet)
         {
             RaiseLocalEvent(entity, ref fireEvent);
+        }
+    }
+
+    /// <summary>
+    /// Exposes entities on a tile to ClF3 oxidation. Called from the ClF3 reaction
+    /// regardless of whether a hotspot exists — ClF3 corrodes items on contact.
+    /// </summary>
+    public void PerformClF3Exposure(TileAtmosphere tile, float clf3Moles, float temperature)
+    {
+        var evt = new TileClF3ExposureEvent(clf3Moles, temperature);
+        _entSet.Clear();
+        _lookup.GetLocalEntitiesIntersecting(tile.GridIndex, tile.GridIndices, _entSet, 0f);
+
+        foreach (var entity in _entSet)
+        {
+            RaiseLocalEvent(entity, ref evt);
+        }
+    }
+
+    /// <summary>
+    /// Spawns or refreshes a ClF3TritiumFlash entity — a gravitational-lensing
+    /// shimmer + radiation source. Only ONE flash entity is allowed per grid at a time.
+    /// Intensity scales with total tritium present on the reacting tile.
+    /// Uses smooth lerping so the visual doesn't pop between ticks.
+    /// </summary>
+    public void SpawnRadiationPulse(TileAtmosphere tile, float tritiumMoles)
+    {
+        if (!TryComp<MapGridComponent>(tile.GridIndex, out var grid))
+            return;
+
+        // Scale radiation intensity with tritium present. Cap at 15 rads/s.
+        var radIntensity = MathF.Min(tritiumMoles * 1f, 15f);
+        // Scale visual distortion with tritium. Range: 400 (moderate) to 3000 (dramatic).
+        var targetDistortion = MathF.Min(400f + tritiumMoles * 60f, 3000f);
+
+        // Only ONE visual entity per grid. Search for an existing flash to refresh.
+        var query = EntityQueryEnumerator<SingularityDistortionComponent, RadiationSourceComponent, TimedDespawnComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var distortion, out var radSource, out var despawn, out var xform))
+        {
+            if (xform.GridUid == tile.GridIndex)
+            {
+                // Smooth lerp toward target intensity (fast rise, slower fall).
+                var lerpRate = targetDistortion > distortion.Intensity ? 0.4f : 0.15f;
+                distortion.Intensity = distortion.Intensity + (targetDistortion - distortion.Intensity) * lerpRate;
+                radSource.Intensity = radIntensity;
+                despawn.Lifetime = 6f;
+                Dirty(uid, distortion);
+                return;
+            }
+        }
+
+        // No existing flash on this grid — spawn a new one.
+        var coords = _mapSystem.GridTileToLocal(tile.GridIndex, grid, tile.GridIndices);
+        var flash = Spawn("ClF3TritiumFlash", coords);
+
+        if (TryComp<RadiationSourceComponent>(flash, out var newRadSource))
+            newRadSource.Intensity = radIntensity;
+
+        if (TryComp<SingularityDistortionComponent>(flash, out var newDistortion))
+        {
+            newDistortion.Intensity = targetDistortion;
+            Dirty(flash, newDistortion);
         }
     }
 }

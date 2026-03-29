@@ -41,6 +41,7 @@
   reagent: Plasma
   pricePerMole: 0
   isFuel: true
+  burnColor: "#FF4500"
 
 - type: gas
   id: Tritium
@@ -54,6 +55,7 @@
   reagent: Tritium
   pricePerMole: 0.8
   isFuel: true
+  burnColor: "#33FF88"
 
 - type: gas
   id: WaterVapor
@@ -113,6 +115,8 @@
   color: B4D7FF
   reagent: Hydrogen
   pricePerMole: 0.5
+  isFuel: true
+  burnColor: "#D4F1FF18"
 
 - type: gas
   id: Chlorine
@@ -151,6 +155,8 @@
   color: 8B7D6B
   reagent: Methane
   pricePerMole: 0.4
+  isFuel: true
+  burnColor: "#4488FF"
 
 - type: gas
   id: ChlorineTrifluoride
@@ -164,3 +170,5 @@
   color: FF6B35
   reagent: ChlorineTrifluoride
   pricePerMole: 3
+  isOxidizer: true
+  burnColor: "#CCFF66"

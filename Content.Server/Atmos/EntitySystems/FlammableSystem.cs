@@ -7,6 +7,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
@@ -71,6 +72,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<FlammableComponent, StartCollideEvent>(OnCollide);
             SubscribeLocalEvent<FlammableComponent, IsHotEvent>(OnIsHot);
             SubscribeLocalEvent<FlammableComponent, TileFireEvent>(OnTileFire);
+            SubscribeLocalEvent<FlammableComponent, TileClF3ExposureEvent>(OnTileClF3Exposure);
             SubscribeLocalEvent<FlammableComponent, RejuvenateEvent>(OnRejuvenate);
             SubscribeLocalEvent<FlammableComponent, ResistFireAlertEvent>(OnResistFireAlert);
             Subs.SubscribeWithRelay<FlammableComponent, ExtinguishEvent>(OnExtinguishEvent);
@@ -247,6 +249,38 @@ namespace Content.Server.Atmos.EntitySystems
 
             if (tempDelta > maxTemp)
                 _fireEvents[ent] = tempDelta;
+        }
+
+        /// <summary>
+        /// Handles ClF3 oxidation exposure for flammable entities.
+        /// Applies Caustic + Heat damage scaled by ClF3 concentration.
+        /// Only affects entities that are AlwaysCombustible (organic/flammable materials).
+        /// </summary>
+        private void OnTileClF3Exposure(Entity<FlammableComponent> ent, ref TileClF3ExposureEvent args)
+        {
+            // Only oxidize materials that would realistically react — organic, flammable items.
+            // Metal structures, glass, etc. are not AlwaysCombustible and are spared.
+            if (!ent.Comp.AlwaysCombustible)
+                return;
+
+            // Damage scales with ClF3 concentration: more moles = faster destruction.
+            // Cap the scaling so it doesn't get absurd with huge volumes.
+            var moleScale = MathF.Min(args.Moles / 5f, 4f);
+
+            var damage = new DamageSpecifier
+            {
+                DamageDict =
+                {
+                    ["Caustic"] = FixedPoint2.New(3f * moleScale),
+                    ["Heat"] = FixedPoint2.New(2f * moleScale),
+                }
+            };
+
+            _damageableSystem.TryChangeDamage(ent.Owner, damage, interruptsDoAfters: false);
+
+            // ClF3 also ignites flammable materials.
+            if (!ent.Comp.OnFire)
+                Ignite(ent, ent, ent.Comp);
         }
 
         private void OnRejuvenate(EntityUid uid, FlammableComponent component, RejuvenateEvent args)

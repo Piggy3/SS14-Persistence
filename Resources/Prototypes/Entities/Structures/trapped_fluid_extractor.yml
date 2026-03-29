@@ -112,13 +112,10 @@
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: 'base'
           map: [ "enum.GasVolumePumpVisualLayers.Base" ]
-
         - state: 'drill-off'
           map: [ "enum.GasVolumePumpVisualLayers.Drill" ]
-
         - map: [ "enum.GasVolumePumpVisualLayers.PowerIndicator" ]
-        - map: [ "enum.GasVolumePumpVisualLayers.PowerIndicator", "active" ]
-    - type: Appearance
+
     - type: GenericVisualizer
       visuals:
         enum.TrappedFluidExtractorVisuals.State:
