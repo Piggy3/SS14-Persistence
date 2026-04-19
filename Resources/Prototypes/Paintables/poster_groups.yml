@@ -1,0 +1,9 @@
+- type: paintableGroup
+  time: 2
+  cost: 2
+  id: Posters
+  defaultStyle: PosterBlank
+  styles:
+    freetonto: PosterContrabandFreeTonto
+    declarationofindependence: PosterContrabandAtmosiaDeclarationIndependence
+    funpolice: PosterContrabandFunPolice

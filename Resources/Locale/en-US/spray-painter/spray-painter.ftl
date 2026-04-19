@@ -48,6 +48,7 @@ spray-painter-tab-category-canisters = Canisters
 spray-painter-tab-category-crates = Crates
 spray-painter-tab-category-lockers = Lockers
 spray-painter-tab-category-items = Items
+spray-painter-tab-category-posters = Posters
 spray-painter-tab-category-pipes = Pipes
 spray-painter-tab-category-decals = Decals
 
@@ -310,3 +311,8 @@ spray-painter-style-itemheadsets-centcom = CentCom
 spray-painter-style-itemheadsets-freelance = Freelance
 spray-painter-style-itemheadsets-wizard = Wizard
 spray-painter-style-itemheadsets-ninja = Ninja
+
+# Posters
+spray-painter-style-posters-freetonto = FreeTonto
+spray-painter-style-posters-declarationofindependence = Independence
+spray-painter-style-posters-funpolice = FunPolice

@@ -30,3 +30,8 @@
   - ItemContainers
   - ItemPDAs
   - ItemHeadsets
+
+- type: paintableGroupCategory
+  id: Posters
+  groups:
+  - Posters
