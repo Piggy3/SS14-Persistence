@@ -105,3 +105,12 @@
     minPressureDelta: 187.5
     scalingType: Threshold
 
+
+- type: entity
+  abstract: true
+  id: BaseDeltaPressureFans
+  components:
+  - type: DeltaPressure
+    minPressure: 200
+    minPressureDelta: 150
+    scalingType: Linear
