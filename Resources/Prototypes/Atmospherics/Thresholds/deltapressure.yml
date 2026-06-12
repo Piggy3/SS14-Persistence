@@ -42,7 +42,7 @@
     minPressure: 3750
     minPressureDelta: 2500
 
-## -- PLASMA -- 
+## -- PLASMA --
 ## For plasma windows
 - type: entity
   abstract: true
@@ -129,3 +129,12 @@
     minPressureDelta: 50000
     scalingType: Linear
 
+# For tiny fans
+- type: entity
+  abstract: true
+  id: BaseDeltaPressureFans
+  components:
+  - type: DeltaPressure
+    minPressure: 200
+    minPressureDelta: 150
+    scalingType: Linear
