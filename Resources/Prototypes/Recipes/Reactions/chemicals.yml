@@ -349,8 +349,6 @@
   impact: Medium
   minTemp: 370
   reactants:
-    Uranium:
-      amount: 1
     Vestine:
       amount: 2
     SpaceGlue:
@@ -525,13 +523,18 @@
 
 - type: reaction
   id: ArtifactGlue
+  minTemp: 370
   reactants:
     SpaceGlue:
       amount: 1
     Artifexium:
       amount: 1
+    Phoron:
+      amount: 1
+      catalyst: true
   products:
     ArtifactGlue: 2
+
 
 - type: reaction
   id: Lye

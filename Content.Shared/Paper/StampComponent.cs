@@ -1,5 +1,5 @@
-using Robust.Shared.Serialization;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Paper;
 
@@ -12,16 +12,31 @@ namespace Content.Shared.Paper;
 [DataDefinition, Serializable, NetSerializable]
 public partial struct StampDisplayInfo
 {
-    StampDisplayInfo(string s)
-    {
-        StampedName = s;
-    }
-
+    /// <summary>
+    /// Localization name / stamp to be contained in the stamp.
+    /// </summary>
     [DataField("stampedName")]
     public string StampedName;
 
+    /// <summary>
+    /// Color of the stamp
+    /// </summary>
+
     [DataField("stampedColor")]
     public Color StampedColor;
+
+    /// <summary>
+    /// Determines if the stamp should use the border box
+    /// </summary>
+
+    [DataField("useBox")]
+    public bool UseBox = true;
+
+    /// <summary>
+    /// Determines if StampName should be considered a Loc name or raw text.
+    /// </summary>
+    [DataField]
+    public bool UseNameAsLoc = true;
 };
 
 [RegisterComponent]

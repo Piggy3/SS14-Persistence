@@ -108,7 +108,8 @@
   abstract: true
   parent: BaseHyposprayMode
   id: BaseInstantHyposprayMode
-  mobTime: 0
+  mobTime: 1
+  delayPerVolume: 0.05
 
 - type: injectorMode
   parent: [ BaseInstantHyposprayMode, BaseInjectMode ]
@@ -127,7 +128,7 @@
   abstract: true
   parent: BaseHyposprayMode
   id: BaseJetInjectorMode
-  injectSound: /Audio/Items/jet_injector.ogg
+  injectSound: /Audio/Items/Medical/jet_injector.ogg
   popupUserAttempt: injector-component-spray-injecting-user
   popupTargetAttempt: injector-component-spray-injecting-target
 

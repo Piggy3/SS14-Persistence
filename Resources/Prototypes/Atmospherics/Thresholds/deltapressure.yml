@@ -1,10 +1,11 @@
 ## Base prototypes for DeltaPressureComponent settings, to make it easy to just
 ## parent to them and just them globally here.
 
-## For reinforced plasma windows
+## -- GLASS --
+## For glass windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressureReinforcedPlasma
+  id: BaseDeltaPressureGlass
   components:
     - type: DeltaPressure
       minPressure: 150000
@@ -12,20 +13,20 @@
       scalingType: Linear
       scalingPower: 0.0001
 
-## For quarter reinforced plasma windows
+## For quarter glass windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressureReinforcedPlasmaQuarter
+  id: BaseDeltaPressureGlassQuarter
   components:
     - type: DeltaPressure
       minPressure: 37500
       minPressureDelta: 25000
       scalingType: Threshold
 
-## For phoron glass windows (2x better than plasma)
+## For reinforced glass windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressurePhoronGlass
+  id: BaseDeltaPressureReinforcedGlass
   components:
     - type: DeltaPressure
       minPressure: 150000
@@ -33,10 +34,10 @@
       scalingType: Linear
       scalingPower: 0.0005
 
-## For reinforced phoron glass windows (2x better than reinforced plasma)
+## For quarter reinforced glass windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressureReinforcedPhoronGlass
+  id: BaseDeltaPressureReinforcedGlassQuarter
   components:
     - type: DeltaPressure
       minPressure: 300000
@@ -44,6 +45,7 @@
       scalingType: Linear
       scalingPower: 0.0001
 
+## -- PLASMA -- 
 ## For plasma windows
 - type: entity
   abstract: true
@@ -65,29 +67,31 @@
       minPressureDelta: 12500
       scalingType: Threshold
 
-## For reinforced glass windows
+## For reinforced plasma windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressureReinforcedGlass
+  id: BaseDeltaPressureReinforcedPlasma
   components:
     - type: DeltaPressure
       minPressure: 15000
       minPressureDelta: 10000
       scalingType: Threshold
 
-## For quarter reinforced glass windows
+## For quarter reinforced plasma windows
 - type: entity
   abstract: true
-  id: BaseDeltaPressureReinforcedGlassQuarter
+  id: BaseDeltaPressureReinforcedPlasmaQuarter
   components:
     - type: DeltaPressure
       minPressure: 3750
       minPressureDelta: 2500
 
-## For glass windows
+
+## -- PHORON --
+## For phoron glass windows (2x better than plasma)
 - type: entity
   abstract: true
-  id: BaseDeltaPressureGlass
+  id: BaseDeltaPressurePhoronGlass
   components:
       - type: DeltaPressure
         minPressure: 1000
@@ -95,10 +99,10 @@
         scalingType: Linear
         scalingPower: 0.0005
 
-## For quarter glass windows
+## For quarter phoron windows (2x better than quarter plasma)
 - type: entity
   abstract: true
-  id: BaseDeltaPressureGlassQuarter
+  id: BaseDeltaPressurePhoronGlassQuarter
   components:
     - type: DeltaPressure
       minPressure: 250

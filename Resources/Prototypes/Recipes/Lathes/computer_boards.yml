@@ -170,6 +170,7 @@
   parent: [ BaseCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
   id: RadarConsoleCircuitboard
   result: RadarConsoleCircuitboard
+  unlockUses: 4
 
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
@@ -192,6 +193,16 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
   id: IdPrinterCircuitboard
   result: IdPrinterCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
+  id: MessageBoardCircuitboard
+  result: MessageBoardCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
+  id: StationModComputerCircuitboard
+  result: StationModComputerCircuitboard
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]

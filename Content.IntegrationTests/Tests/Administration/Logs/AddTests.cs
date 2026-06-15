@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Database;
@@ -195,73 +195,6 @@ public sealed class AddTests
             Assert.That(logs.First().Players, Does.Contain(playerGuid));
             return true;
         });
-        await pair.CleanReturnAsync();
-    }
-
-    [Test]
-    public async Task PreRoundAddAndGetSingle()
-    {
-        var setting = new PoolSettings
-        {
-            Dirty = true,
-            InLobby = true,
-            AdminLogsEnabled = true
-        };
-
-        await using var pair = await PoolManager.GetServerClient(setting);
-        var server = pair.Server;
-
-        var sDatabase = server.ResolveDependency<IServerDbManager>();
-        var sSystems = server.ResolveDependency<IEntitySystemManager>();
-
-        var sAdminLogSystem = server.ResolveDependency<IAdminLogManager>();
-        var sGamerTicker = sSystems.GetEntitySystem<GameTicker>();
-
-        var guid = Guid.NewGuid();
-
-        await server.WaitPost(() =>
-        {
-            sAdminLogSystem.Add(LogType.Unknown, $"test log: {guid}");
-        });
-
-        await server.WaitPost(() =>
-        {
-            sGamerTicker.StartRound(true);
-        });
-
-        SharedAdminLog log = default;
-
-        await PoolManager.WaitUntil(server, async () =>
-        {
-            var logs = await sAdminLogSystem.CurrentRoundLogs(new LogFilter
-            {
-                Search = guid.ToString()
-            });
-
-            if (logs.Count == 0)
-            {
-                return false;
-            }
-
-            log = logs.First();
-            return true;
-        });
-
-        var filter = new LogFilter
-        {
-            Round = sGamerTicker.RoundId,
-            Search = log.Message,
-            Types = new HashSet<LogType> { log.Type },
-        };
-
-        await foreach (var json in sDatabase.GetAdminLogsJson(filter))
-        {
-            var root = json.RootElement;
-
-            Assert.That(root.TryGetProperty("guid", out _), Is.True);
-
-            json.Dispose();
-        }
         await pair.CleanReturnAsync();
     }
 

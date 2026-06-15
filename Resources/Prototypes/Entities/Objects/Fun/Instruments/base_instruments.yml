@@ -23,10 +23,10 @@
 
 #These are for instruments that are larger, can't be picked up, or have collision
 - type: entity
-  name: baseinstrument
-  id: BasePlaceableInstrument
-  parent: BaseStructureDynamic
   abstract: true
+  parent: BaseStructureDynamic
+  id: BasePlaceableInstrument
+  name: baseinstrument
   components:
   - type: Instrument
   - type: ActivatableUI
@@ -71,12 +71,15 @@
   - type: StaticPrice
     price: 300
   - type: RequireProjectileTarget
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
 
 - type: entity
+  abstract: true
   parent: BasePlaceableInstrument
   id: BasePlaceableInstrumentRotatable
   name: baseinstrumentrotatable
-  abstract: true
   components:
   - type: Rotatable
     rotateWhileAnchored: true

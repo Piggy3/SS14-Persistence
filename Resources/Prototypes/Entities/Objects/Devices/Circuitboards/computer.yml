@@ -107,7 +107,21 @@
     - type: Sprite
       state: cpu_supply
     - type: ComputerBoard
-      prototype: ComputerStationModification
+      prototype: ComputerGridControl
+    - type: StaticPrice
+      price: 90
+
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MessageBoardCircuitboard
+  name: message board computer board
+  description: A computer printed circuit board for a message board computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerMessageBoard
     - type: StaticPrice
       price: 90
 
@@ -393,9 +407,6 @@
       prototype: ComputerId
     - type: StaticPrice
       price: 90
-    - type: Tag
-      tags:
-      - HighRiskItem
 
 - type: entity
   parent: BaseComputerCircuitboard

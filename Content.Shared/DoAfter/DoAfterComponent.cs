@@ -1,7 +1,6 @@
-using System.Threading.Tasks;
-using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using System.Threading.Tasks;
 
 namespace Content.Shared.DoAfter;
 
@@ -18,7 +17,7 @@ public sealed partial class DoAfterComponent : Component
     /// <summary>
     /// collection of id + doafter
     /// </summary>
-    [DataField]
+    [DataField(readOnly:true)]
     public Dictionary<ushort, DoAfter> DoAfters = new();
 
     // Used by obsolete async do afters

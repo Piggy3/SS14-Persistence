@@ -1,8 +1,9 @@
-﻿using System.Threading;
 using Content.Shared.DeviceLinking;
+using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using System.Threading;
 
 namespace Content.Shared.Singularity.Components;
 
@@ -12,9 +13,12 @@ public sealed partial class EmitterComponent : Component
     public CancellationTokenSource? TimerCancel;
 
     // whether the power switch is in "on"
-    [ViewVariables] public bool IsOn;
+    [DataField, AutoNetworkedField]
+    public bool IsOn;
+
     // Whether the power switch is on AND the machine has enough power (so is actively firing)
-    [ViewVariables] public bool IsPowered;
+    [AutoNetworkedField]
+    public bool IsPowered;
 
     /// <summary>
     /// counts the number of consecutive shots fired.
@@ -96,6 +100,42 @@ public sealed partial class EmitterComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<ProtoId<SinkPortPrototype>, EntProtoId> SetTypePorts = new();
+
+    /// <summary>
+    /// The radio channel to broadcast on when something happens to this emitter
+    /// </summary>
+    [DataField]
+    public ProtoId<RadioChannelPrototype> RadioChannel = "Engineering";
+
+    /// <summary>
+    /// Whether a radio channel should be alerted if anything happens to this emitter (i.e. emitters near singularity/tesla containment)
+    /// </summary>
+    [DataField]
+    public bool AlertRadio = false;
+
+    /// <summary>
+    /// Localized string to use when this emitter is destroyed and AlertRadio is set to true
+    /// </summary>
+    [DataField]
+    public LocId LocDestroyed = "emitter-destroyed-broadcast";
+
+    /// <summary>
+    /// Localized string to use when this emitter is deconstructed and AlertRadio is set to true
+    /// </summary>
+    [DataField]
+    public LocId LocDeconstructed = "emitter-deconstructed-broadcast";
+
+    /// <summary>
+    /// Localized string to use when this emitter is unlocked and AlertRadio is set to true
+    /// </summary>
+    [DataField]
+    public LocId LocUnlocked = "emitter-unlocked-broadcast";
+
+    /// <summary>
+    /// Localized string to use when this emitter is unpowered and AlertRadio is set to true
+    /// </summary>
+    [DataField]
+    public LocId LocUnpowered = "emitter-unpowered-broadcast";
 }
 
 [NetSerializable, Serializable]

@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Radiation.Components;
 using Content.Server.Radiation.Events;
 using Content.Shared.Radiation.Components;
@@ -7,6 +6,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Server.Radiation.Systems;
 
@@ -43,6 +43,9 @@ public partial class RadiationSystem
         while (sources.MoveNext(out var uid, out var source, out var xform))
         {
             if (!source.Enabled)
+                continue;
+
+            if (!ShouldProcessSourceThisTick(uid, source))
                 continue;
 
             var worldPos = _transform.GetWorldPosition(xform);
@@ -121,6 +124,37 @@ public partial class RadiationSystem
 
         // raise broadcast event that radiation system has updated
         RaiseLocalEvent(new RadiationSystemUpdatedEvent());
+    }
+
+    private bool ShouldProcessSourceThisTick(EntityUid uid, RadiationSourceComponent source)
+    {
+        var interval = source.UpdateInterval;
+        if (interval <= 0f || interval <= GridcastUpdateRate)
+            return true;
+
+        var now = (float) _timing.CurTime.TotalSeconds;
+
+        if (!source.UpdateScheduleInitialized)
+        {
+            source.UpdateScheduleInitialized = true;
+
+            if (source.StaggerUpdates)
+            {
+                var phase = (uint) uid.Id % 1024u;
+                var offset = interval * (phase / 1024f);
+                source.NextUpdateTime = now + offset;
+            }
+            else
+            {
+                source.NextUpdateTime = now;
+            }
+        }
+
+        if (now < source.NextUpdateTime)
+            return false;
+
+        source.NextUpdateTime = now + interval;
+        return true;
     }
 
     private RadiationRay? Irradiate(SourceData source,

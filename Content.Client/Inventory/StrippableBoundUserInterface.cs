@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Numerics;
 using Content.Client.Examine;
 using Content.Client.Hands.Systems;
 using Content.Client.Strip;
@@ -8,7 +6,6 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Hands.Controls;
 using Content.Client.Verbs.UI;
 using Content.Shared.Cuffs;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -23,6 +20,8 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
+using System.Linq;
+using System.Numerics;
 using static Content.Client.Inventory.ClientInventorySystem;
 using static Robust.Client.UserInterface.Control;
 
@@ -50,7 +49,7 @@ namespace Content.Client.Inventory
         private StrippingMenu? _strippingMenu;
 
         [ViewVariables]
-        private readonly EntityUid _virtualHiddenEntity;
+        private readonly Dictionary<string, EntityUid> _virtualHiddenEntities = new (); // Moffstation - Make this into a dict so that we can hold multiple virtual entities
 
         /// <summary>
         /// The current amount of added hand buttons.
@@ -72,7 +71,7 @@ namespace Content.Client.Inventory
             _cuffable = EntMan.System<SharedCuffableSystem>();
             _strippable = EntMan.System<StrippableSystem>();
 
-            _virtualHiddenEntity = EntMan.SpawnEntity(HiddenPocketEntityId, MapCoordinates.Nullspace);
+            // _virtualHiddenEntity = EntMan.SpawnEntity(HiddenPocketEntityId, MapCoordinates.Nullspace); // Moffstation - Obscuring virtual entities are unique per item now
         }
 
         protected override void Open()
@@ -92,7 +91,14 @@ namespace Content.Client.Inventory
             if (_strippingMenu != null)
                 _strippingMenu.OnDirty -= UpdateMenu;
 
-            EntMan.DeleteEntity(_virtualHiddenEntity);
+            // Moffstation - Begin - Clean up spawned virtual entities
+            // EntMan.DeleteEntity(_virtualHiddenEntity);
+            foreach (var virtualEnt in _virtualHiddenEntities.Values)
+            {
+                EntMan.DeleteEntity(virtualEnt);
+            }
+            _virtualHiddenEntities.Clear();
+            // Moffstation - End
             base.Dispose(disposing);
         }
 
@@ -193,6 +199,19 @@ namespace Content.Client.Inventory
                 if (_cuffable.TryGetAllCuffs(Owner, out var cuffs) && cuffs.Contains(virt.BlockingEntity))
                     button.BlockedRect.MouseFilter = MouseFilterMode.Ignore;
             }
+            // Moffstation - Begin - Obscuring virtual entities per item
+            else if (heldEntity != null && _strippable.GetHidingEntityOrNull(heldEntity.Value, slotDefinition: null, _player.LocalEntity) is { } replacement)
+            {
+                // If the entity is hidden, obscure it with a virtual entity.
+                // this does not work for modified clients because they are still sent the real entity
+                heldEntity = replacement;
+                if (_virtualHiddenEntities.TryGetValue(handId, out var previousReplacement))
+                {
+                    EntMan.DeleteEntity(previousReplacement);
+                }
+                _virtualHiddenEntities[handId] = replacement;
+            }
+            // Moffstation - End
 
             UpdateEntityIcon(button, heldEntity);
             _strippingMenu!.HandsContainer.AddChild(button);
@@ -233,10 +252,19 @@ namespace Content.Client.Inventory
 
             var entity = container.ContainedEntity;
 
-            // If this is a full pocket, obscure the real entity
+            // Moffstation - Begin - Obscuring virtual entities are unique per item
+            // If the entity is hidden, obscure it with a virtual entity.
             // this does not work for modified clients because they are still sent the real entity
-            if (entity != null && _strippable.IsStripHidden(slotDef, _player.LocalEntity))
-                entity = _virtualHiddenEntity;
+            if (entity != null && _strippable.GetHidingEntityOrNull(entity.Value, slotDef, _player.LocalEntity) is { } replacement)
+            {
+                entity = replacement;
+                if (_virtualHiddenEntities.TryGetValue(slotId, out var previousReplacement))
+                {
+                    EntMan.DeleteEntity(previousReplacement);
+                }
+                _virtualHiddenEntities[slotId] = replacement;
+            }
+            // Moffstation - End
 
             var button = new SlotButton(new SlotData(slotDef, container));
             button.Pressed += SlotPressed;

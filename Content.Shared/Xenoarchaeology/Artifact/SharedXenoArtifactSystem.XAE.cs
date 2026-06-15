@@ -5,6 +5,8 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Timing;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Xenoarchaeology.Artifact;
 
@@ -12,6 +14,8 @@ public abstract partial class SharedXenoArtifactSystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private void InitializeXAE()
     {
@@ -25,7 +29,8 @@ public abstract partial class SharedXenoArtifactSystem
         if (args.Handled)
             return;
 
-        args.Handled = TryActivateXenoArtifact(ent, args.User, args.User, Transform(args.User).Coordinates);
+        var coords = GetSafeActivationCoordininates(Transform(args.User).Coordinates);
+        args.Handled = TryActivateXenoArtifact(ent, args.User, args.User, coords);
     }
 
     private void OnAfterInteract(Entity<XenoArtifactComponent> ent, ref AfterInteractEvent args)
@@ -117,7 +122,7 @@ public abstract partial class SharedXenoArtifactSystem
         bool consumeDurability = true
     )
     {
-        if (node.Comp.Degraded)
+        if (node.Comp.Degraded || node.Comp.Shattered)
             return false;
 
         _adminLogger.Add(
@@ -125,15 +130,61 @@ public abstract partial class SharedXenoArtifactSystem
             LogImpact.Low,
             $"{ToPrettyString(artifact.Owner)} node {ToPrettyString(node)} got activated at {coordinates}"
         );
+
+        var shouldShatter = false;
         if (consumeDurability)
         {
-            AdjustNodeDurability((node, node.Comp), -1);
+            AdjustNodeDurability(node.AsNullable(), -1);
+            node.Comp.TotalConsumedDurability += 1;
+            shouldShatter = ProcessShatterChance(node);
         }
 
+        if (shouldShatter)
+        {
+            Shatter(node.AsNullable());
+        }
         var ev = new XenoArtifactNodeActivatedEvent(artifact, node, user, target, coordinates);
         RaiseLocalEvent(node, ref ev);
         return true;
     }
+
+    /// <summary>
+    /// Cleans the entity coordinates to remove any potential parenting to the activator of an artifact.
+    /// </summary>
+    /// <param name="coords"></param>
+    /// <returns></returns>
+    private EntityCoordinates GetSafeActivationCoordininates(EntityCoordinates coords)
+    {
+        var mapCoords = _transform.ToMapCoordinates(coords);
+        var gridUid = _transform.GetGrid(coords);
+
+        if (gridUid != null && TryComp<MapGridComponent>(gridUid, out var mapGrid))
+        {
+            return new EntityCoordinates(gridUid.Value, _map.WorldToLocal(gridUid.Value, mapGrid, mapCoords.Position));
+        }
+
+        var mapUid = _map.GetMap(mapCoords.MapId);
+        return new EntityCoordinates(mapUid, mapCoords.Position);
+    }
+
+    private bool ProcessShatterChance(Entity<XenoArtifactNodeComponent> node)
+    {
+        var activationDelta = node.Comp.TotalConsumedDurability - node.Comp.MaxDurability;
+        var extraActivations = activationDelta < 0 ? 0 : activationDelta;
+
+        // When extraActivations is at 0, probability is 0%.
+        // When extraActivations = a, probability is 50%
+        // When extraActivations = m, probability is 100%
+        // Everything between is a consistent curve.
+        var a = (float)node.Comp.ControlPointShatterDurabilityThreshold;
+        var m = (float)node.Comp.MaxShatterDurabilityThreshold;
+        var n = MathF.Log(node.Comp.ControlPointShatterProbability) / MathF.Log(a / m);
+        var shatterChance = MathF.Pow(extraActivations / m, n);
+
+        return RobustRandom.Prob(shatterChance);
+    }
+
+
 }
 
 /// <summary>

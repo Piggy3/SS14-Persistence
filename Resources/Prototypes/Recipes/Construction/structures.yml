@@ -855,6 +855,16 @@
   - !type:TileNotBlocked
 
 - type: construction
+  id: RollingGate
+  graph: RollingGate
+  startNode: start
+  targetNode: RollingGate
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true  
+
+- type: construction
   id: Shutters
   graph: Shutters
   startNode: start
@@ -1047,6 +1057,68 @@
   graph: FenceMetal
   startNode: start
   targetNode: gate
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+#Courtroom fence
+
+- type: construction
+  id: CourtFenceWood
+  graph: CourtFenceWood
+  startNode: start
+  targetNode: straight_court
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CourtFenceWoodEnd
+  graph: CourtFenceWood
+  startNode: start
+  targetNode: end_court
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CourtFenceWoodCorner
+  graph: CourtFenceWood
+  startNode: start
+  targetNode: corner_court
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CourtFenceWoodTJunction
+  graph: CourtFenceWood
+  startNode: start
+  targetNode: tjunction_court
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: CourtFenceWoodGate
+  graph: CourtFenceWood
+  startNode: start
+  targetNode: gate_court
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1574,6 +1646,66 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: StatueVenusRed
+  graph: StatueVenusRed
+  startNode: start
+  targetNode: venusstatueRed
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StatueVenusBlue
+  graph: StatueVenusBlue
+  startNode: start
+  targetNode: venusstatueBlue
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: Fireplace
+  graph: Fireplace
+  startNode: start
+  targetNode: fireplaceComplete
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: Memorial
+  graph: Memorial
+  startNode: start
+  targetNode: memorial
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: EmployeeMemorial
+  graph: EmployeeMemorial
+  startNode: start
+  targetNode: employeeMemorial
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: BananiumDoor
   graph: DoorGraph
   startNode: start
@@ -1594,6 +1726,211 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+# altars
+- type: construction
+  id: Altar
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarClear
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarNT
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarNT
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertFestival
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarFestival
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarHeaven
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarHeaven
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarFangs
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarFangs
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarDruid
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarDruid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarChaos
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarChaos
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarSatana
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarSatana
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertBlue
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarBlue
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarTechnology
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarTechnology
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvert
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarBlack
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertOrange
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarOrange
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertRed
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarRed
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarSpaceChristian
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarChristian
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertWhite
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarWhite
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarToolbox
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarToolbox
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarConvertYellow
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarYellow
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
@@ -1636,6 +1973,35 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: Bonfire
+  graph: Bonfire
+  startNode: start
+  targetNode: bonfire
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  id: BonfireStake
+  graph: Bonfire
+  startNode: start
+  targetNode: bonfireStake
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+
+
 # Persistence14 stuff
 - type: construction
   id: Morgue
@@ -1681,3 +2047,185 @@
   targetNode: stationbeacon
   category: construction-category-storage
   objectType: Structure
+
+- type: construction
+  id: Stairs
+  graph: StairsSteel
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairStage
+  graph: StairStage
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairWhite
+  graph: StairsWhite
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairStageWhite
+  graph: StairsWhiteStage
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairDark
+  graph: StairsDark
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairStageDark
+  graph: StairsDarkStage
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairWood
+  graph: StairsWood
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: StairStageWood
+  graph: StairsWoodStage
+  startNode: start
+  targetNode: done
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  id: Mirror
+  graph: MirrorGraph
+  startNode: start
+  targetNode: done
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: MirrorModern
+  graph: MirrorModernGraph
+  startNode: start
+  targetNode: done
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
+- type: construction
+  id: WarningSignO2
+  graph: WarningSign
+  startNode: start
+  targetNode: o2
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: WarningSignWaste
+  graph: WarningSign
+  startNode: start
+  targetNode: waste
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+
+- type: construction
+  id: WarningSignAir
+  graph: WarningSign
+  startNode: start
+  targetNode: air
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: WarningSignN2O
+  graph: WarningSign
+  startNode: start
+  targetNode: n2o
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: WarningSignN2
+  graph: WarningSign
+  startNode: start
+  targetNode: n2
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: WarningSignCO2
+  graph: WarningSign
+  startNode: start
+  targetNode: co2
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: WarningSignPlasma
+  graph: WarningSign
+  startNode: start
+  targetNode: plasma
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: WarningSignTritium
+  graph: WarningSign
+  startNode: start
+  targetNode: tritium
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true

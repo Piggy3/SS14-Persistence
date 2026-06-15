@@ -1,7 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Components;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
@@ -15,6 +12,8 @@ using Content.Shared.Singularity.Components;
 using Content.Shared.Timing;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -31,6 +30,7 @@ public sealed class RadiationCollectorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RadiationCollectorComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<RadiationCollectorComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<RadiationCollectorComponent, OnIrradiatedEvent>(OnRadiation);
         SubscribeLocalEvent<RadiationCollectorComponent, ExaminedEvent>(OnExamined);
@@ -54,10 +54,18 @@ public sealed class RadiationCollectorSystem : EntitySystem
         return true;
     }
 
+    private void OnComponentInit(EntityUid uid, RadiationCollectorComponent component, ComponentInit args)
+    {
+        TryGetLoadedGasTank(uid, out var gasTank);
+        UpdateTankAppearance(uid, component, gasTank);
+        UpdateMachineAppearance(uid, component);
+    }
+
     private void OnMapInit(EntityUid uid, RadiationCollectorComponent component, MapInitEvent args)
     {
         TryGetLoadedGasTank(uid, out var gasTank);
         UpdateTankAppearance(uid, component, gasTank);
+        UpdateMachineAppearance(uid, component);
     }
 
     private void OnTankChanged(EntityUid uid, RadiationCollectorComponent component, ContainerModifiedMessage args)

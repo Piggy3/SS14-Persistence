@@ -11,6 +11,9 @@
     - 0,0,1,3
     - 3,0,6,3
     - 8,0,9,3
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 300
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -169,6 +172,18 @@
       sprite: Clothing/Back/Satchels/salvage.rsi
 
 - type: entity
+  parent: [ClothingBackpackSatchel, BaseHighlyIllegalContraband]
+  id: ClothingBackpackSatchelNinja
+  name: spider clan satchel
+  description: A robust satchel for stashing your loot.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/ninja.rsi
+  - type: Storage # Backpack sounds are null due to silent ninja tech
+    storageOpenSound: null
+    storageInsertSound: null
+
+- type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelHolding
   name: satchel of holding
@@ -187,6 +202,13 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 500
+      Silver: 200
+      Plasma: 200
+      Uranium: 100
 
 - type: entity
   parent: ClothingBackpackSatchelHolding

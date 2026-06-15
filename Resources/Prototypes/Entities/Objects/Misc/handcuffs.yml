@@ -26,7 +26,6 @@
   - type: GuideHelp
     guides:
     - Security
-    #- Antagonists, Persistence Station
   - type: UseDelay
     delay: 3
 
