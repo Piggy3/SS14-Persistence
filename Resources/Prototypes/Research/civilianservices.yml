@@ -250,6 +250,7 @@
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - BluespaceJug
 
 - type: technology
   id: LauncherSyringe
@@ -275,3 +276,4 @@
   cost: 100000
   recipeUnlocks:
   - TelecomServer1kCircuitboard
+  - HolopadLongRangeMachineCircuitboard

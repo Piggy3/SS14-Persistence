@@ -53,6 +53,7 @@
   - InvoicePrinterCircuitboard
   - IDComputerCircuitboard
   - MixingMachineCircuitboard
+  - PlushieLatheCircuitboard
 
 - type: latheRecipePack
   id: ReligionStatic
@@ -65,6 +66,16 @@
   - BibleHonk
   - BibleRatvar
 
+
+- type: latheRecipePack
+  id: HydroponicsStatic
+  recipes:
+  - HydroponicsToolMiniHoe
+  - HydroponicsToolScythe
+  - HydroponicsToolHatchet
+  - HydroponicsToolSpade
+  - HydroponicsToolClippers
+  - PlantAnalyzer
 
 ## Dynamic
 
