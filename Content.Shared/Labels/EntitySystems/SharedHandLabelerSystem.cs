@@ -77,12 +77,13 @@ public abstract class SharedHandLabelerSystem : EntitySystem
         _popupSystem.PopupClient(Loc.GetString("hand-labeler-successfully-applied"), user, user);
     }
 
-    private void Labeling(EntityUid uid, EntityUid target, EntityUid User, HandLabelerComponent handLabeler)
+    private void Labeling(EntityUid uid, EntityUid target, EntityUid user, HandLabelerComponent handLabeler)
     {
         string? result;
+#pragma warning disable RA0030 // Consider using the non-generic variant of this method
         if (TryComp<DoorComponent>(target, out var door) && door != null && TryComp<MetaDataComponent>(target, out var meta) && meta != null && meta.EntityPrototype != null)
         {
-            if (!_accessReader.IsAllowed(User, target))
+            if (!_accessReader.IsAllowed(user, target))
                 return;
 
             if (handLabeler.AssignedLabel == string.Empty)
@@ -100,12 +101,13 @@ public abstract class SharedHandLabelerSystem : EntitySystem
         }
         else
         {
-            AddLabelTo((uid, handLabeler), User, target);
+            AddLabelTo((uid, handLabeler), user, target);
         }
+#pragma warning restore RA0030 // Consider using the non-generic variant of this method
 
         // Log labeling
         _adminLogger.Add(LogType.Action, LogImpact.Low,
-            $"{ToPrettyString(User):user} labeled {ToPrettyString(target):target} with {ToPrettyString(uid):labeler}");
+            $"{ToPrettyString(user):user} labeled {ToPrettyString(target):target} with {ToPrettyString(uid):labeler}");
     }
 
     private void RemoveLabelFrom(EntityUid uid, EntityUid user, EntityUid target)

@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared.CCVar;
 using Content.Shared.Input;
@@ -12,6 +11,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Numerics;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client.Options.UI.Tabs

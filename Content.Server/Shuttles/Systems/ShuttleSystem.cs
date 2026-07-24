@@ -10,8 +10,10 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
@@ -28,8 +30,6 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Maps;
-using Content.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -65,7 +65,6 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
-    private bool _inFTL = false;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
@@ -149,7 +148,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     private void UpdateDamping(EntityUid uid, ShuttleComponent component)
     {
         float modifier = component.BodyModifier;
-        if(!component.InFTL)
+        if (!component.InFTL)
         {
             switch (component.DampingMode)
             {

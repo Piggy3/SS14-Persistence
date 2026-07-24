@@ -1,7 +1,5 @@
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby

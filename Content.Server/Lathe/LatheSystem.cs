@@ -1,12 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
@@ -14,11 +11,8 @@ using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.UserInterface;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Localizations;
@@ -27,12 +21,15 @@ using Content.Shared.Power;
 using Content.Shared.ReagentSpeed;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.UserInterface;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Server.Lathe
 {
@@ -190,11 +187,11 @@ namespace Content.Server.Lathe
             quantity = int.Min(quantity, MaxItemsPerRequest);
             if (TryComp<ResearchClientComponent>(uid, out var researchClient))
             {
-                if(researchClient.Server != null)
+                if (researchClient.Server != null)
                 {
-                    if(TryComp<TechnologyDatabaseComponent>(researchClient.Server, out var database))
+                    if (TryComp<TechnologyDatabaseComponent>(researchClient.Server, out var database))
                     {
-                        if(database.UnlockedRecipes.ContainsKey(recipe.ID))
+                        if (database.UnlockedRecipes.ContainsKey(recipe.ID))
                         {
                             quantity = int.Min(quantity, database.UnlockedRecipes[recipe.ID]);
                             TakeRecipeUses(researchClient.Server.Value, recipe, database, quantity);
@@ -324,11 +321,10 @@ namespace Content.Server.Lathe
                 var pack = _proto.Index(id);
                 foreach (var recipe in pack.Recipes)
                 {
-                    var uses = -404;
                     if (args.GetUnavailable || database.UnlockedRecipes.ContainsKey(recipe))
                     {
-                        if(args.Recipes.ContainsKey(recipe)) continue;
-                        if(database.UnlockedRecipes.ContainsKey(recipe))
+                        if (args.Recipes.ContainsKey(recipe)) continue;
+                        if (database.UnlockedRecipes.ContainsKey(recipe))
                         {
                             args.Recipes.Add(recipe, database.UnlockedRecipes[recipe]);
                         }
@@ -339,7 +335,7 @@ namespace Content.Server.Lathe
 
                     }
 
-                        
+
                 }
             }
         }

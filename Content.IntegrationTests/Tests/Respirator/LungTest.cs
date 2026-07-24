@@ -1,14 +1,14 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared;
 using Robust.Shared.Configuration;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using System.Numerics;
-using Content.Shared.Atmos.Components;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Respirator;
 

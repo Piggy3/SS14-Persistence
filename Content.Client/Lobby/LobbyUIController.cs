@@ -32,8 +32,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
-    [UISystemDependency] private readonly GuidebookSystem _guide = default!;
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
@@ -203,7 +201,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _preferencesManager.FinalizeCharacter(EditedProfile, EditedSlot.Value);
         CloseProfileEditor();
-     //   _consoleHost.ExecuteCommand($"joingamepersistent false");
+        //   _consoleHost.ExecuteCommand($"joingamepersistent false");
     }
 
     private void JoinProfile()
@@ -280,19 +278,19 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _requirements,
             _markings);
 
-        _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
+        //_profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
         _characterSetup = new CharacterSetupGui(_profileEditor);
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
             // Open the save panel if we have unsaved changes.
-         //   if (_profileEditor.Profile != null && _profileEditor.IsDirty)
-        //    {
-          //      OpenSavePanel();
+            //   if (_profileEditor.Profile != null && _profileEditor.IsDirty)
+            //    {
+            //      OpenSavePanel();
 
-        //        return;
-        //    }
+            //        return;
+            //    }
 
             // Reset sliders etc.
             CloseProfileEditor();

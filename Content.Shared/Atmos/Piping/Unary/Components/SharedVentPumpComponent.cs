@@ -14,6 +14,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
         public float ExternalPressureBound { get; set; } = Atmospherics.OneAtmosphere;
         public float InternalPressureBound { get; set; } = 0f;
         public bool PressureLockoutOverride { get; set; } = false;
+        public string Name { get; set; } = "";
 
         // Presets for 'dumb' air alarm modes
 
@@ -73,7 +74,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
     [Serializable, NetSerializable]
     public enum VentPressureBound : sbyte
     {
-        NoBound       = 0,
+        NoBound = 0,
         InternalBound = 1,
         ExternalBound = 2,
         Both = 3,

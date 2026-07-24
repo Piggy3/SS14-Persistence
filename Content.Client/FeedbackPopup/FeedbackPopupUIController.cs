@@ -1,8 +1,8 @@
 using Content.Shared.FeedbackSystem;
 using Content.Shared.GameTicking;
-using Robust.Client.UserInterface.Controllers;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.FeedbackPopup;

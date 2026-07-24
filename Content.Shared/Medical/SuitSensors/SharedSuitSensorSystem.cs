@@ -1,8 +1,6 @@
-using System.Numerics;
 using Content.Shared.Access.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Clothing;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
@@ -23,6 +21,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Numerics;
 
 namespace Content.Shared.Medical.SuitSensors;
 

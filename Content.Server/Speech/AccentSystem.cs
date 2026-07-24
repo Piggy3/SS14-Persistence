@@ -1,6 +1,6 @@
-using System.Text.RegularExpressions;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.Speech;
 

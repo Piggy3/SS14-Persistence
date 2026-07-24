@@ -1,9 +1,6 @@
 using Content.Shared.Whitelist;
-using Robust.Shared.Analyzers;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.SmartFridge;
@@ -45,7 +42,7 @@ public sealed partial class SmartFridgeComponent : Component
     /// <summary>
     /// A mapping of smart fridge entries to the actual contained contents
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     [Access(typeof(SharedSmartFridgeSystem), Other = AccessPermissions.ReadExecute)]
     public Dictionary<SmartFridgeEntry, HashSet<NetEntity>> ContainedEntries = new();
 

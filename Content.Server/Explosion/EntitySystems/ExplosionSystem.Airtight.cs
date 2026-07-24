@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Runtime.InteropServices;
 using Content.Server.Atmos.Components;
 using Content.Server.Explosion.Components;
 using Content.Shared.Atmos;
@@ -10,6 +8,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Runtime.InteropServices;
 using static Content.Server.Explosion.Components.ExplosionAirtightGridComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -260,7 +259,7 @@ public sealed partial class ExplosionSystem
             }
 
             var toleranceValue = damagePerIntensity > 0
-                ? (float) ((totalDamageTarget - _damageableSystem.GetTotalDamage((uid, damageable))) / damagePerIntensity)
+                ? (float)((totalDamageTarget - _damageableSystem.GetTotalDamage((uid, damageable))) / damagePerIntensity)
                 : ToleranceValues.Invulnerable;
 
             explosionTolerance[index] = toleranceValue;

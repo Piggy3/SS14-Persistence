@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Database;
@@ -10,6 +9,7 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
+using System.Diagnostics.CodeAnalysis;
 using PryUnpoweredComponent = Content.Shared.Prying.Components.PryUnpoweredComponent;
 
 namespace Content.Shared.Prying.Systems;

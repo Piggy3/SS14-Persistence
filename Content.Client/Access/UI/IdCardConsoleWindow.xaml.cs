@@ -20,32 +20,19 @@ namespace Content.Client.Access.UI
     public sealed partial class IdCardConsoleWindow : DefaultWindow
     {
         [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-        private readonly ISawmill _logMill = default!;
 
         private readonly IdCardConsoleBoundUserInterface _owner;
 
-        // CCVar.
-        private int _maxNameLength;
-        private int _maxIdJobLength;
 
-        private AccessLevelControl _accessButtons = new();
-        private readonly List<string> _jobPrototypeIds = new();
 
         private string? _lastFullName;
-        private string? _lastJobTitle;
-        private string? _lastJobProto;
 
-        // The job that will be picked if the ID doesn't have a job on the station.
-        private static ProtoId<JobPrototype> _defaultJob = "Passenger";
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
             List<ProtoId<AccessLevelPrototype>> accessLevels)
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
-            _logMill = _logManager.GetSawmill(SharedIdCardConsoleSystem.Sawmill);
 
             _owner = owner;
 
@@ -112,7 +99,7 @@ namespace Content.Client.Access.UI
                 AccountDetails.Visible = false;
             }
 
-                var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
+            var fullNameDirty = _lastFullName != null && FullNameLineEdit.Text != state.TargetIdFullName;
 
             FullNameLabel.Modulate = interfaceEnabled ? Color.White : Color.Gray;
             if (!fullNameDirty)
@@ -144,14 +131,14 @@ namespace Content.Client.Access.UI
                     var button = new AssignmentButton(id, assignment.Name);
                     button.OnPressed += (args) => { _owner.OnAssignmentPressed(args); };
                     AccessLevelControlContainer.AddChild(button);
-                    if(state.TargetIdFullName == null || state.TargetIdFullName.Length == 0 || (!state.IsOwner && state.PrivAssignment == null))
+                    if (state.TargetIdFullName == null || state.TargetIdFullName.Length == 0 || (!state.IsOwner && state.PrivAssignment == null))
                     {
                         button.Disabled = true;
                     }
                     else
                     {
 
-                        if(state.Assignment != null && state.Assignment.ID == id)
+                        if (state.Assignment != null && state.Assignment.ID == id)
                         {
                             button.Pressed = true;
                         }
@@ -163,7 +150,7 @@ namespace Content.Client.Access.UI
                 }
 
             }
-            if(state.CrewRecord != null)
+            if (state.CrewRecord != null)
             {
                 GeneralRecordLabel.SetMarkup(state.CrewRecord.GeneralRecord);
                 GeneralRecordTE.TextRope = new Rope.Leaf(state.CrewRecord.GeneralRecord);

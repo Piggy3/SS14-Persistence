@@ -1,3 +1,4 @@
+using Content.Server.Body.Systems;
 using Content.Server.Medical.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -18,7 +19,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-using Content.Server.Body.Systems;
 
 namespace Content.Server.Medical;
 
@@ -53,7 +53,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             if (component.NextUpdate > _timing.CurTime)
                 continue;
 
-            if (component.ScannedEntity is not {} patient)
+            if (component.ScannedEntity is not { } patient)
                 continue;
 
             if (Deleted(patient))

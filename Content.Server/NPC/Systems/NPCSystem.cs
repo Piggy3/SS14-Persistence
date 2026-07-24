@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
@@ -9,9 +8,9 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Systems;
 using Prometheus;
-using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.NPC.Systems
 {

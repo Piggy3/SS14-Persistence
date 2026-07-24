@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Light.Components;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Weather;
@@ -10,6 +9,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using System.Numerics;
 
 namespace Content.Client.Weather;
 

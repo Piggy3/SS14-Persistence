@@ -5,7 +5,6 @@ using Content.Shared.Changeling.Components;
 using Content.Shared.Cloning;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;

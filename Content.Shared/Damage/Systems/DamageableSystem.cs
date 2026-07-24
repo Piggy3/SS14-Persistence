@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -6,10 +5,9 @@ using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Damage.Systems;
 

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.Hands.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Body;
 

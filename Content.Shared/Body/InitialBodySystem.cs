@@ -1,6 +1,6 @@
-using System.Numerics;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using System.Numerics;
 
 namespace Content.Shared.Body;
 

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Maps;
@@ -9,6 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Weather;
 

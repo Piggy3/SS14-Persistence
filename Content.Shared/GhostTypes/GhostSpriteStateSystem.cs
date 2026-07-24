@@ -32,7 +32,7 @@ public sealed class GhostSpriteStateSystem : EntitySystem
         ProtoId<SpecialCauseOfDeathPrototype>? specialCase = null;
 
         if (!TryComp<LastBodyDamageComponent>(mind, out var storedDamage))
-          return;
+            return;
 
         if (storedDamage.DamagePerGroup != null && storedDamage.Damage != null)
         {
@@ -59,7 +59,7 @@ public sealed class GhostSpriteStateSystem : EntitySystem
         }
         else if (ent.Comp.DamageMap.TryGetValue(highestType, out var spriteAmount))
         {
-                spriteState = highestType + rand.Next(spriteAmount);
+            spriteState = highestType + rand.Next(spriteAmount);
         }
 
         if (spriteState != null)

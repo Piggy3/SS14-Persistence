@@ -95,12 +95,12 @@ namespace Content.Client.Cargo.UI
                     !_entityManager.TryGetComponent<StationBankAccountComponent>(_station, out var bank))
                     return true;
 
-                return val >= 0 && val <= (int) (console.TransferLimit * bank.Accounts[console.Account]);
+                return val >= 0 && val <= (int)(console.TransferLimit * bank.Accounts[console.Account]);
             };
 
             AccountActionButton.OnPressed += _ =>
             {
-                var account = (ProtoId<CargoAccountPrototype>?) ActionOptions.SelectedMetadata;
+                var account = (ProtoId<CargoAccountPrototype>?)ActionOptions.SelectedMetadata;
                 OnAccountAction?.Invoke(account, TransferSpinBox.Value);
             };
 
@@ -137,8 +137,8 @@ namespace Content.Client.Cargo.UI
                 {
                     var cargoPrototype = _protoManager.Index(cargoPrototypeId);
 
- //                   if (!allowedGroups?.Contains(cargoPrototype.Group) ?? false)
- //                       continue;
+                    //                   if (!allowedGroups?.Contains(cargoPrototype.Group) ?? false)
+                    //                       continue;
 
                     yield return cargoPrototype;
                 }
@@ -167,7 +167,7 @@ namespace Content.Client.Cargo.UI
                     search.Length == 0 && _category != null && Loc.GetString(prototype.Category).Equals(_category))
                 {
                     var cost = prototype.Cost;
-                    if(_PersonalMode || !_ownedSelected)
+                    if (_PersonalMode || !_ownedSelected)
                     {
                         cost += (int)Math.Round((float)cost * ((float)_tax / 100f));
                     }
@@ -237,10 +237,10 @@ namespace Content.Client.Cargo.UI
                     cost += (int)Math.Round((float)cost * ((float)order.Tax / 100f));
                 }
                 var productName = product.Name;
-//                 var product = _protoManager.Index<EntityPrototype>(productProto.Product);
-//                 var productName = productProto.Name;
-//                 var requester = !string.IsNullOrEmpty(order.Requester) ?
-//                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
+                //                 var product = _protoManager.Index<EntityPrototype>(productProto.Product);
+                //                 var productName = productProto.Name;
+                //                 var requester = !string.IsNullOrEmpty(order.Requester) ?
+                //                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
                 var account = _protoManager.Index(order.Account);
                 var requester = !string.IsNullOrEmpty(order.Requester) ?
                 order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
@@ -336,7 +336,7 @@ namespace Content.Client.Cargo.UI
             _station = station;
             _PersonalMode = personalMode;
             _tax = tax;
-            if(selectedTrade == ownedtrade)
+            if (selectedTrade == ownedtrade)
             {
                 _ownedSelected = true;
             }
@@ -344,8 +344,8 @@ namespace Content.Client.Cargo.UI
             {
                 _ownedSelected = false;
             }
-                TaxContainer.Visible = true;
-            if(!_PersonalMode && _ownedSelected)
+            TaxContainer.Visible = true;
+            if (!_PersonalMode && _ownedSelected)
             {
                 TaxLabel.Text = $"0%";
             }
@@ -375,7 +375,7 @@ namespace Content.Client.Cargo.UI
                 AccountTypeMode.Text = "Station";
 
             }
-            else if(!personalMode)
+            else if (!personalMode)
             {
                 if (_entityManager.TryGetComponent<CargoOrderConsoleComponent>(_owner, out var orderConsole))
                 {
@@ -393,12 +393,12 @@ namespace Content.Client.Cargo.UI
         protected override void FrameUpdate(FrameEventArgs args)
         {
             base.FrameUpdate(args);
-            if(_PersonalMode)
+            if (_PersonalMode)
             {
                 int pbalance = 0;
                 if (_playerManager.LocalEntity != null)
                     _personalBank.TryGetBalance(_playerManager.LocalEntity.Value, out pbalance);
-                    PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", pbalance));
+                PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", pbalance));
                 TransferLimitLabel.Text = "Not available in personal account mode.";
                 AccountActionButton.Disabled = true;
                 return;
@@ -408,7 +408,7 @@ namespace Content.Client.Cargo.UI
             {
                 return;
             }
-            if(!_PersonalMode)
+            if (!_PersonalMode)
             {
                 var balance = _cargoSystem.GetBalanceFromAccount((_station.Value, bankAccount), orderConsole.Account);
                 PointsLabel.Text = Loc.GetString("cargo-console-menu-points-amount", ("amount", balance));

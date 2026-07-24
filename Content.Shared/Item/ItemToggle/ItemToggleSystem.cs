@@ -6,7 +6,6 @@ using Content.Shared.Temperature;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
 using Content.Shared.Wieldable;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
@@ -357,7 +356,7 @@ public sealed class ItemToggleSystem : EntitySystem
             var stream = args.Predicted
                 ? _audio.PlayPredicted(comp.ActiveSound, uid, args.User, loop)
                 : _audio.PlayPvs(comp.ActiveSound, uid, loop);
-            if (stream?.Entity is {} entity)
+            if (stream?.Entity is { } entity)
                 comp.PlayingStream = entity;
         }
     }

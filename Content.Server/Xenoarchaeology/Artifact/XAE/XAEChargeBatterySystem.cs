@@ -1,7 +1,6 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 using Content.Shared.Power.Components;
-using Content.Shared.Power.EntitySystems;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 
@@ -26,7 +25,15 @@ public sealed class XAEChargeBatterySystem : BaseXAESystem<XAEChargeBatteryCompo
         _lookup.GetEntitiesInRange(args.Coordinates, ent.Comp.Radius, _batteryEntities);
         foreach (var battery in _batteryEntities)
         {
-            _battery.SetCharge(battery.AsNullable(), battery.Comp.MaxCharge);
+            if (ent.Comp.ChargePercent >= 100f) // Skip calculation if charge to full
+            {
+                _battery.SetCharge(battery.AsNullable(), battery.Comp.MaxCharge);
+                continue;
+            }
+
+            // Calculate charge on the battery based on charge percent.
+            var charge = MathF.Min(battery.Comp.MaxCharge, battery.Comp.LastCharge + ent.Comp.ChargePercent / 100f * battery.Comp.MaxCharge);
+            _battery.SetCharge(battery.AsNullable(), charge);
         }
     }
 }

@@ -468,6 +468,18 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: StorageCounterConstruction
+  graph: StorageCounterGraph
+  startNode: start
+  targetNode: storagecounter
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+    
 #bathroom
 - type: construction
   id: ToiletEmpty
@@ -547,6 +559,18 @@
   graph: bed
   startNode: start
   targetNode: medicalbed
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: PsychBed
+  graph: bed
+  startNode: start
+  targetNode: psychbed
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
@@ -736,6 +760,19 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: KanbanBoard
+  graph: KanbanBoard
+  startNode: start
+  targetNode: kanbanBoard
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
 
 - type: construction
   id: NoticeBoard

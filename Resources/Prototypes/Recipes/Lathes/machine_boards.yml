@@ -362,6 +362,16 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: MixingMachineCircuitboard
+  result: MixingMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: ButcheringMachineCircuitboard
+  result: ButcheringMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: FatExtractorMachineCircuitboard
   result: FatExtractorMachineCircuitboard
   unlockUses: 4
@@ -372,7 +382,6 @@
   parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: CargoTelepadMachineCircuitboard
   result: CargoTelepadMachineCircuitboard
-  unlockUses: 2
 
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
@@ -509,6 +518,11 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: PlushieLatheCircuitboard
+  result: PlushieLatheCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: SheetifierMachineCircuitboard
   result: SheetifierMachineCircuitboard
 
@@ -570,4 +584,10 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: HolopadLongRangeMachineCircuitboard
+  result: HolopadLongRangeMachineCircuitboard
   unlockUses: 4

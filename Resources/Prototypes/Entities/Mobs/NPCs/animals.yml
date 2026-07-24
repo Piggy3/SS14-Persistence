@@ -340,7 +340,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -779,7 +778,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -1491,17 +1489,7 @@
     description: ghost-role-information-monkey-description
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
-  - type: Clumsy
-    gunShootFailDamage:
-      types:
-        Blunt: 5
-        Piercing: 4
-        Heat: 3
-    catchingFailDamage:
-      types:
-        Blunt: 1
-    clumsySound:
-      path: /Audio/Animals/monkey_scream.ogg
+
 
 
 - type: entity
@@ -1672,18 +1660,7 @@
   id: MobKobold
   parent: MobBaseKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
-  components:
-  - type: Clumsy
-    gunShootFailDamage:
-      types:
-        Blunt: 2
-        Piercing: 7
-        Heat: 3
-    catchingFailDamage:
-      types:
-        Blunt: 1
-    clumsySound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+
 
 - type: entity
   id: MobBaseSyndicateKobold

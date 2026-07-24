@@ -1,4 +1,3 @@
-using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization;

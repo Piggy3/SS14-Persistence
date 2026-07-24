@@ -1,8 +1,8 @@
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.PowerCell;
 using Content.Shared.Pinpointer;
+using Content.Shared.PowerCell;
 using Content.Shared.Station;
 using Robust.Server.GameObjects;
 

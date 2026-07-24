@@ -127,7 +127,7 @@ public sealed partial class ProfilePreviewSpriteView
                         // Try startinggear first
                         if (_prototypeManager.Resolve(loadoutProto.StartingGear, out var loadoutGear))
                         {
-                            var itemType = ((IEquipmentLoadout) loadoutGear).GetGear(slot.Name);
+                            var itemType = ((IEquipmentLoadout)loadoutGear).GetGear(slot.Name);
 
                             if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
                             {
@@ -142,7 +142,7 @@ public sealed partial class ProfilePreviewSpriteView
                         }
                         else
                         {
-                            var itemType = ((IEquipmentLoadout) loadoutProto).GetGear(slot.Name);
+                            var itemType = ((IEquipmentLoadout)loadoutProto).GetGear(slot.Name);
 
                             if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
                             {
@@ -165,7 +165,7 @@ public sealed partial class ProfilePreviewSpriteView
 
         foreach (var slot in slots)
         {
-            var itemType = ((IEquipmentLoadout) gear).GetGear(slot.Name);
+            var itemType = ((IEquipmentLoadout)gear).GetGear(slot.Name);
 
             if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
             {

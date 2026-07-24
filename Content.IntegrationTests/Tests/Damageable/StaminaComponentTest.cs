@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.IntegrationTests.Utility;
 using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;

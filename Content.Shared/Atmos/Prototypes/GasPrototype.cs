@@ -1,4 +1,5 @@
-﻿using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -76,7 +77,7 @@ namespace Content.Shared.Atmos.Prototypes
         /// <summary>
         /// The reagent that this gas will turn into when inhaled.
         /// </summary>
-        [DataField("reagent", customTypeSerializer:typeof(PrototypeIdSerializer<ReagentPrototype>))]
+        [DataField("reagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
         public string? Reagent { get; private set; } = default!;
 
         [DataField("color")] public string Color { get; private set; } = string.Empty;
@@ -99,5 +100,13 @@ namespace Content.Shared.Atmos.Prototypes
         /// </summary>
         [DataField]
         public bool IsOxidizer;
+
+        /// <summary>
+        /// The color of fire produced when this gas burns as a fuel.
+        /// Used to tint the greyscale fire sprite. When multiple fuels burn
+        /// simultaneously, their colors are mixed proportionally by moles burned.
+        /// </summary>
+        [DataField]
+        public Robust.Shared.Maths.Color BurnColor = Robust.Shared.Maths.Color.FromHex("#FFB733");
     }
 }

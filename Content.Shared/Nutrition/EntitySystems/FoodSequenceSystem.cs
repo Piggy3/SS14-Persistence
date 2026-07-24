@@ -1,5 +1,3 @@
-using System.Numerics;
-using System.Text;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
@@ -10,6 +8,8 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Numerics;
+using System.Text;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

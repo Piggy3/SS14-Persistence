@@ -1,15 +1,9 @@
-using System.Linq;
-using System.Numerics;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
-using Content.Shared.Clothing;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Robust.Client.Graphics;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI;
 

@@ -1,7 +1,6 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.NodeContainer;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.NodeContainer.Nodes
 {

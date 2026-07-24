@@ -1,14 +1,12 @@
-using System.Linq;
-using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Power.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Power;
-using Content.Shared.UserInterface;
 using Content.Shared.SurveillanceCamera;
+using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
+using System.Linq;
 
 namespace Content.Server.SurveillanceCamera;
 

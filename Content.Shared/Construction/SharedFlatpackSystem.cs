@@ -1,6 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -13,6 +12,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Construction;
 

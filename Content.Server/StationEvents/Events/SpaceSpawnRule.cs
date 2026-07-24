@@ -3,7 +3,6 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
@@ -56,7 +55,7 @@ public sealed class SpaceSpawnRule : StationEventSystem<SpaceSpawnRuleComponent>
 
     private void OnSelectLocation(Entity<SpaceSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
     {
-        if (ent.Comp.Coords is {} coords)
+        if (ent.Comp.Coords is { } coords)
             args.Coordinates.Add(coords);
     }
 }

@@ -1,9 +1,3 @@
-using System.Collections.Immutable;
-using System.IO;
-using System.Net;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -21,6 +15,12 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
+using System.Collections.Immutable;
+using System.IO;
+using System.Net;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 using LogLevel = Robust.Shared.Log.LogLevel;
 using MSLogLevel = Microsoft.Extensions.Logging.LogLevel;
 
@@ -102,7 +102,7 @@ namespace Content.Server.Database
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned=true,
+            bool includeUnbanned = true,
             BanType type = BanType.Server);
 
         Task<BanDef> AddBanAsync(BanDef ban);
@@ -511,7 +511,7 @@ namespace Content.Server.Database
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned=true,
+            bool includeUnbanned = true,
             BanType type = BanType.Server)
         {
             DbReadOpsMetric.Inc();

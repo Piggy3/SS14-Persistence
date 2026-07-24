@@ -1,8 +1,6 @@
-using Content.Shared.Abilities.Mime;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Alert;
 using Content.Shared.Audio;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
@@ -11,10 +9,8 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Speech.Muting;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -37,7 +33,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 
 namespace Content.Shared.Weapons.Ranged.Systems;

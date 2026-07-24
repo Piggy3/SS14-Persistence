@@ -3,14 +3,13 @@ using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.CrewRecords.Systems;
 using Content.Server.GameTicking.Events;
-using Content.Server.Ghost;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Bed.Cryostorage;
 using Content.Shared.CCVar;
-using Content.Shared.CrewMetaRecords;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -24,7 +23,6 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Containers;
-using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
@@ -32,7 +30,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
@@ -153,6 +150,8 @@ namespace Content.Server.GameTicking
             bool silent = false)
         {
             var character = GetPlayerProfile(player);
+            if (character == null)
+                character = new HumanoidCharacterProfile();
 
             var jobBans = _banManager.GetJobBans(player.UserId);
             if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
@@ -182,7 +181,6 @@ namespace Content.Server.GameTicking
             EntityUid? station;
             station = _stationSystem.GetStationByID(1);
             if (station == null) return;
-            string speciesId;
 
             PlayerJoinGame(player);
 
@@ -203,7 +201,7 @@ namespace Content.Server.GameTicking
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station.Value, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
-            
+
 
 
             _mind.TransferTo(newMind, mob);
@@ -270,7 +268,6 @@ namespace Content.Server.GameTicking
                 station = EntityUid.Invalid;
             else
                 station = stations[0];
-            string speciesId;
 
             PlayerJoinGame(player);
 
@@ -278,7 +275,7 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertNotNull(data);
             var jobId = "Passenger";
-            
+
 
             var jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
 
@@ -290,10 +287,10 @@ namespace Content.Server.GameTicking
             var saveFilePath = new ResPath($"{data!.UserId}]{character!.Name}");
             _loader.TryLoadEntity(saveFilePath, out var mobMaybe);
             DebugTools.AssertNotNull(mobMaybe);
-            Entity<TransformComponent> EC = (Entity<TransformComponent>)mobMaybe!;
-            EntityUid? pe = EC.Owner;
+            Entity<TransformComponent> eC = (Entity<TransformComponent>)mobMaybe!;
+            EntityUid? pe = eC.Owner;
             var mob = (EntityUid)pe;
-           
+
             if (_ent.TryGetComponent<MindContainerComponent>(mob, out var container))
             {
                 if (container != null)
@@ -305,55 +302,79 @@ namespace Content.Server.GameTicking
             _mind.SetUserId(newMind, data.UserId);
             _mind.TransferTo(newMind, mob);
             _playerManager.SetAttachedEntity(player, mob, true);
-            
+
             _adminLogger.Add(LogType.LateJoin,
                 LogImpact.Medium,
                 $"Player {player.Name} late joined as {character.Name:characterName}. Loaded char");
 
 
-
-            var possibleContainers = FindContSpawn();
-            if (possibleContainers.Count > 0)
+            var cryos = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
+            EntityCoordinates? personalSpawn = null;
+            while (cryos.MoveNext(out var uid, out var cryo, out var xform))
             {
-                _robustRandom.Shuffle(possibleContainers);
-                foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+                if (!cryo.PersonalMode)
+                    continue;
+                if (cryo.PersonalName == Name(mob))
                 {
-                    if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container2, manager))
-                        continue;
-
-                    if (!_container.Insert(mob, container2, containerXform: xform))
-                        continue;
-
-                    var ev = new ContainerSpawnEvent(mob);
+                    var ev = new PersonalCryoEvent(false);
                     RaiseLocalEvent(uid, ref ev);
-
+                    personalSpawn = xform.Coordinates;
+                    cryo.PersonalOccupied = false;
+                    break;
                 }
             }
-
+            if (personalSpawn != null)
+            {
+                _transform.SetCoordinates(mob, personalSpawn.Value);
+            }
             else
             {
-                var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-                var possiblePositions = new List<EntityCoordinates>();
-                while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+                var possibleContainers = FindContSpawn();
+                if (possibleContainers.Count > 0)
                 {
-                    if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
-                        continue;
+                    _robustRandom.Shuffle(possibleContainers);
+                    foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+                    {
+                        if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container2, manager))
+                            continue;
 
-                    possiblePositions.Add(xform.Coordinates);
+                        if (!_container.Insert(mob, container2, containerXform: xform))
+                            continue;
+
+                        var spawnLoc = xform.Coordinates;
+                        _transform.SetCoordinates(mob, spawnLoc);
+                        break;
+                        //var ev = new ContainerSpawnEvent(mob);
+                        //RaiseLocalEvent(uid, ref ev);
+
+                    }
                 }
 
-                if (possiblePositions.Count <= 0)
-                    return;
+                else
+                {
+                    var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+                    var possiblePositions = new List<EntityCoordinates>();
+                    while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+                    {
+                        if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                            continue;
 
-                var spawnLoc = _robustRandom.Pick(possiblePositions);
+                        possiblePositions.Add(xform.Coordinates);
+                    }
 
-                _transform.SetCoordinates(mob, spawnLoc);
+                    if (possiblePositions.Count <= 0)
+                        return;
+
+                    var spawnLoc = _robustRandom.Pick(possiblePositions);
+
+                    _transform.SetCoordinates(mob, spawnLoc);
+                }
             }
 
 
 
 
-            
+
 
 
             if (!silent && TryComp(station, out MetaDataComponent? metaData))
@@ -391,7 +412,7 @@ namespace Content.Server.GameTicking
             {
                 if (spawnPoint.SpawnType != SpawnPointType.LateJoin) continue;
                 possibleContainers.Add((uid, spawnPoint, container, xform));
-               
+
             }
             return possibleContainers;
         }

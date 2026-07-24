@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Humanoid;
 

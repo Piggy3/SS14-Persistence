@@ -14,6 +14,7 @@ using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Labels.Components;
 using Content.Shared.Power;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -166,6 +167,10 @@ public sealed class AtmosMonitorSystem : EntitySystem
                         gases.Add(gas, component.TileGas.GetMoles(gas));
                     }
 
+                    var name = "";
+                    if (TryComp<LabelComponent>(uid, out var labelComp))
+                        name = labelComp.CurrentLabel ?? "";
+
                     payload.Add(AtmosDeviceNetworkSystem.SyncData, new AtmosSensorData(
                         component.TileGas.Pressure,
                         component.TileGas.Temperature,
@@ -174,7 +179,8 @@ public sealed class AtmosMonitorSystem : EntitySystem
                         gases,
                         component.PressureThreshold ?? new(),
                         component.TemperatureThreshold ?? new(),
-                        component.GasThresholds ?? new()
+                        component.GasThresholds ?? new(),
+                        name
                     ));
                 }
 
@@ -427,11 +433,11 @@ public sealed class AtmosMonitorSystem : EntitySystem
                 if (gas == null || monitor.GasThresholds == null)
                     return;
 
-                logPrefix = ((Gas) gas).ToString();
+                logPrefix = ((Gas)gas).ToString();
                 logValueSuffix = "kPa";
-                monitor.GasThresholds.TryGetValue((Gas) gas, out logPreviousThreshold);
+                monitor.GasThresholds.TryGetValue((Gas)gas, out logPreviousThreshold);
 
-                monitor.GasThresholds[(Gas) gas] = threshold;
+                monitor.GasThresholds[(Gas)gas] = threshold;
                 break;
         }
 

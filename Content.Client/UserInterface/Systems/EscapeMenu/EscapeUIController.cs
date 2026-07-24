@@ -1,4 +1,4 @@
-﻿using Content.Client.FeedbackPopup;
+using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;

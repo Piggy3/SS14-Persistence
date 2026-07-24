@@ -1,10 +1,10 @@
-using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Shared.Chat;
 
@@ -39,7 +39,7 @@ public sealed class SharedSuicideSystem : EntitySystem
         // Split the total amount of damage needed to kill the target by every damage type in the DamageSpecifier
         foreach (var (key, value) in appliedDamageSpecifier.DamageDict)
         {
-            appliedDamageSpecifier.DamageDict[key] = Math.Ceiling((double) (value * lethalAmountOfDamage / totalDamage));
+            appliedDamageSpecifier.DamageDict[key] = Math.Ceiling((double)(value * lethalAmountOfDamage / totalDamage));
         }
 
         _damageableSystem.ChangeDamage(target.AsNullable(), appliedDamageSpecifier, true, origin: target);

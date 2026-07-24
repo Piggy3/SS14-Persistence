@@ -28,6 +28,11 @@
   - WetFloorSign
   - WireBrush
   - BSPAnchorKey
+  - PrecursorExtractor
+  - KitchenKnife
+  - RollingPin
+  - BarberScissors
+  - CigaretteFilter
 
 - type: latheRecipePack
   id: ServiceBoardsStatic
@@ -41,10 +46,26 @@
   - SodaDispenserMachineCircuitboard
   - SmartFridgeCircuitboard
   - IdPrinterCircuitboard
+  - MessageBoardCircuitboard
+  - StationModComputerCircuitboard
   - BlockGameArcadeComputerCircuitboard
   - SpaceVillainArcadeComputerCircuitboard
   - InvoicePrinterCircuitboard
   - IDComputerCircuitboard
+  - MixingMachineCircuitboard
+  - PlushieLatheCircuitboard
+
+- type: latheRecipePack
+  id: ReligionStatic
+  recipes:
+  - Bible
+  - BibleDruid
+  - BibleCommunistManifesto
+  - BibleNarsie
+  - BibleNanoTrasen
+  - BibleHonk
+  - BibleRatvar
+
 
 ## Dynamic
 
@@ -74,3 +95,4 @@
   - JukeboxCircuitBoard
   - DawInstrumentMachineCircuitboard
   - ComputerTelevisionCircuitboard
+  - ButcheringMachineCircuitboard

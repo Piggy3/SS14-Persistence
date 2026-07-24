@@ -1,9 +1,9 @@
-using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.Administration.Notes;
 using Content.Shared.Database;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Notes;
 

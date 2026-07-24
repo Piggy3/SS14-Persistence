@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Decals;
@@ -12,6 +10,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Shared.Maps;
 
@@ -199,7 +199,7 @@ public sealed class TileSystem : EntitySystem
             return false;
 
         var key = tileref.GridIndices;
-        var currentTileDef = (ContentTileDefinition) _tileDefinitionManager[tileref.Tile.TypeId];
+        var currentTileDef = (ContentTileDefinition)_tileDefinitionManager[tileref.Tile.TypeId];
 
         // If the tile we're placing has a baseTurf that matches the tile we're replacing, we don't need to create a history
         // unless the tile already has a history.

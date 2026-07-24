@@ -1,7 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Body.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Temperature.Components;
@@ -25,7 +24,7 @@ public sealed class RottingSystem : SharedRottingSystem
         SubscribeLocalEvent<RottingComponent, GibbedBeforeDeletionEvent>(OnGibbed);
 
         SubscribeLocalEvent<TemperatureComponent, IsRottingEvent>(OnTempIsRotting);
-        
+
     }
 
     private void OnGibbed(EntityUid uid, RottingComponent component, GibbedBeforeDeletionEvent args)
@@ -108,6 +107,8 @@ public sealed class RottingSystem : SharedRottingSystem
             if (!IsRotProgressing(uid, perishable))
                 continue;
             rotting.TotalRotTime += rotting.RotUpdateRate * GetRotRate(uid);
+            if (rotting.TotalRotTime >= rotting.MaximumTotalRotTime)
+                rotting.TotalRotTime = rotting.MaximumTotalRotTime;
 
             if (rotting.DealDamage)
             {

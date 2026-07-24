@@ -1,18 +1,18 @@
 using Content.Server.Antag;
+using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Zombies;
 using Content.Shared.Administration;
-using Content.Server.Clothing.Systems;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Roles.Components;
 
 namespace Content.Server.Administration.Systems;
 

@@ -1,6 +1,3 @@
-using System.Linq;
-using System.Numerics;
-using System.Threading;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
@@ -19,7 +16,6 @@ using Content.Server.Tabletop.Components;
 using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
-using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
@@ -59,14 +55,17 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
+using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private readonly ProtoId<PolymorphPrototype> _lizardSmite = "AdminLizardSmite";
+    private readonly ProtoId<PolymorphPrototype> _vulpkaninSmite = "AdminVulpSmite";
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -740,7 +739,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
             Act = () =>
             {
-                _polymorphSystem.PolymorphEntity(args.Target, LizardSmite);
+                _polymorphSystem.PolymorphEntity(args.Target, _lizardSmite);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", reptilianName, Loc.GetString("admin-smite-reptilian-species-swap-description"))
@@ -752,10 +751,10 @@ public sealed partial class AdminVerbSystem
         {
             Text = vulpName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Balls/tennisball.rsi"), "icon"),
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/Balls/tennisball.rsi"), "icon"),
             Act = () =>
             {
-                _polymorphSystem.PolymorphEntity(args.Target, VulpkaninSmite);
+                _polymorphSystem.PolymorphEntity(args.Target, _vulpkaninSmite);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", vulpName, Loc.GetString("admin-smite-vulpkanin-species-swap-description"))

@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -7,6 +6,7 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
+using System.Diagnostics;
 
 namespace Content.Server.Atmos.EntitySystems;
 

@@ -1,8 +1,8 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.EntityTable.EntitySelectors;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.EntityTable;
 

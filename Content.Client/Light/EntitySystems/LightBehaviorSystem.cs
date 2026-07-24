@@ -1,11 +1,9 @@
-using System.ComponentModel.Design;
-using System.Linq;
 using Content.Client.Light.Components;
-using Content.Shared.Trigger.Components.Effects;
-using Robust.Client.GameObjects;
 using Robust.Client.Animations;
-using Robust.Shared.Random;
+using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
+using Robust.Shared.Random;
+using System.Linq;
 
 namespace Content.Client.Light.EntitySystems;
 

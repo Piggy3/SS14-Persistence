@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Hands.Components;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Inventory;
 

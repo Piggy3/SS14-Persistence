@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -12,6 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Client.Players.PlayTimeTracking;
 

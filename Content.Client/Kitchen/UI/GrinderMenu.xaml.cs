@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -12,6 +11,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client.Kitchen.UI;
 

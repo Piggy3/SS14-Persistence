@@ -1,8 +1,8 @@
-using System.Linq;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Server.Zombies;
 using Content.Shared.Body;
 using Content.Shared.Zombies;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Zombie;
 

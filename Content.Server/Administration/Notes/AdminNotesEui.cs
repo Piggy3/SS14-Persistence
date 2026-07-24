@@ -3,10 +3,9 @@ using Content.Server.EUI;
 using Content.Shared.Administration.Notes;
 using Content.Shared.Database;
 using Content.Shared.Eui;
+using Robust.Shared.Network;
 using System.Linq;
 using System.Threading.Tasks;
-using Content.Server.Database;
-using Robust.Shared.Network;
 using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 
 namespace Content.Server.Administration.Notes;
@@ -138,7 +137,7 @@ public sealed class AdminNotesEui : BaseEui
 
     private async Task LoadFromDb()
     {
-        var locatedPlayer = await _locator.LookupIdAsync((NetUserId) NotedPlayer);
+        var locatedPlayer = await _locator.LookupIdAsync((NetUserId)NotedPlayer);
         NotedPlayerName = locatedPlayer?.Username ?? string.Empty;
         HasConnectedBefore = locatedPlayer?.LastAddress is not null;
         Notes = (from note in await _notesMan.GetAllAdminRemarks(NotedPlayer)

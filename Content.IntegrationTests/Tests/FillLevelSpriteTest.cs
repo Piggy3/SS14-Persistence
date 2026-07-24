@@ -1,10 +1,10 @@
-using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Prototypes;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests;
 

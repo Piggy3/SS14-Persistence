@@ -150,7 +150,7 @@ namespace Content.Client.Cargo.BUI
                 return;
             _menu.ProductCatalogue = cState.Products;
 
-            _menu?.UpdateStation(station, cState.PersonalMode, cState.Tax, cState.PossibleTrades, cState.SelectedTrade,cState.OwnedTrade);
+            _menu?.UpdateStation(station, cState.PersonalMode, cState.Tax, cState.PossibleTrades, cState.SelectedTrade, cState.OwnedTrade);
             Populate(cState.Orders, cState);
         }
 

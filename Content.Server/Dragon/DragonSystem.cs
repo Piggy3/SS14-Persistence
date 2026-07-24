@@ -5,7 +5,6 @@ using Content.Shared.Actions;
 using Content.Shared.Dragon;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;

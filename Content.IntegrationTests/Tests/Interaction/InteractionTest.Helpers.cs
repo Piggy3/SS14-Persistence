@@ -1,9 +1,4 @@
 #nullable enable
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Numerics;
-using System.Reflection;
 using Content.Client.Construction;
 using Content.IntegrationTests.Tests.Helpers;
 using Content.Server.Atmos.EntitySystems;
@@ -25,6 +20,11 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Reflection;
 using Robust.UnitTesting;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Numerics;
+using System.Reflection;
 using ItemToggleComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleComponent;
 
 namespace Content.IntegrationTests.Tests.Interaction;

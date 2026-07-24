@@ -1,9 +1,4 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text.RegularExpressions;
 using Content.IntegrationTests.Utility;
-using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
@@ -25,6 +20,11 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using YamlDotNet.RepresentationModel;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]

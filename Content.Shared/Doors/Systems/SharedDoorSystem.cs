@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
@@ -16,14 +15,15 @@ using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared.Doors.Systems;
 
@@ -99,10 +99,16 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 door.State = DoorState.Closed;
                 door.Partial = false;
             }
+            if (door.State == DoorState.Welded)
+            {
+                door.State = DoorState.Welded;
+                door.Partial = false;
+            }
         }
 
         // should this door have collision and the like enabled?
         var collidable = door.State == DoorState.Closed
+            || door.State == DoorState.Welded
             || door.State == DoorState.Closing && door.Partial
             || door.State == DoorState.Opening && !door.Partial;
 
@@ -622,7 +628,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
 
             //TODO: Make only shutters ignore these objects upon colliding instead of all airlocks
             // Excludes Glasslayer for windows, GlassAirlockLayer for windoors, TableLayer for tables
-            if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.GlassLayer || otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.GlassAirlockLayer || otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.TableLayer)
+            if (otherPhysics.Comp.CollisionLayer == (int)CollisionGroup.GlassLayer || otherPhysics.Comp.CollisionLayer == (int)CollisionGroup.GlassAirlockLayer || otherPhysics.Comp.CollisionLayer == (int)CollisionGroup.TableLayer)
                 continue;
 
             // Ignore low-passable entities.
@@ -630,7 +636,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 continue;
 
             //For when doors need to close over conveyor belts
-            if (otherPhysics.Comp.CollisionLayer == (int) CollisionGroup.ConveyorMask)
+            if (otherPhysics.Comp.CollisionLayer == (int)CollisionGroup.ConveyorMask)
                 continue;
 
             if ((physics.CollisionMask & otherPhysics.Comp.CollisionLayer) == 0 && (otherPhysics.Comp.CollisionMask & physics.CollisionLayer) == 0)

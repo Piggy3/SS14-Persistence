@@ -1,7 +1,7 @@
-using System.Collections.Concurrent;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Serialization;
 using Content.Shared.NodeContainer.NodeGroups;
+using System.Collections.Concurrent;
 
 namespace Content.Shared.Atmos.Components;
 
@@ -48,7 +48,7 @@ public sealed partial class GridAtmosphereComponent : Component
     public int UpdateCounter = 1;
 
     [ViewVariables]
-    [IncludeDataField(customTypeSerializer:typeof(TileAtmosCollectionSerializer))]
+    [IncludeDataField(customTypeSerializer: typeof(TileAtmosCollectionSerializer))]
     public Dictionary<Vector2i, TileAtmosphere> Tiles = new(1000);
 
     [ViewVariables]

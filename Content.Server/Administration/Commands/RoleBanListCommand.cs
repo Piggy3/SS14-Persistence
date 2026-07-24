@@ -1,6 +1,6 @@
-﻿using Content.Server.Administration.BanList;
-using Content.Server.EUI;
+using Content.Server.Administration.BanList;
 using Content.Server.Database;
+using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Robust.Shared.Console;

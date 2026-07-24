@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Diagnostics.CodeAnalysis;
+using NpgsqlTypes;
+using System.Collections;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using NpgsqlTypes;
 
 namespace Content.Server.IP
 {

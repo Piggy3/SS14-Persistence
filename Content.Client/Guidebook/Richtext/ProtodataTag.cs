@@ -1,6 +1,6 @@
-using System.Globalization;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
+using System.Globalization;
 
 namespace Content.Client.Guidebook.RichText;
 

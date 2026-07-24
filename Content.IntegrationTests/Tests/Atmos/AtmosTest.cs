@@ -1,5 +1,4 @@
 using Content.IntegrationTests.Tests.Interaction;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;

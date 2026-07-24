@@ -1,5 +1,5 @@
-using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Radio.Components;
+using Content.Shared.Radio.EntitySystems;
 
 namespace Content.Server.Radio.EntitySystems;
 

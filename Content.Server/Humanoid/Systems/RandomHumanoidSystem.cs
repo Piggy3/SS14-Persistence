@@ -1,8 +1,8 @@
 using Content.Server.Humanoid.Components;
 using Content.Server.RandomMetadata;
 using Content.Shared.Body;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -25,7 +25,7 @@ public sealed class RandomHumanoidSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<RandomHumanoidSpawnerComponent, MapInitEvent>(OnMapInit,
-            after: new []{ typeof(RandomMetadataSystem) });
+            after: new[] { typeof(RandomMetadataSystem) });
     }
 
     private void OnMapInit(EntityUid uid, RandomHumanoidSpawnerComponent component, MapInitEvent args)

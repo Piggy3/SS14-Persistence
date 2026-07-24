@@ -1,14 +1,12 @@
-using Content.Client.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Species;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Numerics;
@@ -40,7 +38,7 @@ public sealed class GasTileFireOverlay : Overlay
     private readonly Texture[][] _frames;
 
     private const int FireStates = 3;
-    private const string FireRsiPath = "/Textures/Effects/fire.rsi";
+    private const string FireRsiPath = "/Textures/Effects/fire_greyscale.rsi";
 
     public const int GasOverlayZIndex = (int)Shared.DrawDepth.DrawDepth.Effects; // Under ghosts, above mostly everything else
 
@@ -159,7 +157,8 @@ public sealed class GasTileFireOverlay : Overlay
 
                         var fireState = gas.FireState - 1;
                         var texture = state.frames[fireState][state.frameCounter[fireState]];
-                        state.drawHandle.DrawTexture(texture, index);
+                        var fireColor = new Color(gas.FireColorR / 255f, gas.FireColorG / 255f, gas.FireColorB / 255f, gas.FireColorA / 255f);
+                        state.drawHandle.DrawTexture(texture, index, fireColor);
                     }
                 }
 

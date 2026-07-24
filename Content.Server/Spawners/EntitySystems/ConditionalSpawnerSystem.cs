@@ -1,11 +1,10 @@
-using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
+using System.Numerics;
 
 namespace Content.Server.Spawners.EntitySystems
 {
@@ -136,7 +135,12 @@ namespace Content.Server.Spawners.EntitySystems
                 var yOffset = _robustRandom.NextFloat(-offset, offset);
                 var trueCoords = coords.Offset(new Vector2(xOffset, yOffset));
 
-                SpawnAttachedTo(proto, trueCoords);
+                if (ent.Comp.SpawnDetached)
+                {
+                    SpawnAtPosition(proto, trueCoords); // Currently ignores offset... would be nice to have.
+                }
+                else
+                    SpawnAttachedTo(proto, trueCoords);
             }
         }
     }

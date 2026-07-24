@@ -30,6 +30,7 @@
   - OreBag
   - PlantBag
   - ClothingShoesSkates
+  - Floodlight
 
 - type: latheRecipePack
   id: AtmosStatic
@@ -112,5 +113,6 @@
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
+  - HolopadLongRangeMachineCircuitboard
   - StationAnchorCircuitboard
   - TelecomServer1kCircuitboard

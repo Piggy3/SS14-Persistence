@@ -1,4 +1,4 @@
-﻿using Content.Server.Hands.Systems;
+using Content.Server.Hands.Systems;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing;
@@ -48,7 +48,7 @@ public sealed class OutfitSystem : EntitySystem
             foreach (var slot in slots)
             {
                 _invSystem.TryUnequip(target, slot.Name, true, true, false, inventoryComponent);
-                var gearStr = ((IEquipmentLoadout) startingGear).GetGear(slot.Name);
+                var gearStr = ((IEquipmentLoadout)startingGear).GetGear(slot.Name);
                 if (gearStr == string.Empty)
                     continue;
 

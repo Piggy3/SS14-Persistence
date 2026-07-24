@@ -45,7 +45,8 @@ namespace Content.Server.Chemistry.EntitySystems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<ChemMasterComponent, ComponentStartup>(SubscribeUpdateUiState);
+            SubscribeLocalEvent<ChemMasterComponent, ComponentStartup>(SubscribeComponentStartup);
+
             SubscribeLocalEvent<ChemMasterComponent, SolutionContainerChangedEvent>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, EntInsertedIntoContainerMessage>(SubscribeUpdateUiState);
             SubscribeLocalEvent<ChemMasterComponent, EntRemovedFromContainerMessage>(SubscribeUpdateUiState);
@@ -58,6 +59,17 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterCreatePillsMessage>(OnCreatePillsMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputDrawSourceMessage>(OnSetDrawSourceMessage);
+        }
+
+        private void SubscribeComponentStartup<T>(Entity<ChemMasterComponent> ent, ref T ev)
+        {
+            UpdateUiState(ent);
+
+            var (owner, chemMaster) = ent;
+            if (!_solutionContainerSystem.TryGetSolution(owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution))
+                return;
+            if (bufferSolution.MaxVolume < FixedPoint2.MaxValue)
+                bufferSolution.MaxVolume = FixedPoint2.MaxValue;
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
@@ -320,7 +332,7 @@ namespace Content.Server.Chemistry.EntitySystems
                     break;
 
                 case ChemMasterDrawSource.External:
-                    if (_itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName) is not {} container)
+                    if (_itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName) is not { } container)
                     {
                         if (user.HasValue)
                             _popupSystem.PopupCursor(Loc.GetString("chem-master-window-no-beaker-text"), user.Value);
@@ -395,7 +407,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (!TryComp(container, out StorageComponent? storage) || storage.Container == null)
                 return null;
 
-            var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>) (pill =>
+            var pills = storage.Container.ContainedEntities.Select((Func<EntityUid, (string, FixedPoint2 quantity)>)(pill =>
             {
                 _solutionContainerSystem.TryGetSolution(pill, SharedChemMaster.PillSolutionName, out _, out var solution);
                 var quantity = solution?.Volume ?? FixedPoint2.Zero;

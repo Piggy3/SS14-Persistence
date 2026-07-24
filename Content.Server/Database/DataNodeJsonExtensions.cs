@@ -1,11 +1,10 @@
-using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Nodes;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Value;
-using YamlDotNet.RepresentationModel;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 
 namespace Content.Server.Database;
 
@@ -21,8 +20,8 @@ public static class DataNodeJsonExtensions
         return new JsonArray(node.Select(ToJsonNode).ToArray());
     }
 
-	public static JsonNode? ToJsonNode(this DataNode node)
-	{
+    public static JsonNode? ToJsonNode(this DataNode node)
+    {
         return node switch
         {
             ValueDataNode valueDataNode => JsonValue.Create(valueDataNode.IsNull ? null : valueDataNode.Value),
@@ -30,7 +29,7 @@ public static class DataNodeJsonExtensions
             SequenceDataNode sequenceNode => sequenceNode.ToJsonNode(),
             _ => throw new ArgumentOutOfRangeException(nameof(node))
         };
-	}
+    }
 
     public static DataNode ToDataNode(this JsonElement element)
     {

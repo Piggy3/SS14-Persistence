@@ -1,4 +1,4 @@
-﻿using Content.Shared.Dataset;
+using Content.Shared.Dataset;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Station;
 using Content.Shared.StationRecords;
@@ -258,7 +258,7 @@ public sealed class IonLawSystem : EntitySystem
                 {
                     return _random.Pick(dataset.Values);
                 }
-                _sawmill.Error("Selected DataSet (" + selector + ") was empty or not found" );
+                _sawmill.Error("Selected DataSet (" + selector + ") was empty or not found");
                 return Loc.GetString("ion-law-error-dataset-empty-or-not-found");
             case RandomManifestFill randomManifestFill:
                 var stations = _stationSystem.GetStations();
@@ -278,18 +278,18 @@ public sealed class IonLawSystem : EntitySystem
                 {
                     return _random.Pick(fallbackDataset.Values);
                 }
-                _sawmill.Error("Fallback DataSet (" + selector + ") was empty or not found" );
+                _sawmill.Error("Fallback DataSet (" + selector + ") was empty or not found");
                 return Loc.GetString("ion-law-error-fallback-dataset-empty-or-not-found");
             case ConstantFill constantFill:
                 if (constantFill.BoolValue.HasValue)
                     return constantFill.BoolValue.Value;
-                _sawmill.Error("The selected Constant Fill did not have a value: " + constantFill );
+                _sawmill.Error("The selected Constant Fill did not have a value: " + constantFill);
                 return Loc.GetString("ion-law-error-no-bool-value");
             default:
-            {
-                _sawmill.Error("Selected DataSet (" + selector + ") was not selected" );
-                return Loc.GetString("ion-law-error-no-selector-selected");
-            }
+                {
+                    _sawmill.Error("Selected DataSet (" + selector + ") was not selected");
+                    return Loc.GetString("ion-law-error-no-selector-selected");
+                }
         }
     }
 }

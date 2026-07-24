@@ -1,4 +1,4 @@
-﻿using Content.Shared.Examine;
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -164,6 +164,6 @@ public abstract class SharedRottingSystem : EntitySystem
         if (!Resolve(uid, ref comp, ref perishable))
             return 0;
 
-        return (int) (comp.TotalRotTime.TotalSeconds / perishable.RotAfter.TotalSeconds);
+        return (int)(comp.TotalRotTime.TotalSeconds / perishable.RotAfter.TotalSeconds);
     }
 }

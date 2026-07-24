@@ -1,4 +1,3 @@
-using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
@@ -162,7 +161,7 @@ namespace Content.Server.Atmos.EntitySystems
 
         private byte GetOpacity(float moles, float molesVisible, float molesVisibleMax)
         {
-            return (byte) (ContentHelpers.RoundToLevels(
+            return (byte)(ContentHelpers.RoundToLevels(
                 MathHelper.Clamp01((moles - molesVisible) /
                                    (molesVisibleMax - molesVisible)) * 255, byte.MaxValue,
                 _thresholds) * 255 / (_thresholds - 1));
@@ -193,7 +192,7 @@ namespace Content.Server.Atmos.EntitySystems
                     continue;
                 }
 
-                opacity = (byte) (ContentHelpers.RoundToLevels(
+                opacity = (byte)(ContentHelpers.RoundToLevels(
                     MathHelper.Clamp01((moles - gas.GasMolesVisible) /
                                        (gas.GasMolesVisibleMax - gas.GasMolesVisible)) * 255, byte.MaxValue,
                     _thresholds) * 255 / (_thresholds - 1));
@@ -222,6 +221,12 @@ namespace Content.Server.Atmos.EntitySystems
 
             ThermalByte newByteTemp = new();
 
+            // Extract fire color as bytes from the hotspot's computed blended color.
+            var fireColorR = (byte)(tile.Hotspot.FireColor.R * 255);
+            var fireColorG = (byte)(tile.Hotspot.FireColor.G * 255);
+            var fireColorB = (byte)(tile.Hotspot.FireColor.B * 255);
+            var fireColorA = (byte)(tile.Hotspot.FireColor.A * 255);
+
             if (tile.Hotspot.Valid)
                 newByteTemp.SetTemperature(tile.Hotspot.Temperature);
             else if (!tile.Space && tile.Air?.TotalMoles <= 5f)
@@ -232,17 +237,18 @@ namespace Content.Server.Atmos.EntitySystems
             if (oldData.Equals(default))
             {
                 changed = true;
-                oldData = new GasOverlayData(tile.Hotspot.State, new byte[VisibleGasId.Length], newByteTemp);
+                oldData = new GasOverlayData(tile.Hotspot.State, new byte[VisibleGasId.Length], newByteTemp, fireColorR, fireColorG, fireColorB, fireColorA);
             }
             else if (oldData.FireState != tile.Hotspot.State ||
+                     oldData.FireColorR != fireColorR || oldData.FireColorG != fireColorG || oldData.FireColorB != fireColorB || oldData.FireColorA != fireColorA ||
                      Math.Abs(oldData.ByteGasTemperature.Value - newByteTemp.Value) > 1 || // Dirty Temperature when there is more then 1 byte difference. That should measure up to minimum 4 degreese difference, 6 degreese on average.
                      (oldData.ByteGasTemperature.Value != newByteTemp.Value && newByteTemp.Value > ThermalByte.TempResolution)) // change of special ThermalByte value
             {
                 changed = true;
-                oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity, newByteTemp);
+                oldData = new GasOverlayData(tile.Hotspot.State, oldData.Opacity, newByteTemp, fireColorR, fireColorG, fireColorB, fireColorA);
             }
 
-            if (tile is {Air: not null, NoGridTile: false})
+            if (tile is { Air: not null, NoGridTile: false })
             {
                 for (var i = 0; i < VisibleGasId.Length; i++)
                 {

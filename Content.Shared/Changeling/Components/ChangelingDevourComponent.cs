@@ -93,7 +93,7 @@ public sealed partial class ChangelingDevourComponent : Component
     [DataField, AutoNetworkedField]
     public DamageSpecifier DamagePerTick = new()
     {
-        DamageDict = new ()
+        DamageDict = new()
         {
             { "Slash", 10},
             { "Piercing", 10 },

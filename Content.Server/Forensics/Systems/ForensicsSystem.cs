@@ -3,28 +3,27 @@ using Content.Server.DoAfter;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics.Components;
 using Content.Server.Popups;
-using Content.Shared.Body.Events;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Popups;
+using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Content.Shared.Forensics;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.Gibbing;
+using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
-using Content.Shared.Weapons.Melee.Events;
-using Robust.Shared.Random;
+using Content.Shared.Popups;
 using Content.Shared.Verbs;
-using Robust.Shared.Utility;
-using Content.Shared.Hands.Components;
-using Content.Shared.CCVar;
+using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Configuration;
+using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Forensics
 {
@@ -175,7 +174,7 @@ namespace Content.Server.Forensics
                 {
                     if (data is DnaData)
                     {
-                        list.Add(((DnaData) data).DNA);
+                        list.Add(((DnaData)data).DNA);
                     }
                 }
             }
@@ -298,14 +297,14 @@ namespace Content.Server.Forensics
         public string GenerateDNA()
         {
             var letters = new[] { "A", "C", "G", "T" };
-            var DNA = string.Empty;
+            var dNA = string.Empty;
 
             for (var i = 0; i < 16; i++)
             {
-                DNA += letters[_random.Next(letters.Length)];
+                dNA += letters[_random.Next(letters.Length)];
             }
 
-            return DNA;
+            return dNA;
         }
 
         private void ApplyEvidence(EntityUid user, EntityUid target)

@@ -1,8 +1,8 @@
-using System.Linq;
 using Content.Server.Database;
 using Robust.Server.Console;
 using Robust.Server.Player;
 using Robust.Shared.Network;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Commands
 {

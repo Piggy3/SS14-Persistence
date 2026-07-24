@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Numerics;
 using Content.Server.Administration;
 using Content.Server.Antag;
 using Content.Server.Chat.Managers;
@@ -37,6 +35,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -94,7 +94,7 @@ public sealed class ArrivalsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: new []{ typeof(SpawnPointSystem)}, after: new [] { typeof(ContainerSpawnPointSystem)});
+        SubscribeLocalEvent<PlayerSpawningEvent>(HandlePlayerSpawning, before: new[] { typeof(SpawnPointSystem) }, after: new[] { typeof(ContainerSpawnPointSystem) });
 
         SubscribeLocalEvent<StationArrivalsComponent, StationPostInitEvent>(OnStationPostInit);
 

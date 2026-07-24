@@ -1,5 +1,3 @@
-using System.Buffers;
-using System.Collections.Concurrent;
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -7,6 +5,8 @@ using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Robust.Shared.Random;
 using Robust.Shared.Threading;
+using System.Buffers;
+using System.Collections.Concurrent;
 
 namespace Content.Server.Atmos.EntitySystems;
 
@@ -361,7 +361,7 @@ public sealed partial class AtmosphereSystem
             DeltaPressureDamageScalingType.Threshold => 1f,
             DeltaPressureDamageScalingType.Linear => pressure * ent.Comp.ScalingPower,
             DeltaPressureDamageScalingType.Log =>
-                (float) Math.Log(pressure, ent.Comp.ScalingPower),
+                (float)Math.Log(pressure, ent.Comp.ScalingPower),
             _ => throw new ArgumentOutOfRangeException(nameof(ent), "Invalid damage scaling type!"),
         };
 

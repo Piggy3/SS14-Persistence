@@ -1,17 +1,8 @@
-﻿using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Maps;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration.Managers;
@@ -26,6 +17,14 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration;
 

@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Silicons.Laws;
+namespace Content.Server.Silicons.Laws;
 
 public sealed class IonLawLocalizationSystem : EntitySystem
 {

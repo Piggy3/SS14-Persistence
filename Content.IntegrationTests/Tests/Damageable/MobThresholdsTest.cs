@@ -1,5 +1,4 @@
 using Content.IntegrationTests.Utility;
-using Content.Shared.Alert;
 using Content.Shared.Mobs.Components;
 
 namespace Content.IntegrationTests.Tests.Damageable;

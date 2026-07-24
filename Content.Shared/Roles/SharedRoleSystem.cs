@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
@@ -14,6 +12,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Roles;
 

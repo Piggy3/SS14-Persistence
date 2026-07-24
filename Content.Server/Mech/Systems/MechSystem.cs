@@ -2,6 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Server.Mech.Components;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -26,7 +27,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Atmos;
 
 namespace Content.Server.Mech.Systems;
 
@@ -428,7 +428,7 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
-        args.Gas =  _atmosphere.GetContainingMixture(component.Mech, excite: args.Excite);
+        args.Gas = _atmosphere.GetContainingMixture(component.Mech, excite: args.Excite);
         args.Handled = true;
     }
 

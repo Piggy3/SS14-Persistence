@@ -1,6 +1,6 @@
-using System.Numerics;
 using Content.Shared.Inventory;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.Shared.Humanoid;
 

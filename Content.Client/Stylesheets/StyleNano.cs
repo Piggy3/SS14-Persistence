@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Numerics;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Examine;
 using Content.Client.PDA;
@@ -14,7 +12,8 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.Graphics;
+using System.Linq;
+using System.Numerics;
 using static Robust.Client.UserInterface.StylesheetHelpers;
 
 namespace Content.Client.Stylesheets

@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
@@ -31,6 +30,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using System.Linq;
 namespace Content.Shared.Medical.Cryogenics;
 
 public abstract partial class SharedCryoPodSystem : EntitySystem

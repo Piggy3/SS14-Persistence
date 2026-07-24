@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Stack;
@@ -18,6 +17,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.Store.Systems;
 
@@ -329,9 +329,9 @@ public sealed partial class StoreSystem
         foreach (var value in sortedCashValues)
         {
             var cashId = proto.Cash[value];
-            var amountToSpawn = (int) MathF.Floor((float) (amountRemaining / value));
+            var amountToSpawn = (int)MathF.Floor((float)(amountRemaining / value));
             var ents = _stack.SpawnMultipleAtPosition(cashId, amountToSpawn, coordinates);
-            if (ents.FirstOrDefault() is {} ent)
+            if (ents.FirstOrDefault() is { } ent)
                 _hands.PickupOrDrop(buyer, ent);
             amountRemaining -= value * amountToSpawn;
         }

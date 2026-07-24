@@ -27,6 +27,13 @@
   id: Weapons
   name: lathe-category-weapons
 
+- type: latheCategory
+  id: Bureaucracy
+  name: lathe-category-bureaucracy
+
+- type: latheCategory
+  id: Religion
+  name: lathe-category-religion
 # Biogen
 - type: latheCategory
   id: Food
@@ -144,6 +151,10 @@
 - type: latheCategory
   id: Bedsheets
   name: lathe-category-bedsheets
+
+- type: latheCategory
+  id: Plushies
+  name: lathe-category-plushies
 
 - type: latheCategory
   id: Carpets

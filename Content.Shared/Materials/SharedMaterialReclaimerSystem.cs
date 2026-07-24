@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body;
@@ -13,6 +12,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared.Materials;
 

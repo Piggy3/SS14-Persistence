@@ -11,6 +11,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Labels.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
@@ -23,7 +24,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server.Holopad;
 

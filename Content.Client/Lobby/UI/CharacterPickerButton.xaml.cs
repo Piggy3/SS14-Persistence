@@ -38,7 +38,7 @@ public sealed partial class CharacterPickerButton : ContainerButton
         ToggleMode = true;
         Group = group;
         var name = "Empty Slot";
-        if(profile != null)
+        if (profile != null)
         {
             name = profile.Name;
             View.LoadPreview(profile);

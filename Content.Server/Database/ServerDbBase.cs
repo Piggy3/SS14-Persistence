@@ -1,12 +1,3 @@
-using System.Collections.Immutable;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
@@ -19,6 +10,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Database
 {
@@ -152,7 +152,7 @@ namespace Content.Server.Database
                 ConstructionFavorites = [],
             };
 
-            prefs.Profiles.Add(profile);
+            //    prefs.Profiles.Add(profile);
 
             db.DbContext.Preference.Add(prefs);
 

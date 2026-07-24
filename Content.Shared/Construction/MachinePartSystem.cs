@@ -1,9 +1,9 @@
-using System.Linq;
 using Content.Shared.Construction.Components;
 using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Materials;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Shared.Construction
 {

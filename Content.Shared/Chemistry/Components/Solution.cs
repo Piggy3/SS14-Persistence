@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Linq;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
@@ -7,6 +5,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Collections;
+using System.Linq;
 
 namespace Content.Shared.Chemistry.Components
 {

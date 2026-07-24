@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Content.Shared.Database;
 using Microsoft.EntityFrameworkCore;
 using NpgsqlTypes;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 // ReSharper disable EntityFramework.ModelValidation.UnlimitedStringLength
 

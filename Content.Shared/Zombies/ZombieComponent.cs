@@ -35,7 +35,7 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     public DamageSpecifier ResistanceEffectiveness = new()
     {
-        DamageDict = new ()
+        DamageDict = new()
         {
             {"Slash", 0.5},
             {"Piercing", 0.3},
@@ -79,7 +79,7 @@ public sealed partial class ZombieComponent : Component
     [DataField("emoteId")]
     public ProtoId<EmoteSoundsPrototype>? EmoteSoundsId = "Zombie";
 
-    [DataField("nextTick", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField("nextTick", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextTick;
 
     [DataField("zombieStatusIcon")]
@@ -91,7 +91,7 @@ public sealed partial class ZombieComponent : Component
     [DataField("passiveHealing")]
     public DamageSpecifier PassiveHealing = new()
     {
-        DamageDict = new ()
+        DamageDict = new()
         {
             { "Blunt", -0.4 },
             { "Slash", -0.2 },

@@ -12,11 +12,8 @@ using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewRecords.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
-using Content.Shared.Fax.Components;
-using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
@@ -94,12 +91,12 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
     private void OnEntInserted(EntityUid uid, IdCardConsoleComponent component, EntInsertedIntoContainerMessage args)
     {
-        if(component.TargetIdSlot.Item == args.Entity)
+        if (component.TargetIdSlot.Item == args.Entity)
         {
             if (component.TargetIdSlot.Item is { Valid: true } targetId) // targetID lsot occupied
             {
                 var idComponent = Comp<IdCardComponent>(targetId);
-                if(idComponent!= null && idComponent.FullName != null)
+                if (idComponent != null && idComponent.FullName != null)
                     component.SelectedRecord = TryEnsureRecord(uid, idComponent.FullName);
             }
         }

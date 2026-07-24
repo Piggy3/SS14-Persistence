@@ -35,6 +35,9 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+  - type: Construction
+    graph: MirrorGraph
+    node: done
 
 - type: entity
   parent: Mirror
@@ -43,3 +46,6 @@
   components:
   - type: Sprite
     state: rectangle-mirror
+  - type: Construction
+    graph: MirrorModernGraph
+    node: done

@@ -1,7 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
+using System.Diagnostics.CodeAnalysis;
+using System.Text.RegularExpressions;
 
 namespace Content.Server.Chat.Managers;
 

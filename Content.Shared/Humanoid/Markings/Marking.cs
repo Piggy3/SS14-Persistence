@@ -1,7 +1,7 @@
-using System.Linq;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Humanoid.Markings;
 

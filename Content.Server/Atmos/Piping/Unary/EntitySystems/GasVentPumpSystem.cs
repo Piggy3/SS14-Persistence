@@ -19,9 +19,10 @@ using Content.Shared.Database;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.DoAfter;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Labels.Components;
 using Content.Shared.Power;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -228,7 +229,12 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             {
                 case AtmosDeviceNetworkSystem.SyncData:
                     payload.Add(DeviceNetworkConstants.Command, AtmosDeviceNetworkSystem.SyncData);
-                    payload.Add(AtmosDeviceNetworkSystem.SyncData, component.ToAirAlarmData());
+                    var name = "";
+                    if (TryComp<LabelComponent>(uid, out var labelComponent))
+                        name = labelComponent.CurrentLabel ?? "";
+                    var alarmData = component.ToAirAlarmData();
+                    alarmData.Name = name;
+                    payload.Add(AtmosDeviceNetworkSystem.SyncData, alarmData);
 
                     _deviceNetSystem.QueuePacket(uid, args.SenderAddress, payload, device: netConn);
 
@@ -241,7 +247,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
                     if (previous.Enabled != setData.Enabled)
                     {
-                        string enabled = setData.Enabled ? "enabled" : "disabled" ;
+                        string enabled = setData.Enabled ? "enabled" : "disabled";
                         _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} {enabled}");
                     }
 
@@ -271,7 +277,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
                     if (previous.PressureLockoutOverride != setData.PressureLockoutOverride)
                     {
-                        string enabled = setData.PressureLockoutOverride ? "enabled" : "disabled" ;
+                        string enabled = setData.PressureLockoutOverride ? "enabled" : "disabled";
                         _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} pressure lockout override {enabled}");
                     }
 

@@ -27,7 +27,6 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
 
-        private readonly Button? _createNewCharacterButton;
 
         public event Action<int>? SelectCharacter;
         public event Action<int>? DeleteCharacter;
@@ -75,7 +74,6 @@ namespace Content.Client.Lobby.UI
             //   _createNewCharacterButton.Orphan();
             Characters.RemoveAllChildren();
 
-            var numberOfFullSlots = 0;
             var characterButtonsGroup = new ButtonGroup();
 
             if (!_preferencesManager.ServerDataLoaded)

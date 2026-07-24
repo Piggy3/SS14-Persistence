@@ -1,44 +1,44 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Construction;
-using Content.Server.Explosion.EntitySystems;
+using Content.Server.Construction.Components;
 using Content.Server.DeviceLinking.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.Hands.Systems;
 using Content.Server.Kitchen.Components;
+using Content.Server.Lightning;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Systems;
+using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Construction.EntitySystems;
+using Content.Shared.Damage.Components;
 using Content.Shared.Database;
-using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Destructible;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Robust.Shared.Random;
-using Robust.Shared.Audio;
-using Content.Server.Lightning;
 using Content.Shared.Item;
 using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Stacks;
 using Content.Shared.Tag;
+using Content.Shared.Temperature.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
-using System.Linq;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Stacks;
-using Content.Server.Construction.Components;
-using Content.Shared.Chat;
-using Content.Shared.Damage.Components;
-using Content.Shared.Power.EntitySystems;
-using Content.Shared.Temperature.Components;
+using System.Linq;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -656,7 +656,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
 
             //cook only as many of those portions as time allows
-            return (recipe, (int) Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
+            return (recipe, (int)Math.Min(portions, component.CurrentCookTimerTime / recipe.CookTime));
         }
 
         public override void Update(float frameTime)

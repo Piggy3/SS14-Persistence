@@ -1,7 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reaction;
@@ -21,6 +17,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Numerics;
+using System.Runtime.CompilerServices;
 using Dependency = Robust.Shared.IoC.DependencyAttribute;
 
 namespace Content.Shared.Chemistry.EntitySystems;

@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Client.Animations;
 using Content.Client.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee;
@@ -6,6 +5,7 @@ using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
 using Robust.Shared.Map;
+using System.Numerics;
 
 namespace Content.Client.Weapons.Melee;
 

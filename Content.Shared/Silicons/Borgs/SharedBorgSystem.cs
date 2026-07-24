@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
@@ -24,8 +23,8 @@ using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
-using Content.Shared.Wires;
 using Content.Shared.Whitelist;
+using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;

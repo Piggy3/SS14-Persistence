@@ -1,10 +1,11 @@
-﻿using Content.Shared.GameTicking;
+using Content.Shared.GameTicking;
+using Content.Shared.Gibbing;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
-using Content.Shared.Gibbing;
 
 namespace Content.Server.Gibbing.Systems;
+
 public sealed class GibOnRoundEndSystem : EntitySystem
 {
     [Dependency] private readonly GibbingSystem _gibbing = default!;

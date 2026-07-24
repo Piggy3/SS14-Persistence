@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -7,6 +6,7 @@ using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 

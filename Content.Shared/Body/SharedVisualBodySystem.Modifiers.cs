@@ -151,11 +151,11 @@ public abstract partial class SharedVisualBodySystem
 
         ApplyProfile(ent,
             new()
-        {
-            Sex = sex,
-            SkinColor = appearance.SkinColor,
-            EyeColor = appearance.EyeColor,
-        });
+            {
+                Sex = sex,
+                SkinColor = appearance.SkinColor,
+                EyeColor = appearance.EyeColor,
+            });
 
         var markingsEvt = new ApplyOrganMarkingsEvent(appearance.Markings);
         RaiseLocalEvent(ent, ref markingsEvt);

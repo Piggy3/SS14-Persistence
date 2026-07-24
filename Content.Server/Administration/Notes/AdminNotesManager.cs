@@ -1,5 +1,3 @@
-using System.Text;
-using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -12,6 +10,8 @@ using Content.Shared.Players.PlayTimeTracking;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Notes;
 
@@ -75,7 +75,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
         // There's a foreign key constraint in place here. If there's no player record, it will fail.
         // Not like there's much use in adding notes on accounts that have never connected.
         // You can still ban them just fine, which is why we should allow admins to view their bans with the notes panel
-        if (await _db.GetPlayerRecordByUserId((NetUserId) player) is null)
+        if (await _db.GetPlayerRecordByUserId((NetUserId)player) is null)
             return;
 
         var sb = new StringBuilder($"{createdBy.Name} added a");
@@ -144,7 +144,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 
         var note = new SharedAdminNote(
             noteId,
-            [(NetUserId) player],
+            [(NetUserId)player],
             roundId.HasValue ? [roundId.Value] : [],
             serverName,
             playtime,

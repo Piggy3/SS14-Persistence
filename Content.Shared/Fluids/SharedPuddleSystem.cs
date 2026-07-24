@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
@@ -24,6 +23,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared.Fluids;
 
@@ -309,16 +309,16 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         // A puddle with 10 units of lube vs a puddle with 10 of lube and 20 catchup should stun and launch forward the same amount.
         if (slipperyUnits > 0)
         {
-            slipComp.SlipData.LaunchForwardsMultiplier = (float)(launchMult/slipperyUnits);
-            slipComp.SlipData.StunTime = (stunTimer/(float)slipperyUnits);
-            slipComp.SlipData.KnockdownTime = (knockdownTimer/(float)slipperyUnits);
+            slipComp.SlipData.LaunchForwardsMultiplier = (float)(launchMult / slipperyUnits);
+            slipComp.SlipData.StunTime = (stunTimer / (float)slipperyUnits);
+            slipComp.SlipData.KnockdownTime = (knockdownTimer / (float)slipperyUnits);
         }
 
         // Only make it super slippery if there is enough super slippery units for its own puddle
         slipComp.SlipData.SuperSlippery = superSlipperyUnits >= smallPuddleThreshold;
 
         // Lower tile friction based on how slippery it is, lets items slide across a puddle of lube
-        slipComp.SlipData.SlipFriction = (float)(puddleFriction/solution.Volume);
+        slipComp.SlipData.SlipFriction = (float)(puddleFriction / solution.Volume);
         _tile.SetModifier(entity, slipComp.SlipData.SlipFriction);
 
         Dirty(entity, slipComp);

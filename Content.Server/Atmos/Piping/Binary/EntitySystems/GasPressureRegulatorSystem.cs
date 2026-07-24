@@ -7,7 +7,6 @@ using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Atmos.Piping;
 using Content.Shared.Atmos.Piping.Binary.Components;
 using Content.Shared.Audio;
-using Content.Shared.Hands.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 

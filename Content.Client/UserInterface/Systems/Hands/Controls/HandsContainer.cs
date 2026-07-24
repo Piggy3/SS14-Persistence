@@ -1,8 +1,7 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Client.UserInterface.Systems.Inventory.Controls;
 using Content.Shared.Hands.Components;
 using Robust.Client.UserInterface.Controls;
+using System.Linq;
 
 namespace Content.Client.UserInterface.Systems.Hands.Controls;
 

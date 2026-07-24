@@ -1,4 +1,3 @@
-using Content.Server.Body.Components;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
 using Content.Shared.ActionBlocker;
@@ -47,7 +46,7 @@ namespace Content.Server.Hands.Systems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(SharedStaminaSystem)});
+            SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] { typeof(StunSystem), typeof(SharedStaminaSystem) });
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
 
@@ -109,7 +108,7 @@ namespace Content.Server.Hands.Systems
 
         private bool HandleThrowItem(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
         {
-            if (playerSession?.AttachedEntity is not {Valid: true} player || !Exists(player) || !coordinates.IsValid(EntityManager))
+            if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player) || !coordinates.IsValid(EntityManager))
                 return false;
 
             return ThrowHeldItem(player, coordinates);
@@ -134,7 +133,7 @@ namespace Content.Server.Hands.Systems
             {
                 var splitStack = _stackSystem.Split((throwEnt.Value, stack), 1, Comp<TransformComponent>(player).Coordinates);
 
-                if (splitStack is not {Valid: true})
+                if (splitStack is not { Valid: true })
                     return false;
 
                 throwEnt = splitStack.Value;

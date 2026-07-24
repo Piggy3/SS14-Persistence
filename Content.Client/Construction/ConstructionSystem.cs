@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Client.Popups;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -14,7 +12,8 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Client.Construction
 {

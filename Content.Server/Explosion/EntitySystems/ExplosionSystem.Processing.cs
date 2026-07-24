@@ -1,6 +1,7 @@
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
@@ -13,12 +14,11 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
-using Content.Shared.Damage.Systems;
-using Robust.Shared.Prototypes;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -129,17 +129,17 @@ public sealed partial class ExplosionSystem
             try
             {
 #endif
-            var processed = _activeExplosion.Process(tilesRemaining);
-            tilesRemaining -= processed;
+                var processed = _activeExplosion.Process(tilesRemaining);
+                tilesRemaining -= processed;
 
-            // has the explosion finished processing?
-            if (_activeExplosion.FinishedProcessing)
-            {
-                var comp = EnsureComp<TimedDespawnComponent>(_activeExplosion.VisualEnt);
-                comp.Lifetime = _cfg.GetCVar(CCVars.ExplosionPersistence);
-                _appearance.SetData(_activeExplosion.VisualEnt, ExplosionAppearanceData.Progress, int.MaxValue);
-                _activeExplosion = null;
-            }
+                // has the explosion finished processing?
+                if (_activeExplosion.FinishedProcessing)
+                {
+                    var comp = EnsureComp<TimedDespawnComponent>(_activeExplosion.VisualEnt);
+                    comp.Lifetime = _cfg.GetCVar(CCVars.ExplosionPersistence);
+                    _appearance.SetData(_activeExplosion.VisualEnt, ExplosionAppearanceData.Progress, int.MaxValue);
+                    _activeExplosion = null;
+                }
 #if EXCEPTION_TOLERANCE
             }
             catch (Exception)
@@ -188,7 +188,7 @@ public sealed partial class ExplosionSystem
         if (!_physicsQuery.TryGetComponent(uid, out var physics))
             return false;
 
-        return physics.CanCollide && physics.Hard && (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0;
+        return physics.CanCollide && physics.Hard && (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0;
     }
 
     /// <summary>
@@ -530,7 +530,7 @@ public sealed partial class ExplosionSystem
             if (GetNextTile((tileDef, tileRef.GridIndices), history, ref chunk) is not { } newId)
                 break;
 
-            var newDef = (ContentTileDefinition) _tileDefinitionManager[newId];
+            var newDef = (ContentTileDefinition)_tileDefinitionManager[newId];
 
             if (newDef.MapAtmosphere && !canCreateVacuum)
                 break;

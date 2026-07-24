@@ -1,9 +1,9 @@
-using System;
-using System.Numerics;
 using Content.Shared.Humanoid;
 using NUnit.Framework;
 using Robust.Shared.Maths;
 using Robust.Shared.Random;
+using System;
+using System.Numerics;
 
 namespace Content.Tests.Shared.Preferences.Humanoid;
 

@@ -1,4 +1,3 @@
-using System.Net;
 using Content.Server.Administration.Logs;
 using Content.Server.Database;
 using Content.Shared.CCVar;
@@ -7,6 +6,7 @@ using Content.Shared.Info;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
+using System.Net;
 
 namespace Content.Server.Info;
 

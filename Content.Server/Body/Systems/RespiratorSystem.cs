@@ -21,9 +21,7 @@ using Content.Shared.EntityEffects.Effects.Body;
 using Content.Shared.EntityEffects.Effects.Damage;
 using Content.Shared.Metabolism;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Timing;
 using JetBrains.Annotations;
-using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 

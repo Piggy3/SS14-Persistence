@@ -1,8 +1,7 @@
-﻿using Content.Shared.Trigger.Components;
-using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Examine;
+using Content.Shared.Trigger.Components;
+using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Verbs;
-using Robust.Shared.Random;
 
 namespace Content.Shared.Trigger.Systems;
 

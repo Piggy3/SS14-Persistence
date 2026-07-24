@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
 
 namespace Content.IntegrationTests.Tests.Markings;
 

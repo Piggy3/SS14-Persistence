@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using Content.Shared.Gibbing;
 using Robust.Shared.GameObjects;
 

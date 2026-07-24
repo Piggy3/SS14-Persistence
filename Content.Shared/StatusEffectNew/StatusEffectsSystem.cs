@@ -1,10 +1,13 @@
-using System.Diagnostics.CodeAnalysis;
+using Content.Shared.CrewAssignments.Components;
+using Content.Shared.CrewAssignments.Systems;
+using Content.Shared.Implants.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.StatusEffectNew;
 
@@ -19,6 +22,7 @@ public sealed partial class StatusEffectsSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedJobNetSystem _jobNetSystem = default!;
 
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
@@ -305,6 +309,20 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         if (ent.Comp.AppliedTo is not { } appliedTo)
             return; // Not much we can do!
 
+        if (TryComp<ImplantedComponent>(ent.Comp.AppliedTo, out var implanted) && implanted != null)
+        {
+            if (implanted.ImplantContainer != null)
+            {
+                foreach (var originalImplant in implanted.ImplantContainer.ContainedEntities)
+                {
+                    if (TryComp<JobNetComponent>(originalImplant, out var jobnet) && jobnet != null)
+                    {
+
+                        _jobNetSystem.ReagentObjectiveTryComplete(jobnet, ent);
+                    }
+                }
+            }
+        }
         var ev = new StatusEffectEndTimeUpdatedEvent(appliedTo, endTime);
         RaiseLocalEvent(ent, ref ev);
 

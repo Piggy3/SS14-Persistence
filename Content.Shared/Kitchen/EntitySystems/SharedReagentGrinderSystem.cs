@@ -1,6 +1,5 @@
-using System.Linq;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
@@ -17,6 +16,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
@@ -10,6 +9,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Containers;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -18,7 +18,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger= default!;
+        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
         private const float UpdateTimer = 1f;
@@ -59,7 +59,7 @@ namespace Content.Server.Atmos.EntitySystems
         {
 
             UpdateCachedResistances(uid, barotrauma);
-            
+
         }
         /// <summary>
         /// Generic method for updating resistance on component Lifestage events
@@ -232,7 +232,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                 var pressure = 1f;
 
-                if (_atmosphereSystem.GetContainingMixture(uid) is {} mixture)
+                if (_atmosphereSystem.GetContainingMixture(uid) is { } mixture)
                 {
                     pressure = MathF.Max(mixture.Pressure, 1f);
                 }

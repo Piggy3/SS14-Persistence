@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos.Prototypes;
 using Content.Shared.Body;
@@ -64,7 +64,7 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
                 continue;
 
             var data = new ReagentReactionSourceData(
-                reaction.MixingCategories ?? new () { DefaultMixingCategory },
+                reaction.MixingCategories ?? new() { DefaultMixingCategory },
                 reaction);
             foreach (var product in reaction.Products.Keys)
             {
@@ -78,7 +78,7 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
                 continue;
 
             var data = new ReagentGasSourceData(
-                new () { DefaultCondenseCategory },
+                new() { DefaultCondenseCategory },
                 gas);
             _reagentSources[gas.Reagent].Add(data);
         }

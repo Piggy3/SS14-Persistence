@@ -10,6 +10,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.Emag.Components;
+using Content.Shared.Gibbing;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -24,8 +26,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Gibbing;
-using Content.Shared.Humanoid;
 
 namespace Content.Server.Materials;
 
@@ -163,7 +163,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
         Dirty(uid, component);
 
         // scales the output if the process was interrupted.
-        var completion = 1f - Math.Clamp((float) Math.Round((active.EndTime - Timing.CurTime) / active.Duration),
+        var completion = 1f - Math.Clamp((float)Math.Round((active.EndTime - Timing.CurTime) / active.Duration),
             0f,
             1f);
         Reclaim(uid, item, completion, component);
@@ -223,7 +223,7 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
 
         foreach (var (material, amount) in composition.MaterialComposition)
         {
-            var outputAmount = (int) (amount * efficiency * modifier);
+            var outputAmount = (int)(amount * efficiency * modifier);
             _materialStorage.TryChangeMaterialAmount(reclaimer, material, outputAmount, storage);
         }
 

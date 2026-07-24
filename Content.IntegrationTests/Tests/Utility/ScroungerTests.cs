@@ -1,6 +1,5 @@
 using Content.IntegrationTests.Utility;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests.Utility;
 

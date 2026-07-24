@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Binary.Components;
 using Content.Server.NodeContainer.EntitySystems;
@@ -12,14 +11,13 @@ using Content.Shared.Audio;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Containers;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
@@ -191,7 +189,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
                 return 0;
             }
             float overPressConst = 300; // pressure difference (in atm) to get 200 L/sec transfer rate
-            float alpha = Atmospherics.MaxTransferRate * _atmosphereSystem.PumpSpeedup() / (float)Math.Sqrt(overPressConst*Atmospherics.OneAtmosphere);
+            float alpha = Atmospherics.MaxTransferRate * _atmosphereSystem.PumpSpeedup() / (float)Math.Sqrt(overPressConst * Atmospherics.OneAtmosphere);
             return alpha * (float)Math.Sqrt(inlet.Pressure - outlet.Pressure);
         }
 

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Administration.Logs;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -194,7 +194,7 @@ public sealed class SharpSystem : EntitySystem
             },
             Message = message,
             Disabled = disabled,
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/cutlery.svg.192dpi.png")),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/cutlery.svg.192dpi.png")),
             Text = Loc.GetString("butcherable-verb-name"),
         };
 

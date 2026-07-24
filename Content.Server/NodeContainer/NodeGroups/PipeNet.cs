@@ -1,16 +1,16 @@
-using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
+using System.Linq;
 
 namespace Content.Server.NodeContainer.NodeGroups;
 
 [NodeGroup(NodeGroupID.Pipe)]
 public sealed class PipeNet : BaseNodeGroup, IPipeNet
 {
-    [ViewVariables] public GasMixture Air { get; set; } = new() {Temperature = Atmospherics.T20C};
+    [ViewVariables] public GasMixture Air { get; set; } = new() { Temperature = Atmospherics.T20C };
 
     [ViewVariables] private AtmosphereSystem? _atmosphereSystem;
 
@@ -43,7 +43,7 @@ public sealed class PipeNet : BaseNodeGroup, IPipeNet
 
         foreach (var node in groupNodes)
         {
-            var pipeNode = (PipeNode) node;
+            var pipeNode = (PipeNode)node;
             Air.Volume += pipeNode.Volume;
         }
     }
@@ -85,7 +85,7 @@ public sealed class PipeNet : BaseNodeGroup, IPipeNet
 
     public override string GetDebugData()
     {
-        return @$"Pressure: { Air.Pressure:G3}
+        return @$"Pressure: {Air.Pressure:G3}
 Temperature: {Air.Temperature:G3}
 Volume: {Air.Volume:G3}";
     }

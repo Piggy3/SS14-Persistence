@@ -9,7 +9,6 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 

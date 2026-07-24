@@ -1,10 +1,7 @@
-using System.Collections.Frozen;
-using System.Linq;
-using Content.Shared.FixedPoint;
-using System.Text.Json.Serialization;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Contraband;
 using Content.Shared.EntityEffects;
+using Content.Shared.FixedPoint;
 using Content.Shared.Localizations;
 using Content.Shared.Metabolism;
 using Content.Shared.Nutrition;
@@ -17,6 +14,8 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Content.Shared.Chemistry.Reagent
 {

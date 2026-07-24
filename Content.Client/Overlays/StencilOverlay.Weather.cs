@@ -1,9 +1,9 @@
-using System.Numerics;
 using Content.Shared.Light.Components;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Weather;
 using Robust.Client.Graphics;
 using Robust.Shared.Map.Components;
+using System.Numerics;
 
 namespace Content.Client.Overlays;
 

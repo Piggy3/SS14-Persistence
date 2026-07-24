@@ -1,7 +1,5 @@
-using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Server.MiningFluid.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
@@ -11,6 +9,7 @@ using Content.Shared.Interaction;
 using Content.Shared.NodeContainer;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using System.Linq;
 using static Content.Shared.Atmos.Components.GasAnalyzerComponent;
 
 namespace Content.Server.Atmos.EntitySystems;
@@ -288,8 +287,7 @@ public sealed class GasAnalyzerSystem : EntitySystem
 
             if (mixture != null)
             {
-                var gasName = Loc.GetString(gas.Name);
-                gases.Add(new GasEntry(gasName, mixture[i], gas.Color));
+                gases.Add(new GasEntry(gas.Name, mixture[i], gas.Color));
             }
         }
 

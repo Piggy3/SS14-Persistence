@@ -1,10 +1,10 @@
-using System.Collections.Generic;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
+using System.Collections.Generic;
 
 namespace Content.IntegrationTests.Tests.Humanoid;
 

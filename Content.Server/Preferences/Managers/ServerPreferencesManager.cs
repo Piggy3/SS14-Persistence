@@ -1,16 +1,6 @@
 using Content.Server.CrewRecords.Systems;
 using Content.Server.Database;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Commands;
-using Content.Shared.CCVar;
-using Content.Shared.Construction.Prototypes;
-using Content.Shared.CrewMetaRecords;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
-using Content.Server.Database;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
@@ -23,7 +13,6 @@ using Content.Shared.Roles;
 using Content.Shared.Traits;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -32,6 +21,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -89,6 +79,13 @@ namespace Content.Server.Preferences.Managers
 
         internal PlayerPreferences ConvertPreferences(Preference prefs)
         {
+            if (prefs.Profiles.Count < 1)
+            {
+                var constructionFavorites2 = new List<ProtoId<ConstructionPrototype>>(prefs.ConstructionFavorites.Count);
+                foreach (var favorite in prefs.ConstructionFavorites)
+                    constructionFavorites2.Add(new ProtoId<ConstructionPrototype>(favorite));
+                return new PlayerPreferences(new Dictionary<int, HumanoidCharacterProfile>(0), prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites2);
+            }
             var maxSlot = prefs.Profiles.Max(p => p.Slot) + 1;
             var profiles = new Dictionary<int, HumanoidCharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
@@ -106,7 +103,7 @@ namespace Content.Server.Preferences.Managers
         internal HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
 
-            var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
+            var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority)j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
@@ -114,7 +111,7 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
                 sex = sexVal;
 
-            var spawnPriority = (SpawnPriorityPreference) profile.SpawnPriority;
+            var spawnPriority = (SpawnPriorityPreference)profile.SpawnPriority;
 
             var gender = sex == Sex.Male ? Gender.Male : Gender.Female;
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
@@ -197,7 +194,7 @@ namespace Content.Server.Preferences.Managers
                 ),
                 spawnPriority,
                 jobs,
-                (PreferenceUnavailableMode) profile.PreferenceUnavailable,
+                (PreferenceUnavailableMode)profile.PreferenceUnavailable,
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
@@ -357,7 +354,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if(metaRecords.CharacterNameExists(profile.Name))
+            if (metaRecords.CharacterNameExists(profile.Name))
             {
                 return;
             }
@@ -490,7 +487,7 @@ namespace Content.Server.Preferences.Managers
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
-                        new[] { new KeyValuePair<int, HumanoidCharacterProfile>(0, HumanoidCharacterProfile.Random()) },
+                        new[] { new KeyValuePair<int, HumanoidCharacterProfile>() },
                         0, Color.Transparent, [])
                 };
 
@@ -619,7 +616,7 @@ namespace Content.Server.Preferences.Managers
             return usernames
                 .Select(p => (_cachedPlayerPrefs[p].Prefs, p))
                 .Where(p => p.Prefs != null)
-                .Select(p => new KeyValuePair<NetUserId, HumanoidCharacterProfile>(p.p, p.Prefs!.SelectedCharacter));
+                .Select(p => new KeyValuePair<NetUserId, HumanoidCharacterProfile>(p.p, p.Prefs!.SelectedCharacter!));
         }
 
         internal static bool ShouldStorePrefs(LoginType loginType)

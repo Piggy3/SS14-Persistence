@@ -7,21 +7,21 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Database;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.DeviceNetwork.Systems;
 using Content.Shared.Interaction;
 using Content.Shared.Power;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
 using System.Linq;
-using Content.Shared.Atmos.Components;
-using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
@@ -350,7 +350,7 @@ public sealed class AirAlarmSystem : EntitySystem
     {
         if (!AccessCheck(uid, args.Actor, component))
         {
-           UpdateUI(uid, component);
+            UpdateUI(uid, component);
             return;
         }
 
@@ -650,20 +650,20 @@ public sealed class AirAlarmSystem : EntitySystem
 
         var pressure = CalculatePressureAverage(alarm);
         var temperature = CalculateTemperatureAverage(alarm);
-        var dataToSend = new List<(string, IAtmosDeviceData)>();
+        var dataToSend = new List<(string, string, IAtmosDeviceData)>();
 
         foreach (var (addr, data) in alarm.VentData)
         {
-            dataToSend.Add((addr, data));
+            dataToSend.Add((addr, data.Name, data));
         }
         foreach (var (addr, data) in alarm.ScrubberData)
         {
             data.AirAlarmPanicWireCut = alarm.PanicWireCut;
-            dataToSend.Add((addr, data));
+            dataToSend.Add((addr, data.Name, data));
         }
         foreach (var (addr, data) in alarm.SensorData)
         {
-            dataToSend.Add((addr, data));
+            dataToSend.Add((addr, data.Name, data));
         }
 
         var deviceCount = alarm.KnownDevices.Count;

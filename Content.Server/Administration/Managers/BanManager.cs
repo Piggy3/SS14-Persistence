@@ -1,8 +1,3 @@
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -21,6 +16,11 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Collections.Immutable;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Managers;
 
@@ -274,7 +274,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         ImmutableArray<int> roundIds;
         if (banInfo.RoundIds.Count > 0)
         {
-            roundIds = [..banInfo.RoundIds];
+            roundIds = [.. banInfo.RoundIds];
         }
         else if (_systems.TryGetEntitySystem<GameTicker>(out var ticker) && ticker.RoundId != 0)
         {
@@ -288,9 +288,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         return (new BanDef(
             null,
             type,
-            [..banInfo.Users.Select(u => u.UserId)],
-            [..banInfo.AddressRanges],
-            [..banInfo.HWIds],
+            [.. banInfo.Users.Select(u => u.UserId)],
+            [.. banInfo.AddressRanges],
+            [.. banInfo.HWIds],
             DateTimeOffset.Now,
             expires,
             roundIds,

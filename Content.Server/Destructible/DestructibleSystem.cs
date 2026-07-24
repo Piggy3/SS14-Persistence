@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction;
@@ -9,7 +7,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -23,6 +20,8 @@ using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Server.Destructible
 {

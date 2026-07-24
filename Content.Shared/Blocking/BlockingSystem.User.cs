@@ -1,9 +1,9 @@
-using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using System.Linq;
 
 namespace Content.Shared.Blocking;
 

@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -9,6 +8,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.ParcelWrap.Systems;
 

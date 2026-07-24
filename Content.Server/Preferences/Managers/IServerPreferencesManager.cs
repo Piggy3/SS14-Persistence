@@ -1,11 +1,11 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Preferences.Managers
 {

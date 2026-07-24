@@ -8,7 +8,7 @@ public sealed partial class CCVars
     /// <summary>
     ///     Controls if persistence autosave functionality is enabled.
     /// </summary>
-    public static  readonly CVarDef<bool>
+    public static readonly CVarDef<bool>
         AutoSaveEnabled = CVarDef.Create("game.autosaveenabled", true, CVar.ARCHIVE);
 
     /// <summary>

@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
@@ -24,6 +22,8 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
 using PullableComponent = Content.Shared.Movement.Pulling.Components.PullableComponent;
 
 namespace Content.Shared.Movement.Systems;
@@ -34,19 +34,19 @@ namespace Content.Shared.Movement.Systems;
 /// </summary>
 public abstract partial class SharedMoverController : VirtualController
 {
-    [Dependency] private   readonly IConfigurationManager _configManager = default!;
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private   readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private   readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private   readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private   readonly InventorySystem _inventory = default!;
-    [Dependency] private   readonly MobStateSystem _mobState = default!;
-    [Dependency] private   readonly SharedAudioSystem _audio = default!;
-    [Dependency] private   readonly SharedContainerSystem _container = default!;
-    [Dependency] private   readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private   readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private   readonly SharedTransformSystem _transform = default!;
-    [Dependency] private   readonly TagSystem _tags = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
@@ -116,7 +116,7 @@ public abstract partial class SharedMoverController : VirtualController
 
     protected virtual void OnMoverStartup(Entity<InputMoverComponent> ent, ref ComponentStartup args)
     {
-       _blocker.UpdateCanMove(ent, ent.Comp);
+        _blocker.UpdateCanMove(ent, ent.Comp);
     }
 
     public override void Shutdown()

@@ -1,8 +1,7 @@
 using Content.Shared.Emp;
-using System.Linq;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using System.Linq;
 
 namespace Content.Shared.BarSign;
 

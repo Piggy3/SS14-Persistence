@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.Administration;
@@ -10,7 +9,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
+using System.Linq;
 
 namespace Content.Server.GameTicking;
 
@@ -389,7 +388,7 @@ public sealed partial class GameTicker
             var ent = AddGameRule(rule);
 
             // Start rule if we're already in the middle of a round
-            if(RunLevel == GameRunLevel.InRound)
+            if (RunLevel == GameRunLevel.InRound)
                 StartGameRule(ent);
 
         }

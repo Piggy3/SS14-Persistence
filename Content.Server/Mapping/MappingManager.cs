@@ -1,4 +1,3 @@
-using System.IO;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.Mapping;
@@ -7,6 +6,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using System.IO;
 using YamlDotNet.Core;
 using YamlDotNet.RepresentationModel;
 
@@ -47,7 +47,7 @@ public sealed class MappingManager : IPostInjectInit
                 !_admin.IsAdmin(session, true) ||
                 !_admin.HasAdminFlag(session, AdminFlags.Host) ||
                 !_ent.TryGetComponent(session.AttachedEntity, out TransformComponent? xform) ||
-                xform.MapUid is not {} mapUid)
+                xform.MapUid is not { } mapUid)
             {
                 return;
             }

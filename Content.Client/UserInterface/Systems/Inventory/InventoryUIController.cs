@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Numerics;
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Client.Inventory;
@@ -10,7 +8,6 @@ using Content.Client.UserInterface.Systems.Inventory.Controls;
 using Content.Client.UserInterface.Systems.Inventory.Widgets;
 using Content.Client.UserInterface.Systems.Inventory.Windows;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Storage;
@@ -22,6 +19,8 @@ using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
 using static Content.Client.Inventory.ClientInventorySystem;
 
 namespace Content.Client.UserInterface.Systems.Inventory;

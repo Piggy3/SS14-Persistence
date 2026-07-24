@@ -50,7 +50,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                 Appearance = new(
                     Color.Azure,
                     Color.Beige,
-                    new ())
+                    new())
             };
         }
 

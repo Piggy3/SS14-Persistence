@@ -1,7 +1,7 @@
-using System.Collections.Immutable;
 using Content.Shared.Database;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
+using System.Collections.Immutable;
 
 namespace Content.Shared.Administration.Notes;
 

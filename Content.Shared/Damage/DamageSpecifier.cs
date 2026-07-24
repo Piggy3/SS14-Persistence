@@ -1,12 +1,11 @@
-using System.Linq;
-using System.Text.Json.Serialization;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
+using Robust.Shared.Utility;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace Content.Shared.Damage
 {

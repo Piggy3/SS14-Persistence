@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Charges.Systems;
 using Content.Shared.RCD;
@@ -6,6 +5,7 @@ using Content.Shared.RCD.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Construction;
 

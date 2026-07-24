@@ -1,11 +1,9 @@
-using System.Linq;
 using Content.Shared.Body;
-using Content.Shared.Ghost;
-using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Zombies;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client.Zombies;
 

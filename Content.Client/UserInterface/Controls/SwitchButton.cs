@@ -236,7 +236,7 @@ namespace Content.Client.UserInterface.Controls
             }
 
             // Add space for the label if it has text
-            if (! string.IsNullOrEmpty(Label?.Text))
+            if (!string.IsNullOrEmpty(Label?.Text))
             {
                 Label.Measure(availableSize);
                 desiredSize.X += separation + Label.DesiredSize.X;
@@ -245,13 +245,13 @@ namespace Content.Client.UserInterface.Controls
 
             // Add space for the state labels if at least one of them has text
             var stateLabelSpace = Vector2.Zero;
-            if (! string.IsNullOrEmpty(OffStateLabel?.Text))
+            if (!string.IsNullOrEmpty(OffStateLabel?.Text))
             {
                 OffStateLabel.Measure(availableSize);
                 stateLabelSpace = OffStateLabel.DesiredSize;
             }
 
-            if (! string.IsNullOrEmpty(OnStateLabel?.Text))
+            if (!string.IsNullOrEmpty(OnStateLabel?.Text))
             {
                 OnStateLabel.Measure(availableSize);
                 stateLabelSpace.Y = float.Max(stateLabelSpace.Y, OnStateLabel.DesiredSize.Y);

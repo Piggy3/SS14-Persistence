@@ -1,4 +1,3 @@
-using System.Threading;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -15,8 +14,8 @@ using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
-using Robust.Shared.Random;
 
 namespace Content.Server.Shuttles.Systems;
 

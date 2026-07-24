@@ -1,11 +1,11 @@
-using System.Net;
-using System.Net.Sockets;
-using System.Threading.Tasks;
 using Content.Shared.Database;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Managers;
 

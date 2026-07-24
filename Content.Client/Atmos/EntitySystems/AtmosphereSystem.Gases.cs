@@ -1,6 +1,6 @@
-using System.Runtime.CompilerServices;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Reactions;
+using System.Runtime.CompilerServices;
 
 namespace Content.Client.Atmos.EntitySystems;
 

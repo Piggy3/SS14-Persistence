@@ -84,6 +84,7 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - ButcheringMachineCircuitboard
 
 - type: technology
   id: Crematorium
@@ -97,6 +98,20 @@
   recipeUnlocks:
   - CrematoriumElectronics
 
+- type: technology
+  id: PaperProtection
+  name: research-technology-paper-protection
+  icon:
+    sprite: Objects/Misc/folders.rsi
+    state: folder-titanium
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BoxFolderTitaniumRed
+  - BoxFolderTitaniumGreen
+  - BoxFolderTitaniumBlue
+
 # Tier 2
 
 - type: technology
@@ -107,7 +122,7 @@
     state: astroice
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 25000
   recipeUnlocks:
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
@@ -129,7 +144,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 7500
+  cost: 37500
   recipeUnlocks:
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
@@ -144,7 +159,7 @@
     state: medical
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 25000
   recipeUnlocks:
   - BorgModuleAdvancedTopical
   - AdvancedJetInjector
@@ -157,7 +172,7 @@
     state: advmop
   discipline: CivilianServices
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - AdvMopItem
   - MegaSprayBottle
@@ -171,7 +186,7 @@
     state: honker
   discipline: CivilianServices
   tier: 2
-  cost: 7500
+  cost: 32500
   recipeUnlocks:
   - HonkerHarness
   - HonkerLArm
@@ -191,22 +206,10 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-
-- type: technology
-  id: BluespaceCargoTransport
-  name: research-technology-bluespace-cargo-transport
-  icon:
-    sprite: Structures/cargo_telepad.rsi
-    state: display
-  discipline: CivilianServices
-  tier: 2
-  cost: 15000
-  recipeUnlocks:
-  - CargoTelepadMachineCircuitboard
 
 - type: technology
   id: PushHorn
@@ -216,7 +219,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 4000
+  cost: 20000
   recipeUnlocks:
   - PushHorn
   - BorgModuleAdvancedClowning
@@ -231,7 +234,7 @@
     state: icon
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
 
@@ -243,10 +246,11 @@
     state: beakerbluespace
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
+  - BluespaceJug
 
 - type: technology
   id: LauncherSyringe
@@ -256,11 +260,11 @@
     state: syringe_gun
   discipline: CivilianServices
   tier: 3
-  cost: 15000
+  cost: 150000
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
-  
+
 - type: technology
   id: AdvancedTelecomms
   name: research-technology-advanced-telecommunications
@@ -269,6 +273,7 @@
     state: telecom-nopower
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - TelecomServer1kCircuitboard
+  - HolopadLongRangeMachineCircuitboard

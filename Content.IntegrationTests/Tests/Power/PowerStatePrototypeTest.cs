@@ -1,9 +1,9 @@
-using System.Linq;
 using Content.Server.Power.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Power;
 

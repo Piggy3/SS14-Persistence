@@ -1,5 +1,5 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.CCVar;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Atmos.EntitySystems;
 

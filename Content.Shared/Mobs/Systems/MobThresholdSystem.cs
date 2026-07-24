@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -8,6 +6,8 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
 using Robust.Shared.GameStates;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -410,7 +410,7 @@ public sealed class MobThresholdSystem : EntitySystem
             {
                 percentage = FixedPoint2.Clamp(percentage.Value, 0, 1);
 
-                severity = (short) MathF.Round(
+                severity = (short)MathF.Round(
                     MathHelper.Lerp(
                         _alerts.GetMinSeverity(currentAlert),
                         _alerts.GetMaxSeverity(currentAlert),

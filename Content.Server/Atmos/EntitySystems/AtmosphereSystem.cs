@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Fluids.EntitySystems;
@@ -15,12 +14,11 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Map.Events;
-using System.Linq;
-using Content.Shared.Damage.Systems;
 using Robust.Shared.Threading;
+using System.Linq;
 
 namespace Content.Server.Atmos.EntitySystems;
 

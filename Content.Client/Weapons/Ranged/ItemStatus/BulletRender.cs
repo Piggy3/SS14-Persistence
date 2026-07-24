@@ -1,8 +1,8 @@
-using System.Numerics;
 using Content.Client.Resources;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
+using System.Numerics;
 
 namespace Content.Client.Weapons.Ranged.ItemStatus;
 

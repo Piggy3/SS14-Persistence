@@ -70,7 +70,16 @@ public abstract class SharedGasTileOverlaySystem : EntitySystem
     {
         [ViewVariables] public readonly byte FireState;
         [ViewVariables] public readonly byte[] Opacity;
-        // TODO change fire color based on ByteTemp
+
+        /// <summary>
+        /// Fire color RGBA, compressed to 4 bytes for networking.
+        /// Computed from the proportional mix of burning fuel gas colors.
+        /// Alpha controls fire sprite opacity (e.g. hydrogen burns nearly invisible).
+        /// </summary>
+        [ViewVariables] public readonly byte FireColorR;
+        [ViewVariables] public readonly byte FireColorG;
+        [ViewVariables] public readonly byte FireColorB;
+        [ViewVariables] public readonly byte FireColorA;
 
         /// <summary>
         /// Network-synced air temperature, compressed to a single byte per tile for bandwidth optimization.
@@ -80,11 +89,15 @@ public abstract class SharedGasTileOverlaySystem : EntitySystem
         public readonly ThermalByte ByteGasTemperature;
 
 
-        public GasOverlayData(byte fireState, byte[] opacity, ThermalByte byteTemp)
+        public GasOverlayData(byte fireState, byte[] opacity, ThermalByte byteTemp, byte fireColorR = 255, byte fireColorG = 183, byte fireColorB = 51, byte fireColorA = 255)
         {
             FireState = fireState;
             Opacity = opacity;
             ByteGasTemperature = byteTemp;
+            FireColorR = fireColorR;
+            FireColorG = fireColorG;
+            FireColorB = fireColorB;
+            FireColorA = fireColorA;
         }
 
         public bool Equals(GasOverlayData other)
@@ -105,6 +118,9 @@ public abstract class SharedGasTileOverlaySystem : EntitySystem
             }
 
             if (ByteGasTemperature != other.ByteGasTemperature)
+                return false;
+
+            if (FireColorR != other.FireColorR || FireColorG != other.FireColorG || FireColorB != other.FireColorB || FireColorA != other.FireColorA)
                 return false;
 
             return true;

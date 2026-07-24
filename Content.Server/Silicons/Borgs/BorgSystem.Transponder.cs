@@ -1,14 +1,14 @@
-using Content.Shared.DeviceNetwork;
 using Content.Shared.Damage.Components;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Emag.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Robotics;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Emag.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Silicons.Borgs;

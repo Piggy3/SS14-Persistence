@@ -66,7 +66,7 @@ public sealed partial class AirAlarmWindow : FancyWindow
         _modes.OnItemSelected += args =>
         {
             _modes.SelectId(args.Id);
-            AirAlarmModeChanged!.Invoke((AirAlarmMode) args.Id);
+            AirAlarmModeChanged!.Invoke((AirAlarmMode)args.Id);
         };
 
         _autoMode.OnToggled += _ =>
@@ -106,9 +106,9 @@ public sealed partial class AirAlarmWindow : FancyWindow
                     ("state", state.AlarmType)));
         UpdateModeSelector(state.Mode);
         UpdateAutoMode(state.AutoMode);
-        foreach (var (addr, dev) in state.DeviceData)
+        foreach (var (addr, name, dev) in state.DeviceData)
         {
-            UpdateDeviceData(addr, dev);
+            UpdateDeviceData(addr, name, dev);
         }
         _modes.Visible = !state.PanicWireCut;
         CModeSelectLocked.Visible = state.PanicWireCut;
@@ -116,7 +116,7 @@ public sealed partial class AirAlarmWindow : FancyWindow
 
     public void UpdateModeSelector(AirAlarmMode mode)
     {
-        _modes.SelectId((int) mode);
+        _modes.SelectId((int)mode);
     }
 
     public void UpdateAutoMode(bool enabled)
@@ -124,14 +124,14 @@ public sealed partial class AirAlarmWindow : FancyWindow
         _autoMode.Pressed = enabled;
     }
 
-    public void UpdateDeviceData(string addr, IAtmosDeviceData device)
+    public void UpdateDeviceData(string addr, string name, IAtmosDeviceData device)
     {
         switch (device)
         {
             case GasVentPumpData pump:
                 if (!_pumps.TryGetValue(addr, out var pumpControl))
                 {
-                    var control = new PumpControl(pump, addr);
+                    var control = new PumpControl(pump, addr, name);
                     control.PumpDataChanged += AtmosDeviceDataChanged;
                     control.PumpDataCopied += AtmosDeviceDataCopied;
                     _pumps.Add(addr, control);
@@ -146,9 +146,9 @@ public sealed partial class AirAlarmWindow : FancyWindow
             case GasVentScrubberData scrubber:
                 if (!_scrubbers.TryGetValue(addr, out var scrubberControl))
                 {
-                    var control = new ScrubberControl(scrubber, addr);
+                    var control = new ScrubberControl(scrubber, addr, name);
                     control.ScrubberDataChanged += AtmosDeviceDataChanged;
-					control.ScrubberDataCopied += AtmosDeviceDataCopied;
+                    control.ScrubberDataCopied += AtmosDeviceDataCopied;
                     _scrubbers.Add(addr, control);
                     CScrubberContainer.AddChild(control);
                 }
@@ -161,7 +161,7 @@ public sealed partial class AirAlarmWindow : FancyWindow
             case AtmosSensorData sensor:
                 if (!_sensors.TryGetValue(addr, out var sensorControl))
                 {
-                    var control = new SensorInfo(sensor, addr);
+                    var control = new SensorInfo(sensor, addr, name);
                     control.OnThresholdUpdate += AtmosAlarmThresholdChanged;
                     control.SensorDataCopied += AtmosDeviceDataCopied;
                     _sensors.Add(addr, control);

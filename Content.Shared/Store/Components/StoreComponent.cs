@@ -42,7 +42,7 @@ public sealed partial class StoreComponent : Component
     /// Used to increase the severity of the admin log upon purchase if the purchaser is not a member of one of the listed factions.
     /// </summary>
     [DataField]
-    public HashSet<ProtoId<NpcFactionPrototype>>? ExpectedFaction = new ();
+    public HashSet<ProtoId<NpcFactionPrototype>>? ExpectedFaction = new();
 
     /// <summary>
     /// The person/mind who "owns" the store/account. Used if you want the listings to be fixed

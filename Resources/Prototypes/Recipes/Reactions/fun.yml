@@ -37,6 +37,7 @@
       amount: 10
     Carbon:
       amount: 10
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: FoodMeat
@@ -48,8 +49,10 @@
   minTemp: 370
   reactants:
     SpaceLube:
-      amount: 1
+      amount: 2
     Slime:
+      amount: 1
+    Fiber:
       amount: 1
   products:
     SpaceGlue: 2
@@ -76,6 +79,7 @@
       amount: 3
     SulfuricAcid:
       amount: 2
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SheetPlastic1
@@ -154,6 +158,7 @@
       amount: 15
     Ethanol:
       amount: 5
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: ShardCrystalRandom
@@ -170,6 +175,7 @@
       amount: 2
     Charcoal:
       amount: 2
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: MaterialGunpowder
@@ -250,3 +256,16 @@
     intensityPerUnit: 1
     intensitySlope: 2.7
     maxTotalIntensity: 50
+
+- type: reaction
+  id: BananiumBreakdown
+  source: true
+  requiredMixerCategories:
+  - Electrolysis
+  reactants:
+    Bananium:
+      amount: 10
+  products:
+    Nutriment: 4
+    Vitamin: 2
+    Honk: 5

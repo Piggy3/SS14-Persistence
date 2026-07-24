@@ -1,7 +1,7 @@
-using System.Collections.Immutable;
-using System.Net;
 using Content.Shared.Database;
 using Robust.Shared.Network;
+using System.Collections.Immutable;
+using System.Net;
 
 namespace Content.Server.Database;
 

@@ -1,4 +1,4 @@
-﻿using Content.Server.Actions;
+using Content.Server.Actions;
 using Content.Shared.Body;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Humanoid.Markings;

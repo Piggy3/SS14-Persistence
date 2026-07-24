@@ -193,9 +193,9 @@ public sealed class MetabolizerSystem : EntitySystem
             if (reagents >= ent.Comp1.MaxReagentsProcessable)
                 return;
 
-            var scale = (float) mostToRemove;
+            var scale = (float)mostToRemove;
             if (!solutionData.MetabolizeAll)
-                scale /= (float) rate;
+                scale /= (float)rate;
 
             // if it's possible for them to be dead, and they are,
             // then we shouldn't process any effects, but should probably

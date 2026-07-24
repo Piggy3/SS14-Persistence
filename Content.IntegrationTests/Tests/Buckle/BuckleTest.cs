@@ -1,11 +1,11 @@
-using System.Numerics;
-using Content.Shared.Buckle;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Standing;
 using Robust.Shared.GameObjects;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Buckle
 {

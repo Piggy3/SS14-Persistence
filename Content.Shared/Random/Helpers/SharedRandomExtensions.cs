@@ -1,9 +1,9 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared.Dataset;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Content.Shared.Random.Helpers
 {
@@ -69,7 +69,7 @@ namespace Content.Shared.Random.Helpers
         }
 
         public static T Pick<T>(this IRobustRandom random, Dictionary<T, float> weights)
-            where T: notnull
+            where T : notnull
         {
             var sum = weights.Values.Sum();
             var accumulated = 0f;

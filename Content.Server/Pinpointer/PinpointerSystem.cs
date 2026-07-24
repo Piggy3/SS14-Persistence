@@ -1,9 +1,9 @@
+using Content.Server.Shuttles.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Pinpointer;
+using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
-using Robust.Shared.Utility;
-using Content.Server.Shuttles.Events;
 
 namespace Content.Server.Pinpointer;
 

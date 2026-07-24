@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Client.Graphics;
 using Content.Client.Parallax;
 using Content.Client.Weather;
@@ -12,6 +11,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Numerics;
 
 namespace Content.Client.Overlays;
 

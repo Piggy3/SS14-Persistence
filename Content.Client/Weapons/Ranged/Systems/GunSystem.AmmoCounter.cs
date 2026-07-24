@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Client.IoC;
 using Content.Client.Items;
 using Content.Client.Resources;
@@ -9,6 +8,7 @@ using Robust.Client.Animations;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using System.Numerics;
 
 namespace Content.Client.Weapons.Ranged.Systems;
 

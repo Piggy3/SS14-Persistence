@@ -1,5 +1,4 @@
 #nullable enable
-using System.Numerics;
 using Content.Client.Construction;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
@@ -27,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.UnitTesting;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Interaction;
 

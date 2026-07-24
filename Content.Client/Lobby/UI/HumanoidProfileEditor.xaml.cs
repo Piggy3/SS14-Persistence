@@ -792,7 +792,7 @@ namespace Content.Client.Lobby.UI
 
         private void SetPreviewRotation(Direction direction)
         {
-            SpriteView.OverrideDirection = (Direction) ((int) direction % 4 * 2);
+            SpriteView.OverrideDirection = (Direction)((int)direction % 4 * 2);
         }
 
         //private void RandomizeEverything()
@@ -813,6 +813,6 @@ namespace Content.Client.Lobby.UI
         //    UpdateNameEdit();
         //}
 
-    
+
     }
 }

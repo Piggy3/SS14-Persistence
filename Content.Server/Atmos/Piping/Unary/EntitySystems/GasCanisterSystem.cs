@@ -5,7 +5,6 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Unary.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Database;
@@ -79,7 +78,7 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
         if (!_nodeContainer.TryGetNode(nodeContainer, canister.PortName, out PortablePipeNode? portNode))
             return;
 
-        if (portNode.NodeGroup is PipeNet {NodeCount: > 1} net)
+        if (portNode.NodeGroup is PipeNet { NodeCount: > 1 } net)
         {
             MixContainerWithPipeNet(canister.Air, net.Air);
         }
@@ -147,6 +146,7 @@ public sealed class GasCanisterSystem : SharedGasCanisterSystem
 
     private void CalculateCanisterPrice(EntityUid uid, GasCanisterComponent component, ref PriceCalculationEvent args)
     {
+        if (args.Handled) return;
         args.Price += _atmos.GetPrice(component.Air);
     }
 

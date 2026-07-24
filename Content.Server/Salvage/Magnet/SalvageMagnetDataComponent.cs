@@ -19,23 +19,23 @@ public sealed partial class SalvageMagnetDataComponent : Component
     /// <summary>
     /// If the magnet is currently active when does it end.
     /// </summary>
-    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? EndTime;
 
-    [DataField(customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextOffer;
 
     /// <summary>
     /// How long salvage will be active for before despawning.
     /// </summary>
     [DataField]
-    public TimeSpan ActiveTime = TimeSpan.FromMinutes(6);
+    public TimeSpan ActiveTime = TimeSpan.FromMinutes(15);
 
     /// <summary>
     /// Cooldown between offerings after one ends.
     /// </summary>
     [DataField]
-    public TimeSpan OfferCooldown = TimeSpan.FromMinutes(3);
+    public TimeSpan OfferCooldown = TimeSpan.FromMinutes(15);
 
     /// <summary>
     /// Seeds currently offered

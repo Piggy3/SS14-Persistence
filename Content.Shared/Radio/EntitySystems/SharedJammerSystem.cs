@@ -1,12 +1,12 @@
 using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.Popups;
-using Content.Shared.Verbs;
-using Content.Shared.Examine;
-using Content.Shared.Radio.Components;
 using Content.Shared.DeviceNetwork.Systems;
+using Content.Shared.Examine;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Popups;
 using Content.Shared.Power;
+using Content.Shared.Radio.Components;
+using Content.Shared.Verbs;
 
 namespace Content.Shared.Radio.EntitySystems;
 

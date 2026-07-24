@@ -1,6 +1,5 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Construction.EntitySystems;
-using Content.Shared.Damage.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -50,7 +49,7 @@ public abstract class SharedSmartFridgeSystem : EntitySystem
 
     private void OnCompInit(Entity<SmartFridgeComponent> ent, ref ComponentInit args)
     {
-        if(ent.Comp.ContainedEntriesCopy.Count > 0)
+        if (ent.Comp.ContainedEntriesCopy.Count > 0)
         {
             foreach (var kv in ent.Comp.ContainedEntriesCopy)
             {

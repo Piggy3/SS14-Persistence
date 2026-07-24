@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -10,6 +9,7 @@ using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 

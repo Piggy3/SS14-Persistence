@@ -1,9 +1,9 @@
 #nullable enable
-using System.Numerics;
 using Content.IntegrationTests.Tests.Interaction;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Movement;
 

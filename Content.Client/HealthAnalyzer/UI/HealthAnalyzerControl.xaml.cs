@@ -1,12 +1,9 @@
-using System.Linq;
-using System.Numerics;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs;
@@ -19,6 +16,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
 namespace Content.Client.HealthAnalyzer.UI;
 
 // Health analyzer UI is split from its window because it's used by both the

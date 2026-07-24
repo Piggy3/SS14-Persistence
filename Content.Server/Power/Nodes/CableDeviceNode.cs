@@ -1,8 +1,8 @@
+using Content.Server.MCTN.Components;
+using Content.Server.MCTN.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
-using Content.Server.MCTN.Components;
-using Content.Server.MCTN.Systems;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Power.Nodes

@@ -95,7 +95,7 @@ public sealed partial class SharedEntityEffectsSystem : EntitySystem, IEntityEff
 
         // TODO: Replace with proper random prediciton when it exists.
         if (effect.Probability <= 1f && !SharedRandomExtensions.PredictedProb(_timing, effect.Probability, GetNetEntity(target), GetNetEntity(user)))
-                return false;
+            return false;
 
         // See if conditions apply
         if (!_condition.TryConditions(target, effect.Conditions))

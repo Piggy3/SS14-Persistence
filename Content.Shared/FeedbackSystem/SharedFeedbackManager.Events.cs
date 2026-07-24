@@ -1,7 +1,6 @@
-﻿using System.Linq;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
+using System.Linq;
 
 namespace Content.Shared.FeedbackSystem;
 
@@ -11,7 +10,7 @@ public abstract partial class SharedFeedbackManager : IEntityEventSubscriber
 
     private void InitSubscriptions()
     {
-       _configManager.OnValueChanged(CCVars.FeedbackValidOrigins, OnFeedbackOriginsUpdated, true);
+        _configManager.OnValueChanged(CCVars.FeedbackValidOrigins, OnFeedbackOriginsUpdated, true);
     }
 
     private void OnFeedbackOriginsUpdated(string newOrigins)

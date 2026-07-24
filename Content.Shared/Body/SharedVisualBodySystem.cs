@@ -1,9 +1,9 @@
-using System.Linq;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Shared.Body;
 

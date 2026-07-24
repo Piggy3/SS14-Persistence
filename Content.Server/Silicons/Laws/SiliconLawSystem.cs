@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
@@ -20,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
+using System.Linq;
 
 namespace Content.Server.Silicons.Laws;
 
@@ -145,7 +145,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             component.Subverted = true;
 
             // new laws may allow antagonist behaviour so make it clear for admins
-            if(_mind.TryGetMind(uid, out var mindId, out _))
+            if (_mind.TryGetMind(uid, out var mindId, out _))
                 EnsureSubvertedSiliconRole(mindId);
 
         }

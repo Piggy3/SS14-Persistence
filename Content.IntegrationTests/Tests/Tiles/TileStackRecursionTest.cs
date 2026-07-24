@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Maps;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Tiles;
 

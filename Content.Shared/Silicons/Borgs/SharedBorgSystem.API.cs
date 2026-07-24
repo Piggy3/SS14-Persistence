@@ -1,7 +1,7 @@
-using System.Linq;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Player;
+using System.Linq;
 
 namespace Content.Shared.Silicons.Borgs;
 

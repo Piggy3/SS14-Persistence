@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -132,7 +131,7 @@ public abstract class SharedGrapplingGunSystem : VirtualController
         if (!Timing.IsFirstTimePredicted || grapple.Comp.Projectile is not { } projectile)
             return;
 
-        if(isBreak)
+        if (isBreak)
             _audio.PlayPredicted(grapple.Comp.BreakSound, grapple.Owner, user);
 
         _appearance.SetData(grapple.Owner, SharedTetherGunSystem.TetherVisualsStatus.Key, true);

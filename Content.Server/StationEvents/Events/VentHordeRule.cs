@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Pinpointer;
 using Content.Server.StationEvents.Components;
 using Content.Server.VentHorde.Components;
@@ -8,6 +7,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.StationEvents.Events;
 

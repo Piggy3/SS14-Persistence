@@ -1,7 +1,7 @@
-using System.IO;
 using Content.Client.Sprite;
 using Content.Shared.Preferences;
 using Robust.Client.UserInterface;
+using System.IO;
 
 namespace Content.Client.Lobby.UI;
 

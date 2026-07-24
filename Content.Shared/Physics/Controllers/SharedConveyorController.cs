@@ -1,11 +1,8 @@
-using System.Numerics;
 using Content.Shared.Conveyor;
 using Content.Shared.Gravity;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stacks;
-using Robust.Shared.Collections;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -13,19 +10,20 @@ using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Threading;
+using System.Numerics;
 
 namespace Content.Shared.Physics.Controllers;
 
 public abstract class SharedConveyorController : VirtualController
 {
     [Dependency] protected readonly IMapManager MapManager = default!;
-    [Dependency] private   readonly IParallelManager _parallel = default!;
-    [Dependency] private   readonly CollisionWakeSystem _wake = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly CollisionWakeSystem _wake = default!;
     [Dependency] protected readonly EntityLookupSystem Lookup = default!;
-    [Dependency] private   readonly FixtureSystem _fixtures = default!;
-    [Dependency] private   readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private   readonly SharedMoverController _mover = default!;
-    [Dependency] private   readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly FixtureSystem _fixtures = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
+    [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly SharedStackSystem _stack = default!;
 
     protected const string ConveyorFixture = "conveyor";
 
@@ -60,7 +58,7 @@ public abstract class SharedConveyorController : VirtualController
 
     private void OnConveyedFriction(Entity<ConveyedComponent> ent, ref TileFrictionEvent args)
     {
-        if(!ent.Comp.Conveying)
+        if (!ent.Comp.Conveying)
             return;
 
         // Conveyed entities don't get friction, they just get wishdir applied so will inherently slowdown anyway.

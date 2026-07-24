@@ -1,8 +1,8 @@
-using System.Collections.Immutable;
-using System.Linq;
 using Content.Server.Database;
 using Content.Shared.Administration.Notes;
 using Content.Shared.Database;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Content.Server.Administration.Notes;
 
@@ -55,8 +55,8 @@ public static class AdminNotesExtensions
 
         return new SharedAdminNote(
             note.Id,
-            [..note.Players.Select(p => p.UserId)],
-            [..note.Rounds.Select(r => r.Id)],
+            [.. note.Players.Select(p => p.UserId)],
+            [.. note.Rounds.Select(r => r.Id)],
             note.Rounds.SingleOrDefault()?.Server.Name, // TODO: Show all server names?
             note.PlaytimeAtNote,
             type,

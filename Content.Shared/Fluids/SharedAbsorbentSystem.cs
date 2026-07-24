@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
@@ -12,6 +11,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Numerics;
 
 namespace Content.Shared.Fluids;
 

@@ -1,12 +1,11 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
-using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.UserInterface;
 
 namespace Content.Server.Research.Systems;
 

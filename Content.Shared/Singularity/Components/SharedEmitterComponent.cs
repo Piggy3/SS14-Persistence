@@ -1,9 +1,9 @@
-﻿using System.Threading;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using System.Threading;
 
 namespace Content.Shared.Singularity.Components;
 
@@ -13,9 +13,12 @@ public sealed partial class EmitterComponent : Component
     public CancellationTokenSource? TimerCancel;
 
     // whether the power switch is in "on"
-    [ViewVariables] public bool IsOn;
+    [DataField, AutoNetworkedField]
+    public bool IsOn;
+
     // Whether the power switch is on AND the machine has enough power (so is actively firing)
-    [ViewVariables] public bool IsPowered;
+    [AutoNetworkedField]
+    public bool IsPowered;
 
     /// <summary>
     /// counts the number of consecutive shots fired.

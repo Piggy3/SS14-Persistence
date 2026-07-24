@@ -1,7 +1,3 @@
-using System.Linq;
-using System.Numerics;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Parallax;
@@ -28,6 +24,10 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Numerics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Salvage;
 

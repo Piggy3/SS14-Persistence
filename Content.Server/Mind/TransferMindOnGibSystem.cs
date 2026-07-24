@@ -1,9 +1,9 @@
-﻿using System.Linq;
 using Content.Shared.Gibbing;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
+using System.Linq;
 
 namespace Content.Server.Mind;
 
